@@ -8,6 +8,6 @@ angular/mdb-app/node_modules/
 
 target/
 
-application-data.properties
+*.iml
 
 
