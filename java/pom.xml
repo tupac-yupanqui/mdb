@@ -19,6 +19,7 @@
         <module>types</module>
         <module>data</module>
         <module>rest</module>
+        <module>test</module>
     </modules>
 
 </project>

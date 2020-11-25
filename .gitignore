@@ -5,9 +5,13 @@ angular/buch/
 angular/test/
 angular/mdb-app/node_modules/
 .idea/
+.mvn/
 
 target/
 
 application-data.properties
+mvnw
+mvnw.cmd
+
 
 
