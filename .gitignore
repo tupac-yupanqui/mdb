@@ -4,5 +4,10 @@ tmp/
 angular/buch/
 angular/test/
 angular/mdb-app/node_modules/
+.idea/
+
+target/
+
+application-data.properties
 
 
