@@ -33,7 +33,16 @@ public class TestApplication {
 				System.out.println("     "+sa.getName());
 			}
 			List<Album> list = albumService.getByArtistId(1L);
-			System.out.println("Albumlist: "+list.size());
+			for (Album a2 : list) {
+				System.out.println("Album: "+a2.getName());
+				System.out.println("  Subalbums: "+a2.getSubalbums().size());
+			}
+			List<Album> list3 = albumService.getByArtist(1L);
+			for (Album a3 : list3) {
+				System.out.println("Album: "+a3.getName());
+				System.out.println("  Subalbums: "+a3.getSubalbums().size());
+			}
+			System.out.println("Anzahl: "+albumService.getCount());
 		};
 	}
 

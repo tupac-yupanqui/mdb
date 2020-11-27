@@ -8,7 +8,7 @@ public class Album {
     private Long id;
     private String name;
     private Date release;
-    private List<Subalbum> subalbums = null;
+    private List<Subalbum> subalbums = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -43,9 +43,6 @@ public class Album {
     }
 
     public void addSubalbum(Subalbum sa) {
-        if (subalbums==null) {
-            subalbums = new ArrayList<>();
-        }
         subalbums.add(sa);
     }
 }

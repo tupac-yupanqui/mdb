@@ -8,8 +8,25 @@ import java.util.List;
 
 @Entity
 @Table(name="albums")
-
+@NamedQueries({
+        @NamedQuery(
+                name = "AlbumEntity.findByArtist",
+                query = "SELECT a FROM AlbumEntity a WHERE a.artistId = ?1"
+        )
+})
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "AlbumEntity.findByArtistId",
+                query = "SELECT * FROM albums WHERE artist_id = :artistId ",
+                resultClass = AlbumEntity.class
+        ),
+        @NamedNativeQuery(
+                name = "AlbumEntity.getCount",
+                query = "SELECT COUNT(*) FROM albums"
+        )
+})
 public class AlbumEntity {
+
     @Id
     private Long id;
     private String name;

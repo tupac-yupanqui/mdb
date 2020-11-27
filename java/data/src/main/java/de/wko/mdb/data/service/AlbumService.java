@@ -1,7 +1,6 @@
 package de.wko.mdb.data.service;
 
 import de.wko.mdb.data.entity.AlbumEntity;
-import de.wko.mdb.data.repository.AlbumCustomRepository;
 import de.wko.mdb.data.repository.AlbumRepository;
 import de.wko.mdb.types.Album;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ public class AlbumService {
     @Autowired
     AlbumRepository repo;
 
-    @Autowired
-    AlbumCustomRepository customRepo;
-
     public Album getById(Long id) {
         Optional<AlbumEntity> optional = repo.findById(id);
         if (!optional.isPresent()) {
@@ -29,11 +25,24 @@ public class AlbumService {
     }
 
     public List<Album> getByArtistId(Long artistId) {
-        List<AlbumEntity> list = customRepo.findByArtistId(artistId);
+        List<AlbumEntity> list = repo.findByArtistId(artistId);
+//        List<AlbumEntity> list = new ArrayList<>();
         List<Album> result = new ArrayList<>();
         for (AlbumEntity entity : list) {
             result.add(entity.getType());
         }
         return result;
+    }
+    public List<Album> getByArtist(Long artistId) {
+        List<AlbumEntity> list = repo.findByArtist(artistId);
+//        List<AlbumEntity> list = new ArrayList<>();
+        List<Album> result = new ArrayList<>();
+        for (AlbumEntity entity : list) {
+            result.add(entity.getType());
+        }
+        return result;
+    }
+    public int getCount() {
+        return repo.getCount();
     }
 }
