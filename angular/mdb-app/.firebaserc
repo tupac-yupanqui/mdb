@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "my-version-control": {
+      "hosting": {
+        "mdb-app": [
+          "my-version-control"
+        ]
+      }
+    }
+  }
+}
