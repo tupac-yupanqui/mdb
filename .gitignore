@@ -1,17 +1,19 @@
-**/kar
-**/war
-**/tmp
+kar/
+war/
+tmp/
 angular/buch/
 angular/test/
-**/.idea
-**/.mvn
+angular/mdb-app/node_modules/
+.idea/
+.mvn/
 
-**/target
+target/
 
 application-data.properties
 mvnw
 mvnw.cmd
 
-**/*.iml
+=======
+*.iml
 
 
