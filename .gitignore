@@ -13,7 +13,7 @@ application-data.properties
 mvnw
 mvnw.cmd
 
-=======
 *.iml
 
 
+node_modules/
