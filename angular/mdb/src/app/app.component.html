@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="over" #sidenav class="sidenav">
+  <mat-sidenav mode="over" #sidenav class="sidenav" (click)="sidenav.toggle()">
     <mat-nav-list role="navigation">
       <a mat-list-item routerLink="timeline" routerLinkActive="active">
         <mat-icon matListIcon>timeline</mat-icon>
@@ -16,7 +16,17 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      Babywatch
+      Musikarchiv
+      <div class="stretch"></div>
+      <button class="theme-button" (click)="toggleTheme()" mat-icon-button>
+        <mat-icon>lock</mat-icon>
+      </button>
+      <button class="theme-button" (click)="toggleTheme()" mat-icon-button>
+        <mat-icon>https</mat-icon>
+      </button>
+      <button class="theme-button" (click)="toggleTheme()" mat-icon-button>
+        <mat-icon>invert_colors</mat-icon>
+      </button>
     </mat-toolbar>    
     <main class="content">
       <router-outlet></router-outlet>

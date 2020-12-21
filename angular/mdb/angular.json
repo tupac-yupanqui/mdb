@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -92,7 +91,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -126,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "mdb"
+  "defaultProject": "mdb",
+  "cli": {
+    "analytics": false
+  }
 }

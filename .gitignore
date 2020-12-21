@@ -9,7 +9,7 @@ angular/mdb-app/node_modules/
 
 target/
 
-application-data.properties
+java/data/src/main/resources/application-data.properties
 mvnw
 mvnw.cmd
 

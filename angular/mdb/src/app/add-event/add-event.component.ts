@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BabywatchService, timelineEventTypes, TimelineEventType } from '../babywatch.service';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'mdb-add-event',
@@ -7,7 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEventComponent implements OnInit {
 
-  constructor() { }
+  constructor(private babyService: BabywatchService, private bottomSheetRef: MatBottomSheetRef<AddEventComponent>) { 
+  }
+
+  get eventTypes() { return timelineEventTypes; }
+  get babyName() { return this.babyService.babyName || 'Das Baby'; }
+
+  addEvent(data: { eventType: TimelineEventType, comment: string}) {
+    this.babyService.addTimelineEvent( {
+      date: new Date(),
+      eventType: data.eventType,
+      comment: data.comment
+    })
+    this.bottomSheetRef.dismiss();
+  }
 
   ngOnInit(): void {
   }

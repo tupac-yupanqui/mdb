@@ -29,11 +29,14 @@
     max-width: 350px;
 }
 
-@import '~@angular/material/theming';
-$primary-palette: mat-palette($mat-indigo);
-$primary: mat-color($primary-palette);
+//@import '~@angular/material/theming';
+@import "../theme";
 .active {
     font-weight: bold;
     color: $primary !important;
     background-color: rgba($primary, .12) !important;
+}
+
+.stretch {
+    flex-grow: 1;
 }

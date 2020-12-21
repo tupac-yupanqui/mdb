@@ -13,7 +13,7 @@ export class TimelineComponent implements OnInit {
 
   constructor(
     private babyService: BabywatchService, 
-  //  private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet
   ) { }
 
   get timeline() { return this.babyService.timeline; }
@@ -23,7 +23,8 @@ export class TimelineComponent implements OnInit {
   }
 
   addEvent() {
-    //this.bottomSheet.open(AddEventComponent);
+    console.log("ADD");
+    this.bottomSheet.open(AddEventComponent);
   //  this.babyService.addRandomTimelineEvent();
   }
 
