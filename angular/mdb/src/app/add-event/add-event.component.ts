@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BabywatchService, timelineEventTypes, TimelineEventType } from '../babywatch.service';
+import { BabywatchService, timelineEventTypes, TimelineEventType } from '../service/babywatch.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({

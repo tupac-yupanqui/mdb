@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BabywatchService } from '../babywatch.service';
+import { BabywatchService } from '../service/babywatch.service';
 import { AddEventComponent } from '../add-event/add-event.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 

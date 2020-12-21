@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { AuthenticationService } from './service/authentication.service';
 
 @Component({
   selector: 'mdb-root',
@@ -7,9 +8,14 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    public loginService: AuthenticationService, 
+    @Inject(DOCUMENT) private document: Document
+    ) {}
+
   toggleTheme() {
     this.document.body.classList.toggle("dark-theme");
   }
+
   title = 'Musikarchiv';
 }

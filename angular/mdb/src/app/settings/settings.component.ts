@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BabywatchService } from '../babywatch.service';
+import { BabywatchService } from '../service/babywatch.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTimelineDialogComponent } from '../delete-timeline-dialog/delete-timeline-dialog.component';
