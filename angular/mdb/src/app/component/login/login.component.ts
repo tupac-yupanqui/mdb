@@ -29,4 +29,8 @@ export class LoginComponent implements OnInit {
     } else
       this.invalidLogin = true
   }
+
+  login(name: string, password: string) {
+
+  }
 }

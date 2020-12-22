@@ -35,6 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteTimelineDialogComponent } from './delete-timeline-dialog/delete-timeline-dialog.component';
 import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
+import { HomeComponent } from './home/home.component';
 
 registerLocaleData(de);
 
@@ -46,7 +47,8 @@ registerLocaleData(de);
     AddEventComponent,
     DeleteTimelineDialogComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

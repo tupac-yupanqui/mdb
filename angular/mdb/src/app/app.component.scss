@@ -1,3 +1,5 @@
+@import "../theme";
+
 .sidenav-content {
     display: flex;
     flex-direction: column;
@@ -9,17 +11,20 @@
     flex-grow: 0;
     flex-shrink: 0;
 }
+$cc: map-get($theme, primary);
 .content {
     flex-grow: 1;
     flex-shrink: 1;
     overflow: auto;
     padding: 24px;
+    background-color: rgba($primary, .2) !important;
+ //   background-color: mat-color($cc) !important;
 }
 
 ::ng-deep router-outlet + * {
     display: block;
     width: 100%;
-    max-width: 500px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -30,7 +35,6 @@
 }
 
 //@import '~@angular/material/theming';
-@import "../theme";
 .active {
     font-weight: bold;
     color: $primary !important;
