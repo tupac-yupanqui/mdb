@@ -57,3 +57,29 @@ $header-height: 64px;
     display:block;
     padding-top: 100%;
 }
+
+.filter-card {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.filter-album {
+  width:200px;
+  padding-right: 20px;
+}
+.filter-artist {
+  width:200px;
+  padding-right: 20px;
+}
+.filter-year {
+  width:100px;
+  padding-right: 20px;
+}
+.filter-label {
+  padding-right: 40px;
+}
+.filter-label-sort {
+  padding-right: 40px;
+  padding-left: 60px;
+}

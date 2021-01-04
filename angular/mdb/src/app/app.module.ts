@@ -29,7 +29,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatIconRegistry } from "@angular/material/icon";
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteTimelineDialogComponent } from './delete-timeline-dialog/delete-timeline-dialog.component';
@@ -69,6 +69,7 @@ registerLocaleData(de);
     MatCardModule,
     MatBottomSheetModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,

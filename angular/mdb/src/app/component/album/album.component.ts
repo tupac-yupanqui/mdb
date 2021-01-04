@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { Album } from 'src/app/data/interfaces';
+import { Album, AlbumFilter } from 'src/app/data/interfaces';
 import { RestService } from '../../service/rest.service';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MessageDialogComponent } from '../../dialog/message-dialog/message-dialog.component';
 
 import { HostListener } from "@angular/core";
+
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 
 const cardWidth = 250;
 const cardSpacing = 20;
@@ -20,25 +22,37 @@ export class AlbumComponent implements OnInit {
   
   scrHeight:any;
   scrWidth:any;
-
   albums : Album[];
+
+  filterForm: FormGroup;
+  filter: AlbumFilter;
 
   constructor(
     private router: Router,
     private rest:  RestService,
     private dialog: MatDialog) { 
       this.getScreenSize();
+
+      this.filterForm = new FormGroup({
+        album: new FormControl(''),
+        artist: new FormControl(''),        
+        year: new FormControl('')        
+      })
     }
 
     @HostListener('window:resize', ['$event'])
-    getScreenSize(event?) {
+    getScreenSize() {
           this.scrHeight = window.innerHeight;
           this.scrWidth = window.innerWidth;
-         // console.log(this.scrHeight, this.scrWidth);
     }
 
   ngOnInit(): void {
-    this.rest.getAlbums().subscribe(
+    let filter = {
+      year: '',
+      sort: 'ARTIST',
+      order: 'ASC'
+    }
+    this.rest.getAlbums(filter).subscribe(
       (data: Album[])=>{
         this.albums = data;
       },

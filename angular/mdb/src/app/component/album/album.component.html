@@ -1,7 +1,22 @@
 <div fxLayout="row wrap" style="margin-top:-20px">
-    <mat-card fxFlex="{{getControlPanelWidth()}}" class="card mat-elevation-z8">
+    <mat-card fxFlex="{{getControlPanelWidth()}}" class="card mat-elevation-z8 filter-card">
         <mat-card-content>
-            Hallo
+            <form novalidate [formGroup]="filterForm">
+                <label class="filter-label">Filter</label>
+                <mat-form-field class="example-full-width filter-album">
+                    <mat-label>Album</mat-label>
+                    <input matInput class="form-control" formControlName="album">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width filter-artist">
+                    <mat-label>Artist</mat-label>
+                    <input matInput class="form-control" formControlName="artist">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width filter-year">
+                    <mat-label>Jahr</mat-label>
+                    <input matInput class="form-control" formControlName="year">
+                  </mat-form-field>
+                  <label class="filter-label-sort">Sortieren</label>
+                </form>
         </mat-card-content>
     </mat-card>
 </div>
