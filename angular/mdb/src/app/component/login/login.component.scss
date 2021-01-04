@@ -1,5 +1,34 @@
-.logincard {
-  margin: 0 auto;
+@import "../../../theme";
+
+$warn: map-get($theme, warn);
+
+.login-form-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   margin-top: 50px;
-  width: 500px;
+}
+
+.button-flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.login-form-card {
+  width: 400px;
+}
+
+.login-form-input {
+  width: 100%;
+}
+
+.login-form-content {
+  margin-top: 40px;
+}
+.login-alert {
+  color: mat-color($warn,900);
+  background: mat-color($warn,100);
+  margin-bottom: 20px;
 }

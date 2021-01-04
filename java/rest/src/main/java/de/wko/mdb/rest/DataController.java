@@ -1,12 +1,15 @@
 package de.wko.mdb.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.wko.mdb.data.filter.AlbumFilter;
 import de.wko.mdb.data.service.AlbumService;
 import de.wko.mdb.data.service.ArtistService;
+import de.wko.mdb.rest.filter.FilterEditor;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +20,13 @@ public class DataController {
     ArtistService service;
     @Autowired
     AlbumService albumservice;
+    @Autowired
+    private ObjectMapper jacksonObjectMapper;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(AlbumFilter.class, new FilterEditor(jacksonObjectMapper));
+    }
 
     @GetMapping("/artist")
     public Artist artist() {
@@ -36,8 +46,9 @@ public class DataController {
     }
 
     @GetMapping("/albums")
-    public List<Album> albums() {
-        return albumservice.getByArtistId(1L);
+    @ResponseBody
+    public List<Album> albums(@RequestParam AlbumFilter filter) {
+        return albumservice.getFilteredAlbums(filter);
     }
 
 }

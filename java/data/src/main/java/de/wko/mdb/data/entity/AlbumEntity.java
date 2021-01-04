@@ -11,7 +11,11 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "AlbumEntity.findByArtist",
-                query = "SELECT a FROM AlbumEntity a WHERE a.artistId = ?1"
+                query = "SELECT a FROM AlbumEntity a WHERE a.artist.id = ?1"
+        ),
+        @NamedQuery(
+                name = "AlbumEntity.findAll",
+                query = "SELECT a FROM AlbumEntity a ORDER BY ?1"
         )
 })
 @NamedNativeQueries({
@@ -30,11 +34,14 @@ public class AlbumEntity {
     @Id
     private Long id;
     private String name;
-    @Column(name = "artist_id")
-    private Long artistId;
     private Date release;
+    private String cover;
+    private String coversmall;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
     private List<SubalbumEntity> subalbums;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "artist_id")
+    private ArtistEntity artist;
 
     public Long getId() {
         return id;
@@ -60,14 +67,6 @@ public class AlbumEntity {
         this.release = release;
     }
 
-    public Long getArtistId() {
-        return artistId;
-    }
-
-    public void setArtistId(Long artistId) {
-        this.artistId = artistId;
-    }
-
     public List<SubalbumEntity> getSubalbums() {
         return subalbums;
     }
@@ -76,13 +75,41 @@ public class AlbumEntity {
         this.subalbums = subalbums;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getCoversmall() {
+        return coversmall;
+    }
+
+    public void setCoversmall(String coversmall) {
+        this.coversmall = coversmall;
+    }
+
+    public ArtistEntity getArtist() {
+        return artist;
+    }
+
+    public void setArtist(ArtistEntity artist) {
+        this.artist = artist;
+    }
+
     public Album getType() {
         Album a = new Album();
         a.setId(this.id);
         a.setName(this.name);
+        a.setCover(this.cover);
+        a.setCoversmall(this.coversmall);
+        a.setRelease((this.release));
         for (SubalbumEntity sae : this.getSubalbums()) {
             a.addSubalbum(sae.getType());
         }
+        a.setArtist(this.artist.getType());
         return a;
     }
 

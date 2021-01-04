@@ -5,6 +5,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
+import { AlbumComponent } from './component/album/album.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'album', component: AlbumComponent },
 //  { path: '', redirectTo: 'timeline', pathMatch: 'full'},
 ];
 

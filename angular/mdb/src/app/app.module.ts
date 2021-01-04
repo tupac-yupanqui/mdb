@@ -36,6 +36,10 @@ import { DeleteTimelineDialogComponent } from './delete-timeline-dialog/delete-t
 import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { HomeComponent } from './home/home.component';
+import { MessageDialogComponent } from './dialog/message-dialog/message-dialog.component';
+import { AlbumComponent } from './component/album/album.component';
+
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 registerLocaleData(de);
 
@@ -48,7 +52,9 @@ registerLocaleData(de);
     DeleteTimelineDialogComponent,
     LoginComponent,
     LogoutComponent,
-    HomeComponent
+    HomeComponent,
+    MessageDialogComponent,
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,8 @@ registerLocaleData(de);
     MatFormFieldModule,
     MatExpansionModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    FlexLayoutModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "de-de"}

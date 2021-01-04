@@ -7,7 +7,10 @@ import java.util.List;
 public class Album {
     private Long id;
     private String name;
+    private Artist artist;
     private Date release;
+    private String cover;
+    private String coversmall;
     private List<Subalbum> subalbums = new ArrayList<>();
 
     public Long getId() {
@@ -42,7 +45,31 @@ public class Album {
         this.subalbums = subalbums;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getCoversmall() {
+        return coversmall;
+    }
+
+    public void setCoversmall(String coversmall) {
+        this.coversmall = coversmall;
+    }
+
     public void addSubalbum(Subalbum sa) {
         subalbums.add(sa);
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

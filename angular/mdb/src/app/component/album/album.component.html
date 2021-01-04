@@ -1,0 +1,19 @@
+<div fxLayout="row wrap" style="margin-top:-20px">
+    <mat-card fxFlex="{{getControlPanelWidth()}}" class="card mat-elevation-z8">
+        <mat-card-content>
+            Hallo
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="content2" fxLayout="row wrap">    
+    <mat-card fxFlex="{{getCardWidth()}}px" class="card mat-elevation-z8" *ngFor="let album of albums" (click)="details(album.id)">
+        <mat-card-content class="content">
+            <div class="box">
+                <img src="http://mdb.wkoenig.info/assets/{{getCover(album)}}" class="cover">
+            </div>
+            <p class="label1">{{album.name}}</p>
+            <p class="label2">{{album.artist.name}}</p>
+            <p class="label3">{{album.release | date:'yyyy'}}</p>
+        </mat-card-content>
+    </mat-card>    
+</div>
