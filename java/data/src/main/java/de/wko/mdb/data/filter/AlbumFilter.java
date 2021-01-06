@@ -7,8 +7,8 @@ public class AlbumFilter {
     private String album;
     private String artist;
     private String year;
-    private AlbumSort sort;
-    private SortOrder order;
+    private AlbumSort sorttype;
+    private SortOrder sortorder;
 
     public String getAlbum() {
         return album;
@@ -34,19 +34,19 @@ public class AlbumFilter {
         this.year = year;
     }
 
-    public AlbumSort getSort() {
-        return sort;
+    public AlbumSort getSorttype() {
+        return sorttype;
     }
 
-    public void setSort(AlbumSort sort) {
-        this.sort = sort;
+    public void setSorttype(AlbumSort sorttype) {
+        this.sorttype = sorttype;
     }
 
-    public SortOrder getOrder() {
-        return order;
+    public SortOrder getSortorder() {
+        return sortorder;
     }
 
-    public void setOrder(SortOrder order) {
-        this.order = order;
+    public void setSortorder(SortOrder sortorder) {
+        this.sortorder = sortorder;
     }
 }

@@ -26,18 +26,18 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
         if (!StringUtils.isEmpty(filter.getYear())) {
             sql += " and year(a.release)="+filter.getYear();
         }
-        if (filter.getSort()==null) {
+        if (filter.getSorttype()==null) {
             sql += " order by i.name, a.name";
         } else {
-            switch (filter.getSort()) {
+            switch (filter.getSorttype()) {
                 case ARTIST:
-                    sql += " order by i.name "+filter.getOrder()+", a.name";
+                    sql += " order by i.name "+filter.getSortorder()+", a.name";
                     break;
                 case ALBUM:
-                    sql += " order by a.name "+filter.getOrder()+", i.name";
+                    sql += " order by a.name "+filter.getSortorder()+", i.name";
                     break;
                 case YEAR:
-                    sql += " order by a.release";
+                    sql += " order by a.release "+filter.getSortorder();
                     break;
             }
         }

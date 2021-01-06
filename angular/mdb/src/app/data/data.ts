@@ -9,3 +9,10 @@ export class MdbError extends Error {
     }
   }
   
+  export class AlbumFilter {
+    album?: string;
+    artist?: string;
+    year?: string;
+    sorttype?: string;
+    sortorder?: string;
+}

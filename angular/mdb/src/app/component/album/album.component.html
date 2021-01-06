@@ -1,30 +1,52 @@
-<div fxLayout="row wrap" style="margin-top:-20px">
+<div fxLayout="row wrap" style="margin-top:-20px"  *ngIf="filterShown">
     <mat-card fxFlex="{{getControlPanelWidth()}}" class="card mat-elevation-z8 filter-card">
         <mat-card-content>
             <form novalidate [formGroup]="filterForm">
-                <label class="filter-label">Filter</label>
+                <mat-label class="filter-label">Filter</mat-label>
                 <mat-form-field class="example-full-width filter-album">
                     <mat-label>Album</mat-label>
                     <input matInput class="form-control" formControlName="album">
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width filter-artist">
-                    <mat-label>Artist</mat-label>
+                </mat-form-field>
+                <mat-form-field class="example-full-width filter-artist">
+                    <mat-label>Interpret</mat-label>
                     <input matInput class="form-control" formControlName="artist">
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width filter-year">
+                </mat-form-field>
+                <mat-form-field class="example-full-width filter-year">
                     <mat-label>Jahr</mat-label>
                     <input matInput class="form-control" formControlName="year">
-                  </mat-form-field>
-                  <label class="filter-label-sort">Sortieren</label>
-                </form>
+                </mat-form-field>
+                <mat-label class="filter-label-sort">Sortieren</mat-label>
+                <mat-form-field appearance="fill" class="filter-sort-type">
+                    <mat-label>nach</mat-label>
+                    <mat-select matInput class="form-control" formControlName="sorttype">
+                        <mat-option value="ARTIST">Interpret</mat-option>
+                        <mat-option value="ALBUM">Album</mat-option>
+                        <mat-option value="YEAR">Jahr</mat-option>
+                    </mat-select>
+                 </mat-form-field>
+                 <mat-form-field appearance="fill" class="filter-sort-type">
+                    <mat-label>Reihenfolge</mat-label>
+                    <mat-select matInput class="form-control" formControlName="sortorder">
+                        <mat-option value="ASC">Aufsteigend</mat-option>
+                        <mat-option value="DESC">Absteigend</mat-option>
+                    </mat-select>
+                 </mat-form-field>
+                 <span fxFlex></span>
+                 <button class="theme-button" mat-icon-button (click)="toggleFilterPanel()">
+                       <mat-icon>close</mat-icon>
+                 </button>
+            </form>
         </mat-card-content>
     </mat-card>
 </div>
 <div class="content2" fxLayout="row wrap">    
+    <button mat-fab class="fab-filter" (click)="toggleFilterPanel()"  *ngIf="!filterShown">
+        <mat-icon>visibility</mat-icon>
+    </button>
     <mat-card fxFlex="{{getCardWidth()}}px" class="card mat-elevation-z8" *ngFor="let album of albums" (click)="details(album.id)">
         <mat-card-content class="content">
             <div class="box">
-                <img src="http://mdb.wkoenig.info/assets/{{getCover(album)}}" class="cover">
+                <img src="http://mdb.wkoenig.info/assets/{{getCover(album)}}" class="cover" appLazyLoad>
             </div>
             <p class="label1">{{album.name}}</p>
             <p class="label2">{{album.artist.name}}</p>

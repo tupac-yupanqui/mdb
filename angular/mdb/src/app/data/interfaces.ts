@@ -35,6 +35,6 @@ export interface AlbumFilter {
     album?: string;
     artist?: string;
     year?: string;
-    sort?: string;
-    order?: string;
+    sorttype?: string;
+    sortorder?: string;
 }

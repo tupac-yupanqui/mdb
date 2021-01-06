@@ -25,7 +25,14 @@ export class AlbumComponent implements OnInit {
   albums : Album[];
 
   filterForm: FormGroup;
-  filter: AlbumFilter;
+  _filter: AlbumFilter = {
+    album: '',
+    artist: '',
+    year: '',
+    sorttype: 'ARTIST',
+    sortorder: 'ASC'
+  }
+  filterShown: boolean = false;
 
   constructor(
     private router: Router,
@@ -36,7 +43,9 @@ export class AlbumComponent implements OnInit {
       this.filterForm = new FormGroup({
         album: new FormControl(''),
         artist: new FormControl(''),        
-        year: new FormControl('')        
+        year: new FormControl(''),
+        sorttype: new FormControl('ARTIST'),        
+        sortorder: new FormControl('ASC')        
       })
     }
 
@@ -47,13 +56,15 @@ export class AlbumComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    let filter = {
-      year: '',
-      sort: 'ARTIST',
-      order: 'ASC'
-    }
+    this.load(this._filter);
+      //this.onChanges();
+  }
+
+  load(filter:AlbumFilter): void {
+    console.log('RELOAD ')
     this.rest.getAlbums(filter).subscribe(
       (data: Album[])=>{
+        //console.log('Loaded '+data)
         this.albums = data;
       },
       (error)=>{
@@ -64,6 +75,16 @@ export class AlbumComponent implements OnInit {
           {width: '80%', maxWidth: '450px', data: {'title':'Login fehlgeschlagen','text':error.code+' - '+error.text}});
         dialogRef.afterClosed().subscribe(result => {console.log('Closed')});
       })
+  }
+
+  onChanges(): void {
+    this.filterForm.valueChanges.subscribe(val => {
+      console.log(val);
+      console.log(this._filter)
+      Object.assign(this._filter, val)
+      console.log(this._filter)
+      this.ngOnInit()
+    })
   }
 
   getControlPanelWidth() {
@@ -88,5 +109,9 @@ export class AlbumComponent implements OnInit {
 
     details(id: number) {
       this.router.navigate(['timeline'])
+    }
+
+    toggleFilterPanel() {
+      this.filterShown = !this.filterShown
     }
 }

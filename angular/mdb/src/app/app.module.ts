@@ -29,6 +29,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatIconRegistry } from "@angular/material/icon";
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -40,6 +41,7 @@ import { MessageDialogComponent } from './dialog/message-dialog/message-dialog.c
 import { AlbumComponent } from './component/album/album.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ImageLazyLoadModule } from './directive/image-lazy-load.module';
 
 registerLocaleData(de);
 
@@ -54,7 +56,7 @@ registerLocaleData(de);
     LogoutComponent,
     HomeComponent,
     MessageDialogComponent,
-    AlbumComponent
+    AlbumComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ registerLocaleData(de);
     MatListModule,
     MatCardModule,
     MatBottomSheetModule,
+    MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
@@ -76,7 +79,8 @@ registerLocaleData(de);
     MatExpansionModule,
     MatSnackBarModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ImageLazyLoadModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "de-de"}
