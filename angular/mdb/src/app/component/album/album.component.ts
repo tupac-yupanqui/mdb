@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { Album, AlbumFilter } from 'src/app/data/interfaces';
+import { Album } from 'src/app/data/interfaces';
+import { AlbumFilter } from 'src/app/data/data';
 import { RestService } from '../../service/rest.service';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -23,6 +24,7 @@ export class AlbumComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   albums : Album[];
+  counta : number;
 
   filterForm: FormGroup;
   _filter: AlbumFilter = {
@@ -30,9 +32,11 @@ export class AlbumComponent implements OnInit {
     artist: '',
     year: '',
     sorttype: 'ARTIST',
-    sortorder: 'ASC'
+    sortorder: 'ASC',
+    start: 0,
+    amount: 10
   }
-  filterShown: boolean = false;
+  filterShown: boolean = true;
 
   constructor(
     private router: Router,
@@ -62,6 +66,14 @@ export class AlbumComponent implements OnInit {
 
   load(filter:AlbumFilter): void {
     console.log('RELOAD ')
+
+  this.rest.getCountAlbums().subscribe(
+    (data: number) => {
+      console.log('Count: '+data)
+      this.counta = data;
+    }
+  );
+console.log('Next')
     this.rest.getAlbums(filter).subscribe(
       (data: Album[])=>{
         //console.log('Loaded '+data)
@@ -88,12 +100,16 @@ export class AlbumComponent implements OnInit {
   }
 
   getControlPanelWidth() {
-    let colcount = Math.floor((this.scrWidth-65)/(cardWidth+cardSpacing))
+    let colcount = this.getColCount()
     return (colcount*(cardWidth+cardSpacing)-cardSpacing)+'px'
   }
 
   getCardWidth() {
     return cardWidth
+  }
+
+  getColCount() {
+    return Math.floor((this.scrWidth-65)/(cardWidth+cardSpacing))
   }
 
   getCover(album:Album) : string {

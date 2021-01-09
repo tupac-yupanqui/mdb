@@ -15,4 +15,6 @@ export class MdbError extends Error {
     year?: string;
     sorttype?: string;
     sortorder?: string;
+    start?: number;
+    amount?: number;
 }

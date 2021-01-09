@@ -31,10 +31,3 @@ export interface Subalbum {
     name: string;
 }
 
-export interface AlbumFilter {
-    album?: string;
-    artist?: string;
-    year?: string;
-    sorttype?: string;
-    sortorder?: string;
-}

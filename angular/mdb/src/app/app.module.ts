@@ -30,6 +30,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { MatIconRegistry } from "@angular/material/icon";
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -79,6 +80,7 @@ registerLocaleData(de);
     MatExpansionModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatPaginatorModule,
     FlexLayoutModule,
     ImageLazyLoadModule
   ],

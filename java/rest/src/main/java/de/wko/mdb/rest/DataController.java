@@ -51,4 +51,8 @@ public class DataController {
         return albumservice.getFilteredAlbums(filter);
     }
 
+    @GetMapping("/counta")
+    public int counta() {
+        return albumservice.getCount();
+    }
 }

@@ -9,6 +9,8 @@ public class AlbumFilter {
     private String year;
     private AlbumSort sorttype;
     private SortOrder sortorder;
+    private int start;
+    private int amount;
 
     public String getAlbum() {
         return album;
@@ -48,5 +50,21 @@ public class AlbumFilter {
 
     public void setSortorder(SortOrder sortorder) {
         this.sortorder = sortorder;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

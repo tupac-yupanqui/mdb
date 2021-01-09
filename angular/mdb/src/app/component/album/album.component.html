@@ -2,20 +2,22 @@
     <mat-card fxFlex="{{getControlPanelWidth()}}" class="card mat-elevation-z8 filter-card">
         <mat-card-content>
             <form novalidate [formGroup]="filterForm">
-                <mat-label class="filter-label">Filter</mat-label>
                 <mat-form-field class="example-full-width filter-album">
+                    <mat-icon matPrefix>search</mat-icon>
                     <mat-label>Album</mat-label>
                     <input matInput class="form-control" formControlName="album">
                 </mat-form-field>
                 <mat-form-field class="example-full-width filter-artist">
+                    <mat-icon matPrefix>search</mat-icon>
                     <mat-label>Interpret</mat-label>
                     <input matInput class="form-control" formControlName="artist">
                 </mat-form-field>
                 <mat-form-field class="example-full-width filter-year">
+                    <mat-icon matPrefix>search</mat-icon>
                     <mat-label>Jahr</mat-label>
                     <input matInput class="form-control" formControlName="year">
                 </mat-form-field>
-                <mat-label class="filter-label-sort">Sortieren</mat-label>
+                <!--mat-label class="filter-label-sort">Sortieren</mat-label-->
                 <mat-form-field appearance="fill" class="filter-sort-type">
                     <mat-label>nach</mat-label>
                     <mat-select matInput class="form-control" formControlName="sorttype">
@@ -31,6 +33,11 @@
                         <mat-option value="DESC">Absteigend</mat-option>
                     </mat-select>
                  </mat-form-field>
+                 <mat-paginator class="paginator"
+                    [length]=counta
+                    [pageSize]="10"
+                    [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
                  <span fxFlex></span>
                  <button class="theme-button" mat-icon-button (click)="toggleFilterPanel()">
                        <mat-icon>close</mat-icon>
