@@ -7,6 +7,7 @@ import org.springframework.util.StringUtils;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.math.BigInteger;
 import java.util.List;
 
 public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
@@ -16,16 +17,7 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
     @Override
     public List<AlbumEntity> findFilteredAlbums(AlbumFilter filter) {
 
-        String sql = "select a.* from albums a, artists i where a.artist_id=i.id ";//order by i.name desc,a.name;";
-        if (!StringUtils.isEmpty(filter.getAlbum())) {
-            sql += " and a.name like '%"+filter.getAlbum()+"%'";
-        }
-        if (!StringUtils.isEmpty(filter.getArtist())) {
-            sql += " and i.name like '%"+filter.getArtist()+"%'";
-        }
-        if (!StringUtils.isEmpty(filter.getYear())) {
-            sql += " and year(a.release)="+filter.getYear();
-        }
+        String sql = "select a.* "+getFilterdQuery(filter);
         if (filter.getSorttype()==null) {
             sql += " order by i.name, a.name";
         } else {
@@ -45,7 +37,30 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
             sql += " limit "+ filter.getStart()+","+filter.getAmount();
         }
         Query query = em.createNativeQuery(sql, AlbumEntity.class);
-
+System.out.println(sql);
         return query.getResultList();
+    }
+    @Override
+    public Long countFilteredAlbums(AlbumFilter filter) {
+
+        String sql = "select count(*) "+getFilterdQuery(filter);
+
+        Query query = em.createNativeQuery(sql);
+        System.out.println(sql);
+        return ((BigInteger)query.getSingleResult()).longValue();
+    }
+
+    private String getFilterdQuery(AlbumFilter filter) {
+        String sql = " from albums a, artists i where a.artist_id=i.id ";//order by i.name desc,a.name;";
+        if (!StringUtils.isEmpty(filter.getAlbum())) {
+            sql += " and a.name like '%"+filter.getAlbum()+"%'";
+        }
+        if (!StringUtils.isEmpty(filter.getArtist())) {
+            sql += " and i.name like '%"+filter.getArtist()+"%'";
+        }
+        if (!StringUtils.isEmpty(filter.getYear())) {
+            sql += " and year(a.release)="+filter.getYear();
+        }
+        return sql;
     }
 }

@@ -5,22 +5,22 @@
                 <mat-form-field class="example-full-width filter-album">
                     <mat-icon matPrefix>search</mat-icon>
                     <mat-label>Album</mat-label>
-                    <input matInput class="form-control" formControlName="album">
+                    <input matInput class="form-control" formControlName="album" #albumSearch>
                 </mat-form-field>
                 <mat-form-field class="example-full-width filter-artist">
                     <mat-icon matPrefix>search</mat-icon>
                     <mat-label>Interpret</mat-label>
-                    <input matInput class="form-control" formControlName="artist">
+                    <input matInput class="form-control" formControlName="artist" #artistSearch>
                 </mat-form-field>
                 <mat-form-field class="example-full-width filter-year">
                     <mat-icon matPrefix>search</mat-icon>
                     <mat-label>Jahr</mat-label>
-                    <input matInput class="form-control" formControlName="year">
+                    <input matInput class="form-control" formControlName="year" #yearSearch>
                 </mat-form-field>
                 <!--mat-label class="filter-label-sort">Sortieren</mat-label-->
                 <mat-form-field appearance="fill" class="filter-sort-type">
                     <mat-label>nach</mat-label>
-                    <mat-select matInput class="form-control" formControlName="sorttype">
+                    <mat-select matInput class="form-control" formControlName="sorttype" (selectionChange)="onSorttypeChange($event.value)">
                         <mat-option value="ARTIST">Interpret</mat-option>
                         <mat-option value="ALBUM">Album</mat-option>
                         <mat-option value="YEAR">Jahr</mat-option>
@@ -28,17 +28,23 @@
                  </mat-form-field>
                  <mat-form-field appearance="fill" class="filter-sort-type">
                     <mat-label>Reihenfolge</mat-label>
-                    <mat-select matInput class="form-control" formControlName="sortorder">
+                    <mat-select matInput class="form-control" formControlName="sortorder" (selectionChange)="onSortorderChange($event.value)">
                         <mat-option value="ASC">Aufsteigend</mat-option>
                         <mat-option value="DESC">Absteigend</mat-option>
                     </mat-select>
                  </mat-form-field>
-                 <mat-paginator class="paginator"
-                    [length]=counta
-                    [pageSize]="10"
-                    [pageSizeOptions]="[5, 10, 25, 100]">
-                </mat-paginator>
                  <span fxFlex></span>
+                 <mat-paginator 
+                    *ngIf="paginatorShown"
+                    class="paginator"
+                    [length]=counta
+                    [pageSize]=itemsPerPageSelection[1]
+                    [pageSizeOptions]=itemsPerPageSelection
+                    [pageIndex]="page.number"
+                    [showFirstLastButtons]=true
+                    (page)="page($event)"
+                    >
+                </mat-paginator>
                  <button class="theme-button" mat-icon-button (click)="toggleFilterPanel()">
                        <mat-icon>close</mat-icon>
                  </button>

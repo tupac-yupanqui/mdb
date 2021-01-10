@@ -33,8 +33,8 @@ export class RestService {
     return this.http.get<any>(this.REST_API_GET_ALBUMS, this.getHeaders(JSON.stringify(filter)));
   }
 
-  getCountAlbums() {
-    return this.http.get<number>(this.REST_API_GET_COUNT_ALBUMS, this.getHeaders())
+  getCountAlbums(filter: AlbumFilter) {
+    return this.http.get<number>(this.REST_API_GET_COUNT_ALBUMS, this.getHeaders(JSON.stringify(filter)))
   }
 
   signin(username: string, password: string) {

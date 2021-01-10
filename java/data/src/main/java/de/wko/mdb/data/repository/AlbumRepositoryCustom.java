@@ -9,4 +9,5 @@ public interface AlbumRepositoryCustom {
 
     List<AlbumEntity> findFilteredAlbums(AlbumFilter filter);
 
+    Long countFilteredAlbums(AlbumFilter filter);
 }

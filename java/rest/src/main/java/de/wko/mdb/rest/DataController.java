@@ -52,7 +52,11 @@ public class DataController {
     }
 
     @GetMapping("/counta")
-    public int counta() {
-        return albumservice.getCount();
+    public Long counta(@RequestParam AlbumFilter filter) {
+        return albumservice.countFilteredAlbums(filter);
     }
+
+    @GetMapping("album/view")
+    @ResponseBody
+    public
 }

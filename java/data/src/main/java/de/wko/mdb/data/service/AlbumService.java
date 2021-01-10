@@ -68,4 +68,7 @@ public class AlbumService {
     public int getCount() {
         return repo.getCount();
     }
+    public Long countFilteredAlbums(AlbumFilter filter) {
+        return repo.countFilteredAlbums(filter);
+    }
 }

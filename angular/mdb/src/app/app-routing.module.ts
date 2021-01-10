@@ -5,16 +5,25 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
-import { AlbumComponent } from './component/album/album.component';
+import { albumRoutes, albumRoutingComponents } from './component/album/album.routes'
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'timeline', component: TimelineComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'album', component: AlbumComponent },
+  { path: 'album', children: albumRoutes }  
 //  { path: '', redirectTo: 'timeline', pathMatch: 'full'},
+];
+
+export const  routingComponents = [
+  SettingsComponent,
+  TimelineComponent,
+  HomeComponent,
+  LoginComponent,
+  LogoutComponent,
+  ...albumRoutingComponents
 ];
 
 @NgModule({

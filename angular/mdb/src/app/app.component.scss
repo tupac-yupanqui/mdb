@@ -23,6 +23,8 @@ $cc: map-get($theme, primary);
 
 ::ng-deep router-outlet + * {
     display: block;
+    width: 100%;
+    max-width: 1500px;
     margin: 0 auto;
 }
 

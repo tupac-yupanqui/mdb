@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -11,8 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { TimelineComponent } from './timeline/timeline.component';
-import { SettingsComponent } from './settings/settings.component';
 import { AddEventComponent } from './add-event/add-event.component';
 
 import { MatSelectModule } from '@angular/material/select';
@@ -35,11 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteTimelineDialogComponent } from './delete-timeline-dialog/delete-timeline-dialog.component';
-import { LoginComponent } from './component/login/login.component';
-import { LogoutComponent } from './component/logout/logout.component';
-import { HomeComponent } from './home/home.component';
 import { MessageDialogComponent } from './dialog/message-dialog/message-dialog.component';
-import { AlbumComponent } from './component/album/album.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ImageLazyLoadModule } from './directive/image-lazy-load.module';
@@ -48,16 +42,11 @@ registerLocaleData(de);
 
 @NgModule({
   declarations: [
+    routingComponents,
     AppComponent,
-    TimelineComponent,
-    SettingsComponent,
     AddEventComponent,
     DeleteTimelineDialogComponent,
-    LoginComponent,
-    LogoutComponent,
-    HomeComponent,
     MessageDialogComponent,
-    AlbumComponent,
   ],
   imports: [
     BrowserModule,
