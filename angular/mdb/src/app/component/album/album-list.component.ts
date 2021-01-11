@@ -69,6 +69,7 @@ export class AlbumListComponent implements OnInit {
     getScreenSize() {
           this.scrHeight = window.innerHeight;
           this.scrWidth = window.innerWidth;
+          console.log('RESIZE')
     }
 
   setItemsPerPage() {
@@ -79,6 +80,7 @@ export class AlbumListComponent implements OnInit {
     this.itemsPerPageSelection.push(colCount*5)
     this.itemsPerPageSelection.push(colCount*10)
     this.itemsPerPageSelection.push(100)
+    this.itemsPerPageSelection.push(this.counta)
     this._filter.amount=this.itemsPerPageSelection[1]
   }  
 
@@ -164,6 +166,7 @@ export class AlbumListComponent implements OnInit {
   }
 
   getColCount() {
+    console.log('COLS: '+(Math.floor((this.scrWidth-65)/(cardWidth+cardSpacing))))
     return Math.floor((this.scrWidth-65)/(cardWidth+cardSpacing))
   }
 
