@@ -7,8 +7,8 @@ public class AlbumFilter {
     private String album;
     private String artist;
     private String year;
-    private AlbumSort sorttype;
-    private SortOrder sortorder;
+    private AlbumSort sorttype = AlbumSort.ARTIST;
+    private SortOrder sortorder = SortOrder.ASC;
     private int start;
     private int amount;
 

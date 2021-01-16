@@ -2,6 +2,8 @@ package de.wko.mdb.data.repository;
 
 import de.wko.mdb.data.entity.AlbumEntity;
 import de.wko.mdb.data.filter.AlbumFilter;
+import de.wko.mdb.types.Album;
+import de.wko.mdb.types.AlbumDetails;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,14 @@ import java.util.List;
 public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
     @PersistenceContext
     private EntityManager em;
+
+    @Override
+    public AlbumEntity getAlbum(int id) {
+        String sql = "select * from albums where id="+id;
+        System.out.println(sql);
+        Query query = em.createNativeQuery(sql, AlbumEntity.class);
+        return (AlbumEntity)query.getSingleResult();
+    }
 
     @Override
     public List<AlbumEntity> findFilteredAlbums(AlbumFilter filter) {
