@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AddEventComponent } from './add-event/add-event.component';
 
+import { MatTableModule } from '@angular/material/table'
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -71,7 +73,8 @@ registerLocaleData(de);
     MatDialogModule,
     MatPaginatorModule,
     FlexLayoutModule,
-    ImageLazyLoadModule
+    ImageLazyLoadModule,
+    MatTableModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "de-de"}

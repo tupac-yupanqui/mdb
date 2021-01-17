@@ -1,0 +1,64 @@
+@import "../../../theme";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+.ad-details {
+    display: flex;
+}
+.ad-details-data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.ad-card-header {
+    margin: 0;
+}
+.ad-details-cover {
+    flex: 1 1 auto;
+}
+
+.card {
+    margin: 5px;
+    background-color: rgba($primary, .5) !important;
+  }
+  
+
+.cover-img {
+    max-width: 500px;
+}
+
+.table-row {
+    display: flex;
+    height: 25px;
+    align-items: center;
+}
+.table-cell-number {
+    width: 25px;
+    text-align: right;
+
+}
+.table-cell-artist {
+    width: 200px;
+    margin-left:  10px;
+}
+.table-cell-titel {
+    margin-left:  10px;
+    width: 90%;
+}
+.table-cell-length {
+    width: 50px;
+    text-align: right;
+    margin-left:  10px;
+    margin-right:  10px;
+}
+.table-even {
+    background-color: rgba($primary, .3) !important;
+}
+
+.table-odd {
+    background-color: rgba($primary, .1) !important;
+}

@@ -20,6 +20,7 @@ export interface Artist {
 export interface Album {
     id: number;
     name: string;
+    artist?: Artist,
     release?: Date;
     cover?: string;
     coversmall?: string;
@@ -29,5 +30,19 @@ export interface Album {
 export interface Subalbum {
     id: number;
     name: string;
+}
+
+export interface Titel {
+    id: number;
+    name: string;
+    version: string;
+    comment: string;
+    artist: Artist;
+    tracknr: number;
+    length: number;
+}
+export interface AlbumDetails {
+    album: Album;
+    titels: Titel[][];
 }
 

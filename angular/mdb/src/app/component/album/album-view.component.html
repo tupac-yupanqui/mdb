@@ -1,1 +1,48 @@
-<p>album-view works! {{albumId}}</p>
+<div class="ad-details" *ngIf="album">
+    <div class="ad-details-data">
+        <div class="ad-details-album">
+            <mat-card class="card mat-elevation-z8">
+                <mat-card-content>
+                    <p>HEADER</p>
+                    <p class="label1">{{album.album.name}}</p>
+                    <p class="label2">{{album.album.artist.name}}</p>
+                    <p class="label3">Release Datum: {{album.album.release | date:'dd.MM.yyyy'}}</p>
+                </mat-card-content>
+            </mat-card>    
+
+        </div>
+        <div class="ad-details-titel" *ngFor="let subalbum of album.titels | keyvalue">
+            <mat-card class="card mat-elevation-z8">
+                <mat-card-content class="content">
+                    <p>{{getSubalbumTitle(subalbum.key)}}</p>
+                    <div>
+                        <div *ngFor="let titel of subalbum.value; let o=odd; let e=even;" [ngClass]="{ 'table-even': e, 'table-odd': o, 'table-row': true }">
+                            <div class="table-cell-number">
+                                {{titel.tracknr}}.
+                            </div>
+                            <div class="table-cell-artist">
+                                {{titel.artist.name}}        {{odd}}                      
+                            </div>
+                            <div class="table-cell-titel">
+                                {{titel.name}}                               
+                            </div>
+                            <div class="table-cell-length">
+                                {{getFormatedLength(titel.length)}}                            
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>    
+        </div>
+    </div>
+    <div class="ad-details-cover">
+        <mat-card class="card mat-elevation-z8">
+            <mat-card-content class="content">
+                <div class="box">
+                    <img src="http://mdb.wkoenig.info/assets/cover/{{album.album.cover}}" class="cover-img">
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
