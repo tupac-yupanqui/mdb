@@ -14,7 +14,7 @@
         <div class="ad-details-titel" *ngFor="let subalbum of album.titels | keyvalue">
             <mat-card class="card mat-elevation-z8">
                 <mat-card-content class="content">
-                    <p>{{getSubalbumTitle(subalbum.key)}}</p>
+                    <p class="card-header">{{getSubalbumTitle(subalbum.key)}}</p>
                     <div>
                         <div *ngFor="let titel of subalbum.value; let o=odd; let e=even;" [ngClass]="{ 'table-even': e, 'table-odd': o, 'table-row': true }">
                             <div class="table-cell-number">
