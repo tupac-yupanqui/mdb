@@ -1,9 +1,11 @@
-<div class="ad-edit" *ngIf="album">
-    <mat-card class="card mat-elevation-z8">
-        <div class="ad-edit-data">
-            <form class="album-form" novalidate [formGroup]="albumForm" (ngSubmit)="saveAlbum(albumForm.value)">
+<div class="ad-edit-container" *ngIf="album">
+    <form class="album-form" novalidate [formGroup]="albumForm" (ngSubmit)="saveAlbum(albumForm.value)">
+        <button type="submit" class="btn btn-default">Speichern</button>
+        <mat-card class="card mat-elevation-z8">
+            <div class="ad-edit-data-container">
+                <div class="ad-edit-data-container-left">
                     <mat-card-content>
-                    <div formGroupName="album">
+                        <div formGroupName="album">
                             <mat-form-field class="ad-full-width" appearance="standard">
                                 <mat-label>Interpret</mat-label>
                                 <input matInput class="form-control" formControlName="artist"
@@ -27,15 +29,23 @@
                             </mat-form-field>
                         </div>
                     </mat-card-content>
-                <button type="submit" class="btn btn-default">
-                    Speichern
-                </button>
-            </form>
-        </div>
-    </mat-card>    
-        <mat-card>
-            fff
+                </div>
+                <div class="ad-edit-data-container-right">
+                    BBB               
+                </div>
+            </div>
+        </mat-card>    
+        <mat-card class="card mat-elevation-z8">
+            <div class="ad-edit-list-container">
+                fff
+            </div>
         </mat-card>
+        <mat-card class="card mat-elevation-z8">
+            <div class="ad-edit-list-container">
+                fff
+            </div>
+        </mat-card>
+    </form>
 </div>
 <button mat-fab class="fab-view" (click)="view(album.album.id)" >
     <mat-icon>details</mat-icon>

@@ -6,7 +6,7 @@ import { AlbumDetails, Artist } from 'src/app/data/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from '../../dialog/message-dialog/message-dialog.component';
 import { FormControl, FormBuilder, FormGroup, FormArray  } from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
@@ -50,7 +50,9 @@ export class AlbumEditComponent implements OnInit {
       this.albumId = id;
     })
     this.load();
+    console.log("Load ready")
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -60,8 +62,9 @@ export class AlbumEditComponent implements OnInit {
     this.rest.getAlbumDetails(this.albumId).subscribe(
       (data: AlbumDetails)=>{
         this.album = data;
-
+        console.log('LOAD Album')
         this.albumForm.patchValue(this.album)
+        //this.filteredArtists = of( this._filterArtists(this.album.album.artist.name))
       },
       (error)=>{
         console.log(error.error.error);
@@ -75,7 +78,7 @@ export class AlbumEditComponent implements OnInit {
       this.rest.getArtists().subscribe(
         (data: Artist[])=>{
           this.artists = data;
-          console.log('LOAD')
+          console.log('LOAD Artists')
           this.filteredArtists = this.albumForm.get('album').get('artist').valueChanges.pipe(
             startWith(''), map(artist => artist ? this._filterArtists(artist) : this.artists.slice())
           );
@@ -99,6 +102,10 @@ export class AlbumEditComponent implements OnInit {
     console.log('SAVE '+album.album.artist.name)
     console.log('SAVE '+album.album.artist)
     console.log('SAVE '+album.album.name)
+  }
+
+  logg(s:string) {
+    console.log(s)
   }
 
   displayArtist(value) {
