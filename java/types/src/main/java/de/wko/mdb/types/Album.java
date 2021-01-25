@@ -8,7 +8,7 @@ public class Album {
     private Long id;
     private String name;
     private Artist artist;
-    private Date release;
+    private String release;
     private String cover;
     private String coversmall;
     private List<Subalbum> subalbums = new ArrayList<>();
@@ -29,11 +29,11 @@ public class Album {
         this.name = name;
     }
 
-    public Date getRelease() {
+    public String getRelease() {
         return release;
     }
 
-    public void setRelease(Date release) {
+    public void setRelease(String release) {
         this.release = release;
     }
 

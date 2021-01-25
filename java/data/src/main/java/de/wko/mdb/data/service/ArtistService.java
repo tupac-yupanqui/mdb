@@ -4,6 +4,7 @@ import de.wko.mdb.data.entity.ArtistEntity;
 import de.wko.mdb.data.repository.ArtistRepository;
 import de.wko.mdb.types.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class ArtistService {
         return a;
     }
     public List<Artist> getAll() {
-        Iterable<ArtistEntity> all = repo.findAll();
+        Iterable<ArtistEntity> all = repo.findAll(Sort.by(Sort.Direction.ASC, "name"));
         List<Artist> result = new ArrayList<>();
         for (ArtistEntity a : all) {
             result.add(a.getType());

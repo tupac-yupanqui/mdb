@@ -2,15 +2,16 @@ package de.wko.mdb.data.entity;
 
 import de.wko.mdb.types.Artist;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="artists")
 public class ArtistEntity {
     @Id
+    @GeneratedValue
     private Long id;
+    @Basic(optional = false)
+    @Column(nullable = false)
     private String name;
 
     public Long getId() {

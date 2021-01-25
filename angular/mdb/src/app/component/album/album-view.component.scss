@@ -68,3 +68,16 @@
 .table-odd {
     background-color: rgba($primary, .1) !important;
 }
+
+.fab-edit {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    background-color: rgba($primary, .5) !important;
+}
+.fab-edit2 {
+    position: fixed;
+    right: 46px;
+    bottom: 16px;
+    background-color: rgba($primary, .5) !important;
+}

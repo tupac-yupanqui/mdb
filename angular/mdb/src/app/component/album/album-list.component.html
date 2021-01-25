@@ -63,7 +63,7 @@
             </div>
             <p class="label1">{{album.name}}</p>
             <p class="label2">{{album.artist.name}}</p>
-            <p class="label3">{{album.release | date:'yyyy'}}</p>
+            <p class="label3">{{album.release.substring(6) }}</p>
         </mat-card-content>
     </mat-card>    
 </div>

@@ -1,8 +1,10 @@
 package de.wko.mdb.data.entity;
 
+import de.wko.mdb.data.Util;
 import de.wko.mdb.types.Album;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -99,13 +101,14 @@ public class AlbumEntity {
         this.artist = artist;
     }
 
+
     public Album getType() {
         Album a = new Album();
         a.setId(this.id);
         a.setName(this.name);
         a.setCover(this.cover);
         a.setCoversmall(this.coversmall);
-        a.setRelease((this.release));
+        a.setRelease(Util.sdf.format(release));
         for (SubalbumEntity sae : this.getSubalbums()) {
             a.addSubalbum(sae.getType());
         }

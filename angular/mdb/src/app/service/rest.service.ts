@@ -15,6 +15,7 @@ export class RestService {
   private REST_API_GET_ALBUMS = "http://localhost:8080/albums"; 
   private REST_API_GET_COUNT_ALBUMS = "http://localhost:8080/counta"; 
   private REST_API_GET_ALBUM_DETAILS = "http://localhost:8080/album/view"; 
+  private REST_API_GET_ARTISTS = "http://localhost:8080/artists"; 
   
   token: string;
 
@@ -28,6 +29,10 @@ export class RestService {
 
   getArtist() {
     return this.http.get<any>(this.REST_API_SERVER, this.getHeaders());
+  }
+
+  getArtists() {
+    return this.http.get<any>(this.REST_API_GET_ARTISTS, this.getHeaders());
   }
 
   getAlbums(filter: AlbumFilter) {

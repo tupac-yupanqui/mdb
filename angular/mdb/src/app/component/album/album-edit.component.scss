@@ -1,0 +1,41 @@
+@import "../../../theme";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+.ad-edit {
+    display: flex;
+}
+.ad-edit-data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card {
+    margin: 5px;
+    background-color: rgba($primary, .5) !important;
+  }
+
+.fab-view {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    background-color: rgba($primary, .5) !important;
+}
+
+mat-option.mat-option{
+    position: relative;
+    background-color: rgba($primary, .5) !important;
+    height: 24px!important;
+    line-height: 24px!important;
+    max-height: 24px!important;
+    font-size: 14px;
+}
+
+mat-option.mat-active{ 
+    background-color: rgba($primary, .8) !important;
+}

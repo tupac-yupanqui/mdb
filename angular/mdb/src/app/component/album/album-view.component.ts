@@ -56,6 +56,11 @@ export class AlbumViewComponent implements OnInit {
       })
   }
 
+  edit(id: number) {
+    this.router.navigate(['album','edit',this.albumId])
+  }
+
+
   getSubalbumTitle(k: string) {
     if (k==='') return 'Titelliste'
     return k
