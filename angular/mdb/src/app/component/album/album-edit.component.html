@@ -1,49 +1,45 @@
 <div class="ad-edit-container" *ngIf="album">
     <form class="album-form" novalidate [formGroup]="albumForm" (ngSubmit)="saveAlbum(albumForm.value)">
-        <button type="submit" class="btn btn-default">Speichern</button>
-        <mat-card class="card mat-elevation-z8">
-            <div class="ad-edit-data-container">
-                <div class="ad-edit-data-container-left">
-                    <mat-card-content>
-                        <div formGroupName="album">
-                            <mat-form-field class="ad-full-width" appearance="standard">
-                                <mat-label>Interpret</mat-label>
-                                <input matInput class="form-control" formControlName="artist"
-                                    placeholder="Interpret"
-                                    [matAutocomplete]="auto">
-                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayArtist">
-                                    <mat-option *ngFor="let artist of filteredArtists | async" [value]="artist">
-                                        {{artist.name}}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                            <br>
-                            <mat-form-field appearance="standard">
-                                <mat-label>Titel</mat-label>
-                                <input matInput class="form-control" formControlName="name">
-                            </mat-form-field>
-                            <br>
-                            <mat-form-field appearance="standard">
-                                <mat-label>Release Datum</mat-label>
-                                <input matInput class="form-control" formControlName="release">
-                            </mat-form-field>
-                        </div>
-                    </mat-card-content>
-                </div>
-                <div class="ad-edit-data-container-right">
+        <div class="ad-edit-data-container">
+            <mat-card class="card mat-elevation-z8 ad-edit-data-container-left">
+                <mat-card-content>
+                    <div formGroupName="album">
+                        <mat-form-field class="ad-full-width" appearance="standard">
+                            <mat-label>Interpret</mat-label>
+                            <input matInput class="form-control" formControlName="artist"
+                                placeholder="Interpret"
+                                [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayArtist">
+                                <mat-option *ngFor="let artist of filteredArtists | async" [value]="artist">
+                                    {{artist.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Titel</mat-label>
+                            <input matInput class="form-control" formControlName="name">
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Release Datum</mat-label>
+                            <input matInput class="form-control" formControlName="release">
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+            </mat-card>    
+            <mat-card class="card mat-elevation-z8 ad-edit-data-container-right">
                     BBB               
-                </div>
-            </div>
-        </mat-card>    
+            </mat-card>    
+            <mat-card class="card mat-elevation-z8 ad-edit-ctrl-container">
+                <button type="submit" class="btn btn-default">Speichern</button>
+            </mat-card>
+        </div>
         <mat-card class="card mat-elevation-z8">
-            <div class="ad-edit-list-container">
-                fff
-            </div>
+            fff
         </mat-card>
         <mat-card class="card mat-elevation-z8">
-            <div class="ad-edit-list-container">
-                fff
-            </div>
+            fff
         </mat-card>
     </form>
 </div>

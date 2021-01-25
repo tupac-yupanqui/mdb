@@ -17,11 +17,12 @@
     justify-content: space-between;
 }
 .ad-edit-data-container-left {
-    flex-grow: 1;
-    margin-right: 10px;
+    flex-grow: 2;
 }
 .ad-edit-data-container-right {
-    background-color: yellow;
+    flex-grow: 3;
+}
+.ad-edit-ctrl-container {
     flex-grow: 1;
 }
 .ad-edit-list-container {
