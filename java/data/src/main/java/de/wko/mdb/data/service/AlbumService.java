@@ -9,6 +9,7 @@ import de.wko.mdb.data.repository.TitelRepository;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.AlbumDetails;
 import de.wko.mdb.types.Titel;
+import de.wko.mdb.types.TitelList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,19 +85,22 @@ public class AlbumService {
         AlbumEntity albumEntity = albumRepository.getAlbum(id);
         details.setAlbum(albumEntity.getType());
 
+        List<TitelList> list = new ArrayList<>();
         if (albumEntity.getSubalbums().size()==0) {
+            TitelList titellist = new TitelList();
             List<TitelEntity> titels = titelRepository.getByAlbumId(albumEntity.getId());
-            Map<String, List<Titel>> map = new HashMap<>();
-            map.put("", getTitelList(titels));
-            details.setTitels(map);
+            titellist.setName("Titelliste");
+            titellist.setList(getTitelList(titels));
+            list.add(titellist);
         } else {
-            Map<String, List<Titel>> map = new TreeMap<>();
             for (SubalbumEntity s : albumEntity.getSubalbums()) {
-                List<TitelEntity> titels = titelRepository.getBySubalbumId(s.getId());
-                map.put(s.getName(), getTitelList(titels));
-                details.setTitels(map);
+                TitelList titellist = new TitelList();
+                titellist.setName(s.getName());
+                titellist.setList(getTitelList(titelRepository.getBySubalbumId(s.getId())));
+                list.add(titellist);
             }
         }
+        details.setTitels(list);
 
         return details;
     }
