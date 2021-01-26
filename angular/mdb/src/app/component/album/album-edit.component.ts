@@ -27,6 +27,8 @@ export class AlbumEditComponent implements OnInit {
 
   defart : Artist = {id:0,name:'DEFAULT'}
 
+  titelListArray: FormArray;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -34,13 +36,39 @@ export class AlbumEditComponent implements OnInit {
     private dialog: MatDialog,
     private fb: FormBuilder) { 
 
-      this.albumForm = new FormGroup({
-        album: new FormGroup({
-          artist: new FormControl(this.defart),
-          name: new FormControl('TT'),
-          release: new FormControl()
+      this.albumForm = fb.group({
+        album: fb.group({
+          id: [''],
+          artist: [''],
+          name: [''],
+          release: [''],
+          cover: [''],
+          coversmall: [''],
+          subalbums: fb.array([
+            fb.group({
+              id: [''],
+              name: ['']
+            })
+          ]),
+          titels: fb.array([
+            fb.group({
+              name: [''],
+              list: fb.array([
+                fb.group({
+                  id: [''],
+                  name: [''],
+                  version: [''],
+                  comment: [''],
+                  tracknr: [''],
+                  length: [''],
+                  artist: ['']
+                })
+              ])
+            })
+          ])
         })
-      });
+      })
+      this.titelListArray = this.albumForm.controls.album as FormArray;
   }
 
 
@@ -63,7 +91,9 @@ export class AlbumEditComponent implements OnInit {
       (data: AlbumDetails)=>{
         this.album = data;
         console.log('LOAD Album')
+        console.log(data)
         this.albumForm.patchValue(this.album)
+        console.log('AAA '+JSON.stringify(this.albumForm.value))
         //this.filteredArtists = of( this._filterArtists(this.album.album.artist.name))
       },
       (error)=>{
@@ -94,6 +124,7 @@ export class AlbumEditComponent implements OnInit {
       }
 
   view(id: number) {
+    console.log('BACK')
     this.router.navigate(['album','view',this.albumId])
   }
 
@@ -102,10 +133,6 @@ export class AlbumEditComponent implements OnInit {
     console.log('SAVE '+album.album.artist.name)
     console.log('SAVE '+album.album.artist)
     console.log('SAVE '+album.album.name)
-  }
-
-  logg(s:string) {
-    console.log(s)
   }
 
   displayArtist(value) {

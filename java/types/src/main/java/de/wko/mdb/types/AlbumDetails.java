@@ -1,7 +1,6 @@
 package de.wko.mdb.types;
 
 import java.util.List;
-import java.util.Map;
 
 public class AlbumDetails {
     private Album album;
