@@ -41,8 +41,14 @@ export interface Titel {
     tracknr: number;
     length: number;
 }
+
 export interface AlbumDetails {
     album: Album;
-    titels: Titel[][];
+    titels: TitelList[];
+}
+
+export interface TitelList {
+    subalbum?: Subalbum;
+    list?: Titel[];
 }
 

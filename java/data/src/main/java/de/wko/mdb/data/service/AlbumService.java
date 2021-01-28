@@ -89,13 +89,12 @@ public class AlbumService {
         if (albumEntity.getSubalbums().size()==0) {
             TitelList titellist = new TitelList();
             List<TitelEntity> titels = titelRepository.getByAlbumId(albumEntity.getId());
-            titellist.setName("Titelliste");
             titellist.setList(getTitelList(titels));
             list.add(titellist);
         } else {
             for (SubalbumEntity s : albumEntity.getSubalbums()) {
                 TitelList titellist = new TitelList();
-                titellist.setName(s.getName());
+                titellist.setSubalbum(s.getType());
                 titellist.setList(getTitelList(titelRepository.getBySubalbumId(s.getId())));
                 list.add(titellist);
             }

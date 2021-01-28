@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from "rxjs";
 import { RestService } from '../../service/rest.service';
-import { AlbumDetails, Artist } from 'src/app/data/interfaces';
+import { AlbumDetails, Artist, Subalbum, TitelList } from 'src/app/data/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageDialogComponent } from '../../dialog/message-dialog/message-dialog.component';
 import { FormControl, FormBuilder, FormGroup, FormArray  } from '@angular/forms';
@@ -24,11 +24,11 @@ export class AlbumEditComponent implements OnInit {
   artists : Artist[];
 
   albumForm : FormGroup;
+  loadingCompleted = false;
 
   defart : Artist = {id:0,name:'DEFAULT'}
 
-  titelListArray: FormArray;
-
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -44,31 +44,10 @@ export class AlbumEditComponent implements OnInit {
           release: [''],
           cover: [''],
           coversmall: [''],
-          subalbums: fb.array([
-            fb.group({
-              id: [''],
-              name: ['']
-            })
-          ]),
-          titels: fb.array([
-            fb.group({
-              name: [''],
-              list: fb.array([
-                fb.group({
-                  id: [''],
-                  name: [''],
-                  version: [''],
-                  comment: [''],
-                  tracknr: [''],
-                  length: [''],
-                  artist: ['']
-                })
-              ])
-            })
-          ])
-        })
+        }),
+        titels: fb.array([
+        ])
       })
-      this.titelListArray = this.albumForm.controls.album as FormArray;
   }
 
 
@@ -92,9 +71,11 @@ export class AlbumEditComponent implements OnInit {
         this.album = data;
         console.log('LOAD Album')
         console.log(data)
+        this.adjustTitelsArray(this.album.titels)
         this.albumForm.patchValue(this.album)
         console.log('AAA '+JSON.stringify(this.albumForm.value))
-        //this.filteredArtists = of( this._filterArtists(this.album.album.artist.name))
+        this.loadingCompleted=true; 
+         //this.filteredArtists = of( this._filterArtists(this.album.album.artist.name))
       },
       (error)=>{
         console.log(error.error.error);
@@ -121,6 +102,7 @@ export class AlbumEditComponent implements OnInit {
             {width: '80%', maxWidth: '450px', data: {'title':'Login fehlgeschlagen','text':error.code+' - '+error.text}});
           dialogRef.afterClosed().subscribe(result => {console.log('Closed')});
         })
+        console.log("Load ready")
       }
 
   view(id: number) {
@@ -141,9 +123,46 @@ export class AlbumEditComponent implements OnInit {
     }
   }
 
+  adjustTitelsArray(titels: TitelList[]) {
+    var i=1;
+    var j=1;
+
+    for (let i=0; i< titels.length; i++) {
+      var subalbum = new FormGroup({
+              id: new FormControl(titels[i].subalbum.id),
+              name: new FormControl(titels[i].subalbum.name),
+              list: new FormArray([])
+      });
+
+      console.log('#### '+subalbum.get('name').value)
+
+      var titellist = <FormArray>subalbum.get('list');
+      for (let j=0; j<titels[i].list.length; j++) {
+        console.log(titels[i].list[j].name)
+        titellist.push(new FormGroup({
+          id: new FormControl(titels[i].list[j].id),
+          name: new FormControl(titels[i].list[j].name),
+          version: new FormControl(titels[i].list[j].version),
+          comment: new FormControl(titels[i].list[j].comment),
+          tracknr: new FormControl(titels[i].list[j].tracknr),
+          length: new FormControl(titels[i].list[j].length)
+        }))
+
+      }
+
+      (<FormArray>this.albumForm.get('titels')).push(subalbum)
+
+    }
+    console.log('READY 2')
+    this.loadingCompleted=true;
+  }
+
   private _filterArtists(value: string) : Artist[] {
     const filterValue = value.toString().toLowerCase();
     console.log("filter "+filterValue)
     return this.artists.filter(artist => artist.name.toLowerCase().includes(filterValue));
   }
+
+  log(val) { console.log(val); }
+
 }

@@ -3,15 +3,15 @@ package de.wko.mdb.types;
 import java.util.List;
 
 public class TitelList {
-    String name;
+    Subalbum subalbum;
     List<Titel> list;
 
-    public String getName() {
-        return name;
+    public Subalbum getSubalbum() {
+        return subalbum;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSubalbum(Subalbum subalbum) {
+        this.subalbum = subalbum;
     }
 
     public List<Titel> getList() {
