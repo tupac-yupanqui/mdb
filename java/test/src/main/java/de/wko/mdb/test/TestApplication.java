@@ -1,7 +1,7 @@
 package de.wko.mdb.test;
 
 import de.wko.mdb.data.repository.AlbumRepository;
-import de.wko.mdb.data.service.AlbumService;
+import de.wko.mdb.bl.service.AlbumService;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.Subalbum;
 import org.springframework.beans.factory.annotation.Autowired;

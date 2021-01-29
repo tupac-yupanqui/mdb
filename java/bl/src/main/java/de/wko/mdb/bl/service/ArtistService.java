@@ -1,4 +1,4 @@
-package de.wko.mdb.data.service;
+package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.ArtistEntity;
 import de.wko.mdb.data.repository.ArtistRepository;

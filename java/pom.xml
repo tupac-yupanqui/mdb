@@ -21,6 +21,9 @@
         <module>rest</module>
         <module>test</module>
         <module>ui</module>
+        <module>bl</module>
+        <module>cli</module>
+        <module>fs</module>
     </modules>
 
 </project>
