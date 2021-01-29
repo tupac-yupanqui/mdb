@@ -1,0 +1,109 @@
+package de.wko.mdb.ui;
+
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class UI extends Application {
+    @Override
+    public void init() throws Exception {
+        super.init();
+    }
+
+    @Override
+    public void start(final Stage primaryStage) throws Exception {
+        primaryStage.setTitle("null");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
+        StackPane rootPane = new StackPane();
+        rootPane.getStylesheets().add("css/main.css");
+        rootPane.getStyleClass().add("splashPane");
+
+        Image image = new Image("img/tuomas.jpg");
+        ImageView imageView = new ImageView(image);
+
+        /*
+        label.setBorder(new Border(new BorderStroke(Color.GREEN,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+*/
+        imageView.setFitWidth(600);
+        imageView.setPreserveRatio(true);
+
+        double factor = image.getWidth()/600;
+        double height = image.getHeight()/factor;
+
+        Label label = new Label("MyMusic");
+        label.setTextFill(Color.web("#ffcc00"));
+        String path = getClass().getResource("/fonts/mama.otf").toString();
+        Font font = Font.loadFont(path, 28);
+        label.setFont(font);
+        label.setOpacity(1);
+
+        Button exitbutton = new Button("X");
+        exitbutton.getStyleClass().add("splashExitButton");
+        exitbutton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Platform.exit();
+            }
+        });
+
+        Button archiveButton = new Button("Archive");
+        archiveButton.getStyleClass().add("splashButton");
+        archiveButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                primaryStage.close();
+                //ArchiveUI archiveUI = new ArchiveUI();
+            }
+        });
+        Button playerButton = new Button("Player");
+        playerButton.getStyleClass().add("splashButton");
+        playerButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+            }
+        });
+
+        AnchorPane anchorPaneLabel = new AnchorPane();
+        AnchorPane.setTopAnchor(label, 0.);
+        AnchorPane.setLeftAnchor(label, 10.);
+        AnchorPane.setTopAnchor(exitbutton, 0.);
+        AnchorPane.setRightAnchor(exitbutton, 0.);
+        AnchorPane.setTopAnchor(archiveButton, 80.);
+        AnchorPane.setLeftAnchor(archiveButton, 10.);
+        AnchorPane.setTopAnchor(playerButton, 95.);
+        AnchorPane.setLeftAnchor(playerButton, 10.);
+        anchorPaneLabel.getChildren().addAll(label, exitbutton, archiveButton, playerButton);
+
+        Scene scene = new Scene(rootPane, 600, height);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("css/main.css").toExternalForm());
+
+        rootPane.getChildren().addAll(imageView, anchorPaneLabel);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+
+        //primaryStage.close();
+        //ArchiveUI archiveUI = new ArchiveUI();
+
+
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+    }
+
+}

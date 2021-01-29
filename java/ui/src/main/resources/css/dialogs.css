@@ -1,0 +1,52 @@
+.alert{
+  -fx-border-color:black;
+  -fx-border-width:2.0px;
+ }
+
+/**Costumization of The Bar where the buttons are located**/
+.alert > .button-bar > .container {
+  -fx-background-color: #cf9d63;
+}
+
+.alert > .content.label {
+   -fx-padding: 0.5em 0.5em 0.5em 2.5em;
+   -fx-background-color: #cf9d63;
+   -fx-text-fill:black;
+   -fx-font-size:15.0px;
+   -fx-alignment: CENTER-LEFT;
+}
+
+/**Costumization of DialogPane Header**/
+.alert:header .header-panel {
+  -fx-background-color: #cf9d63;
+}
+
+.alert:header .header-panel .label{
+  -fx-background-color: #cf9d63;
+  -fx-background-radius:10px;
+  -fx-text-fill:black;
+  -fx-font-size:15.0px;
+}
+/**Costumization of Buttons**/
+.alert .button{
+   -fx-background-color: #130d06;
+   -fx-text-fill:white;
+   -fx-wrap-text: true;
+   -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+   -fx-cursor:hand;
+ }
+
+.alert .button:hover{
+    -fx-background-color: #754f24;
+    -fx-text-fill: #cf9d63;
+    -fx-font-weight:bold;
+ }
+/*
+ .alert.warning.dialog-pane {
+      -fx-graphic: url("record2.png");
+  }
+  */
+.dialog-pane:no-header .graphic-container {
+  -fx-background-color: #cf9d63;
+  }
+
