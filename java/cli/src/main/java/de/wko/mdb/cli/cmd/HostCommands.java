@@ -25,7 +25,7 @@ public class HostCommands {
     public String showHost(
             @ShellOption(defaultValue="localhost") String host,
             @ShellOption(value = "-a", help = "show all hosts") boolean all) {
-        
+
         String hostname = host;
         if ("localhost".equals(host)) {
             try {

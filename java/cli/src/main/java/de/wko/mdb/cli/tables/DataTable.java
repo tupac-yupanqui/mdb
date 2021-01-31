@@ -1,6 +1,9 @@
 package de.wko.mdb.cli.tables;
 
 public class DataTable {
+    protected static final char ALIGN_LEFT = 'l';
+    protected static final char ALIGN_RIGHT = 'r';
+    protected static final char ALIGN_CENTER = 'c';
 
     static Column[] columns;
 
@@ -20,6 +23,13 @@ public class DataTable {
     }
     public void printFooter() {
         System.out.println("-".repeat(width));
+    }
+
+    public void printRow(String... params) {
+        int i=0;
+        for (String p : params) {
+            printColumn(columns[i], p, (++i == columns.length) );
+        }
     }
 
     public void printColumn(Column c, String s, boolean isLast) {
