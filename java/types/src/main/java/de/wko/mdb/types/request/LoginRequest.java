@@ -1,8 +1,17 @@
-package de.wko.mdb.rest.request;
+package de.wko.mdb.types.request;
 
 public class LoginRequest {
     private String username;
     private String password;
+
+    public LoginRequest() {
+
+    }
+
+    public LoginRequest(String u, String p) {
+        this.username = u;
+        this.password = p;
+    }
 
     public String getUsername() {
         return username;

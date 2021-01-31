@@ -24,6 +24,7 @@
         <module>bl</module>
         <module>cli</module>
         <module>fs</module>
+        <module>rcl</module>
     </modules>
 
 </project>

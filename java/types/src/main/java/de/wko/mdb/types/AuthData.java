@@ -1,8 +1,8 @@
-package de.wko.mdb.rest.response;
+package de.wko.mdb.types;
 
 import java.util.List;
 
-public class JwtResponse {
+public class AuthData {
     private String token;
     private String type;
     private Long id;
@@ -10,7 +10,11 @@ public class JwtResponse {
     private String email;
     private List<String> roles;
 
-    public JwtResponse(String token, Long id, String username, String email, List<String> roles) {
+    public AuthData() {
+
+    }
+
+    public AuthData(String token, Long id, String username, String email, List<String> roles) {
         this.token = token;
         this.id = id;
         this.username = username;

@@ -1,4 +1,4 @@
-package de.wko.mdb.rest.request;
+package de.wko.mdb.types.request;
 
 import java.util.Set;
 

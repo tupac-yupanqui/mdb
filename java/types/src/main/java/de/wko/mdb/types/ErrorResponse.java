@@ -5,6 +5,11 @@ public class ErrorResponse {
     private int status;
     private String message;
     private String path;
+    private String error;
+
+    public ErrorResponse() {
+
+    }
 
     public ErrorResponse(String timestamp, int status, String message, String path) {
         this.timestamp = timestamp;
@@ -43,5 +48,13 @@ public class ErrorResponse {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

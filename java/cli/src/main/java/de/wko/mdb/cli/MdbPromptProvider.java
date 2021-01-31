@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class MdbPromptProvider implements PromptProvider {
     @Override
     public AttributedString getPrompt() {
-        return new AttributedString("mdbx>", AttributedStyle.DEFAULT.background(AttributedStyle.RED));
+        return new AttributedString("mdb>", AttributedStyle.DEFAULT.background(AttributedStyle.RED));
     }
 }

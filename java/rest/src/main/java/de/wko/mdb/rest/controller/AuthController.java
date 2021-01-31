@@ -4,9 +4,9 @@ import de.wko.mdb.data.entity.RoleEntity;
 import de.wko.mdb.data.entity.UserEntity;
 import de.wko.mdb.data.repository.RoleRepository;
 import de.wko.mdb.data.repository.UserRepository;
-import de.wko.mdb.rest.request.LoginRequest;
-import de.wko.mdb.rest.request.SignupRequest;
-import de.wko.mdb.rest.response.JwtResponse;
+import de.wko.mdb.types.request.LoginRequest;
+import de.wko.mdb.types.request.SignupRequest;
+import de.wko.mdb.types.AuthData;
 import de.wko.mdb.rest.security.*;
 import de.wko.mdb.rest.security.test.MessageResponse;
 import de.wko.mdb.rest.util.JwtUtils;
@@ -63,7 +63,7 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new AuthData(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
