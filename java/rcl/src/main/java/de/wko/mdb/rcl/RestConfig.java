@@ -11,6 +11,7 @@ public class RestConfig {
 
     public static final String PATH_LOGIN = "PATH_LOGIN";
     public static final String PATH_HOST = "PATH_HOST";
+    public static final String PATH_HOST_ID = "PATH_HOST_ID";
     public static final String PATH_HOSTS = "PATH_HOSTS";
 
     public static final Map<String, String> urlMap;
@@ -19,6 +20,7 @@ public class RestConfig {
         urlMap  = new HashMap<>();
         urlMap.put(PATH_LOGIN, "/api/auth/signin");
         urlMap.put(PATH_HOST, "/host?name={name}");
+        urlMap.put(PATH_HOST_ID, "/host/{id}");
         urlMap.put(PATH_HOSTS, "/hosts");
     }
 

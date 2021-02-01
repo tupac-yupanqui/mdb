@@ -14,6 +14,12 @@ public class HostClient extends RestClient {
         return get(RestConfig.PATH_HOST, Host.class, params);
     }
 
+    public Host getHostById(Long id) throws MdbRestException {
+        Map params = new HashMap();
+        params.put("id", id);
+        return get(RestConfig.PATH_HOST_ID, Host.class, params);
+    }
+
     public List<Host> getAllHosts() throws MdbRestException {
         Host[] list =  getList(RestConfig.PATH_HOSTS, Host[].class);
         return Arrays.asList(list.clone());
