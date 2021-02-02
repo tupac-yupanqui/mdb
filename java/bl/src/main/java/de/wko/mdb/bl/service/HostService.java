@@ -35,4 +35,21 @@ public class HostService {
         }
         return result;
     }
+    public Host save(Host host) {
+        Optional<HostEntity> ho = repo.findById(host.getId());
+        if (ho.isPresent()) {
+            HostEntity he = ho.get();
+            he.fromType(host);
+            return repo.save(he).getType();
+        } else if (host.getId()==0){
+            HostEntity he = new HostEntity();
+            he.fromType(host);
+            System.out.println("HostID. "+host.getId());
+            return repo.save(he).getType();
+        }
+        return null;
+    }
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
 }

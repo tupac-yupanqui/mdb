@@ -24,4 +24,15 @@ public class HostClient extends RestClient {
         Host[] list =  getList(RestConfig.PATH_HOSTS, Host[].class);
         return Arrays.asList(list.clone());
     }
+
+    public Host saveHost(Host host) throws MdbRestException {
+        Host h = post(RestConfig.PATH_SAVE_HOST, host, Host.class);
+        return h;
+    }
+
+    public void deleteHost(Long id) throws MdbRestException {
+        Map params = new HashMap();
+        params.put("id", id);
+        delete(RestConfig.PATH_DELETE_HOST, params);
+    }
 }

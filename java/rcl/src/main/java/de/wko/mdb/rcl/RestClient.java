@@ -64,6 +64,28 @@ public class RestClient {
         }
     }
 
+    protected <T> T[] getList(String path, Class<T[]> resultClass, Map<String,?> params) throws MdbRestException{
+        try {
+            ResponseEntity<T[]> response = restTemplate.getForEntity(
+                    config.getUrl(path), resultClass, params
+            );
+            return response.getBody();
+        } catch (Exception e) {
+            throw prepareMdbRestException(e);
+        }
+    }
+
+    protected void delete(String path, Map<String,?> params) throws MdbRestException{
+        try {
+            restTemplate.delete(
+                    config.getUrl(path),
+                    params);
+        } catch (Exception e) {
+            throw prepareMdbRestException(e);
+        }
+    }
+
+
     public void addToken(String token) {
         interceptor = new RestTokenInterceptor(token);
         restTemplate.getInterceptors().add(interceptor);
@@ -94,5 +116,6 @@ public class RestClient {
         re.setResponse(errorResponse==null? new ErrorResponse() : errorResponse);
         return re;
     }
+
 
 }

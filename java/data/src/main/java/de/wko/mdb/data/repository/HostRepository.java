@@ -10,4 +10,6 @@ public interface HostRepository extends CrudRepository<HostEntity,Long> {
 
     Iterable<HostEntity> findAll();
 
+    HostEntity save(HostEntity host);
+
 }

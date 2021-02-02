@@ -5,7 +5,7 @@ public class DataTable {
     protected static final char ALIGN_RIGHT = 'r';
     protected static final char ALIGN_CENTER = 'c';
 
-    static Column[] columns;
+    protected Column[] columns;
 
     int width = 0;
 

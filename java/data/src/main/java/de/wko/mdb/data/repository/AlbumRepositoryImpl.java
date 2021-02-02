@@ -47,7 +47,7 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
             sql += " limit "+ filter.getStart()+","+filter.getAmount();
         }
         Query query = em.createNativeQuery(sql, AlbumEntity.class);
-System.out.println(sql);
+
         return query.getResultList();
     }
     @Override

@@ -1,7 +1,7 @@
 package de.wko.mdb.types;
 
 public class Host {
-    Long id;
+    Long id = 0L;
     String name;
     String address;
     boolean ftp = false;

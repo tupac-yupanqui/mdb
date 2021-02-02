@@ -109,3 +109,38 @@
 1612132515942:show host synology
 1612133023073:show host
 1612133027133:edit host
+1612161443178:edit host tupacamaru
+1612161551056:list hosts
+1612161557569:list host -a
+1612161571055:show host -a
+1612162243402:edit host tupacamaru
+1612162283748:edit host
+1612162430682:show host
+1612162437526:show host -a
+1612162450702:edit host tupacamaru
+1612162509475:show host -a
+1612256862984:create host
+1612256889389:stacktrace
+1612257041924:create host
+1612257266373:create host pachacutec
+1612257304376:show host -a
+1612257336230:edit host pachacutec
+1612261605993:create host
+1612261762478:show host -a
+1612263426901:delete host
+1612263461336:delete host yupanqui
+1612263480411:show host -a
+1612263558644:delete host yupanqui
+1612263567124:show host -a
+1612263575667:delete host 4
+1612269143328:show host -a
+1612269635037:delete host tupacamaru
+1612269865618:show host -a
+1612269876065:delete host tupacamaru
+1612281741359:show host -r
+1612281759481:show host tupacamaru -r
+1612281773091:shoh host -r tupacamaru
+1612281781630:show host -r tupacamaru
+1612281903026:show host -r synology
+1612281930611:show host -a
+1612281961913:show host -r tupacamaru

@@ -6,19 +6,16 @@ import java.util.List;
 
 public class HostTable extends DataTable{
 
-    static {
+    private List<Host> list;
+
+    public HostTable(List<Host> list) {
+        this.list = list;
         columns = new Column[]  {
                 new Column(3,   "ID",       ALIGN_RIGHT),
                 new Column(35,  "Name",     ALIGN_LEFT),
                 new Column(35,  "Adresse",  ALIGN_LEFT),
                 new Column(3,   "FTP",      ALIGN_CENTER)
         };
-    }
-
-    private List<Host> list;
-
-    public HostTable(List<Host> list) {
-        this.list = list;
     }
 
     public void print() {

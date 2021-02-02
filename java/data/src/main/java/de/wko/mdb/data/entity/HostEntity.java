@@ -60,4 +60,9 @@ public class HostEntity {
         return h;
     }
 
+    public void fromType(Host host) {
+        this.name = host.getName();
+        this.address = host.getAddress();
+        this.ftp = host.isFtp();
+    }
 }
