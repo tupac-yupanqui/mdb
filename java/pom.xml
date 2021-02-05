@@ -25,6 +25,7 @@
         <module>cli</module>
         <module>fs</module>
         <module>rcl</module>
+        <!--module>cli-jlink</module-->
     </modules>
 
 </project>

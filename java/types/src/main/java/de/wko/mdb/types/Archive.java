@@ -4,6 +4,7 @@ import de.wko.mdb.types.enums.EArchiveType;
 
 public class Archive {
     private Long id;
+    private String name;
     private String path;
     private String descr;
     private EArchiveType type;
@@ -15,6 +16,14 @@ public class Archive {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPath() {

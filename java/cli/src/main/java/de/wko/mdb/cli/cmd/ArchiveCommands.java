@@ -6,8 +6,8 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 @ShellComponent
-@ShellCommandGroup(value="Archive Commands")
-public class ArchiveComponent {
+@ShellCommandGroup(value="Archivkommandos")
+public class ArchiveCommands {
 
     @ShellMethod(value = "List all known archives", key = "list archives")
     public String listArchives() {
@@ -15,4 +15,8 @@ public class ArchiveComponent {
         return null;
     }
 
+    @ShellMethod(value = "Erzeugen eines Archives", key = "create archive")
+    public void createArchive() {
+
+    }
 }

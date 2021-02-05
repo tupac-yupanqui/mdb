@@ -21,7 +21,6 @@ public class HostController {
     @GetMapping("/host/{id}")
     @ResponseBody
     public Host getById(@PathVariable Long id) {
-        System.out.println("Request ID " + id);
         return hostservice.getHostById(id);
     }
 

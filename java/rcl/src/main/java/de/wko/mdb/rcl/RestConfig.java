@@ -15,6 +15,7 @@ public class RestConfig {
     public static final String PATH_HOSTS = "PATH_HOSTS";
     public static final String PATH_SAVE_HOST = "PATH_SAVE_HOST";
     public static final String PATH_DELETE_HOST = "PATH_DELETE_HOST";
+    public static final String PATH_GET_ARCHIVE = "PATH_GET_ARCHIVE";
     public static final String PATH_GET_ARCHIVES_BY_HOST = "PATH_GET_ARCHIVES_BY_HOST";
 
     public static final Map<String, String> urlMap;
@@ -28,6 +29,7 @@ public class RestConfig {
         urlMap.put(PATH_SAVE_HOST, "/host/save");
         urlMap.put(PATH_DELETE_HOST, "/host/delete/{id}");
         urlMap.put(PATH_GET_ARCHIVES_BY_HOST, "/archives?hostId={id}");
+        urlMap.put(PATH_GET_ARCHIVE, "/archive/{id}");
     }
 
     @Value("${base.url}")

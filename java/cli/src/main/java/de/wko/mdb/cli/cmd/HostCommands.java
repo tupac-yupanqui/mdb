@@ -8,6 +8,7 @@ import de.wko.mdb.rcl.HostClient;
 import de.wko.mdb.rcl.MdbRestException;
 import de.wko.mdb.types.Archive;
 import de.wko.mdb.types.Host;
+import de.wko.mdb.types.enums.EHostType;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellCommandGroup;
@@ -129,7 +130,6 @@ public class HostCommands {
             return null;
         }
 
-        /*
         try {
             hostClient.deleteHost(host.getId());
         } catch (MdbRestException e) {
@@ -137,7 +137,6 @@ public class HostCommands {
             e.printStackTrace();
         }
 
-         */
         return null;
     }
 
@@ -146,7 +145,11 @@ public class HostCommands {
         System.out.println("Edit Host [ID="+host.getId()+"]");
         host.setName(reader.readStringRequired("Name", host.getName()));
         host.setAddress(reader.readString("Adresse", host.getAddress()));
-        host.setFtp(reader.readBoolean("FTP Server", host.isFtp()));
+        host.setType(EHostType.fromString(reader.readEnum("Typ", EHostType.getValueList(), host.getType().getDescr())));
+        if (host.getType()==EHostType.FTP) {
+            host.setLogin(reader.readStringRequired("Login FTP Server", host.getLogin()));
+            host.setPassword(reader.readStringRequired("Passwort", host.getPassword()));
+        }
         return host;
     }
 

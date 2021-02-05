@@ -2,6 +2,8 @@ package de.wko.mdb.data.entity;
 
 import de.wko.mdb.types.Artist;
 import de.wko.mdb.types.Host;
+import de.wko.mdb.types.enums.EArchiveType;
+import de.wko.mdb.types.enums.EHostType;
 
 import javax.persistence.*;
 
@@ -17,7 +19,13 @@ public class HostEntity {
     private String name;
 
     private String address;
-    private boolean ftp;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private EHostType hostType;
+
+    private String login;
+    private String password;
 
     public Long getId() {
         return id;
@@ -43,12 +51,28 @@ public class HostEntity {
         this.address = address;
     }
 
-    public boolean isFtp() {
-        return ftp;
+    public EHostType getHostType() {
+        return hostType;
     }
 
-    public void setFtp(boolean ftp) {
-        this.ftp = ftp;
+    public void setHostType(EHostType hostType) {
+        this.hostType = hostType;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Host getType() {
@@ -56,13 +80,18 @@ public class HostEntity {
         h.setId(this.id);
         h.setName(this.name);
         h.setAddress(this.address);
-        h.setFtp(this.ftp);
+        h.setType(this.hostType);
+        h.setLogin(this.login);
+        h.setPassword(this.password);
         return h;
     }
 
     public void fromType(Host host) {
+        this.id = host.getId();
         this.name = host.getName();
         this.address = host.getAddress();
-        this.ftp = host.isFtp();
+        this.hostType = host.getType();
+        this.login = host.getLogin();
+        this.password = host.getPassword();
     }
 }

@@ -1,8 +1,11 @@
 package de.wko.mdb.cli;
 
+import de.wko.mdb.cli.tools.FileSystemManager;
 import de.wko.mdb.rcl.AuthClient;
 import de.wko.mdb.rcl.MdbRestException;
 import de.wko.mdb.types.AuthData;
+import de.wko.mdb.types.Host;
+import de.wko.mdb.types.enums.EHostType;
 import de.wko.mdb.types.request.LoginRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +23,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.Console;
 import java.io.PrintStream;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 @SpringBootApplication
@@ -31,6 +37,9 @@ public class CLI implements CommandLineRunner {
 
     @Autowired
     CliContext context;
+
+    @Autowired
+    FileSystemManager fsManager;
 
     @Autowired
     AuthClient client;
@@ -76,6 +85,9 @@ public class CLI implements CommandLineRunner {
             }
         }
         System.out.println("angemeldet als "+context.getAuthData().getUsername());
+
+        context.setLocalFileSystem(fsManager.createFileSystem(0L));
+        context.setCurrentFileSystem(context.getLocalFileSystem());
     }
 
     @PreDestroy

@@ -1,10 +1,14 @@
 package de.wko.mdb.types;
 
+import de.wko.mdb.types.enums.EHostType;
+
 public class Host {
     Long id = 0L;
     String name;
     String address;
-    boolean ftp = false;
+    EHostType type = EHostType.UNKNOWN;
+    String login;
+    String password;
 
     public Host() {
 
@@ -34,11 +38,27 @@ public class Host {
         this.address = address;
     }
 
-    public boolean isFtp() {
-        return ftp;
+    public EHostType getType() {
+        return type;
     }
 
-    public void setFtp(boolean ftp) {
-        this.ftp = ftp;
+    public void setType(EHostType type) {
+        this.type = type;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

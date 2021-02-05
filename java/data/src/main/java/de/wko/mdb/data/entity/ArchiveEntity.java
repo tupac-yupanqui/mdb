@@ -1,7 +1,6 @@
 package de.wko.mdb.data.entity;
 
 import de.wko.mdb.types.Archive;
-import de.wko.mdb.types.Host;
 import de.wko.mdb.types.enums.EArchiveType;
 
 import javax.persistence.*;
@@ -23,6 +22,7 @@ public class ArchiveEntity {
     private String path;
 
     private String descr;
+    private String name;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
@@ -71,9 +71,18 @@ public class ArchiveEntity {
         this.hostId = hostId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Archive getType() {
         Archive a = new Archive();
         a.setId(this.id);
+        a.setName(this.name);
         a.setDescr(this.descr);
         a.setPath(this.path);
         a.setType(this.archType);
@@ -83,6 +92,7 @@ public class ArchiveEntity {
 
     public void fromType(Archive archive) {
         this.id = archive.getId();
+        this.name = archive.getName();
         this.descr = archive.getDescr();
         this.path = archive.getPath();
         this.archType = archive.getType();
