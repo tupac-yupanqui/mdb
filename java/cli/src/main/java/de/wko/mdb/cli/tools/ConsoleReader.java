@@ -44,7 +44,7 @@ public class ConsoleReader {
         } while (true);
     }
 
-    public String readEnum(String label, List<String> values, String def) {
+    public String readFromList(String label, List<String> values, String def) {
 
         do {
             System.out.print(label +" ");
@@ -72,7 +72,7 @@ public class ConsoleReader {
                 }
                 return values.get(r-1);
             } else {
-                if (Strings.isEmpty(def)) {
+                if (Strings.isEmpty(def) || "Unbekannt".equals(def)) {
                     System.out.println("Eingabe erforderlich");
                     def="";
                     continue;

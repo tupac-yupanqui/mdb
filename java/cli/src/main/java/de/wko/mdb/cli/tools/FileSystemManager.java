@@ -17,8 +17,8 @@ public class FileSystemManager {
     @Autowired
     HostClient hostClient;
 
-    public FileSystem createFileSystem(Long archiveId)  {
-        FileSystem result = null;
+    public AbstractFileSystem createFileSystem(Long archiveId)  {
+        AbstractFileSystem result = null;
         if (archiveId==null || archiveId==0) {
             result = new LocalFileSystem();
             return result;
@@ -47,9 +47,6 @@ public class FileSystemManager {
                     return null;
             }
 
-        } catch (FileSystemException e) {
-            System.out.println(e.getMessage());
-            return null;
         } catch (MdbRestException e) {
             e.printStackTrace();
             return null;

@@ -16,15 +16,6 @@ public class AuthCommands {
     @Autowired
     CliContext context;
 
-    @ShellMethod("Add two integers together.")
-    public int add(int a, int b) {
-        return a+b;
-    }
-    @ShellMethod(value = "Test.", key = "echo all")
-    public String echoAll(@TESTV String s) {
-        return null;
-    }
-
     @ShellMethod(value="Store login data",key="save login")
     public void storeLoginData() {
         context.storeLoginRequest();

@@ -3,6 +3,7 @@ package de.wko.mdb.cli.cmd;
 import de.wko.mdb.cli.tables.ArchiveTable;
 import de.wko.mdb.cli.tables.HostTable;
 import de.wko.mdb.cli.tools.ConsoleReader;
+import de.wko.mdb.fs.AvailabiltyCheck;
 import de.wko.mdb.rcl.ArchiveClient;
 import de.wko.mdb.rcl.HostClient;
 import de.wko.mdb.rcl.MdbRestException;
@@ -20,7 +21,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 @ShellComponent
 @ShellCommandGroup(value="Host Commands")
@@ -40,7 +40,7 @@ public class HostCommands {
 
         String hostname = host;
         if ("localhost".equals(host)) {
-            hostname = getLocalHostname();
+            hostname = AvailabiltyCheck.getLocalHostName();
         }
         try {
             if (all) {
@@ -67,7 +67,7 @@ public class HostCommands {
     }
 
     @ShellMethod(value = "Edit host info", key = "edit host")
-    public String showHost(
+    public String editHost(
             @ShellOption(defaultValue="0") String hid) {
 
         Host host = getHost(hid);
@@ -92,9 +92,9 @@ public class HostCommands {
     public String createHost() {
         Host host = new Host();
         editHost(host);
-        printHost(host);
         try {
-            hostClient.saveHost(host);
+            host = hostClient.saveHost(host);
+            printHost(host);
         } catch (MdbRestException e) {
             System.out.println("MdbRestException "+e.getResponse().getMessage());
             e.printStackTrace();
@@ -145,22 +145,12 @@ public class HostCommands {
         System.out.println("Edit Host [ID="+host.getId()+"]");
         host.setName(reader.readStringRequired("Name", host.getName()));
         host.setAddress(reader.readString("Adresse", host.getAddress()));
-        host.setType(EHostType.fromString(reader.readEnum("Typ", EHostType.getValueList(), host.getType().getDescr())));
+        host.setType(EHostType.fromString(reader.readFromList("Typ", EHostType.getValueList(), host.getType().getDescr())));
         if (host.getType()==EHostType.FTP) {
             host.setLogin(reader.readStringRequired("Login FTP Server", host.getLogin()));
             host.setPassword(reader.readStringRequired("Passwort", host.getPassword()));
         }
         return host;
-    }
-
-    private String getLocalHostname() {
-        String hostname = null;
-        try {
-            hostname = InetAddress.getLocalHost().getHostName();
-        } catch (UnknownHostException e) {
-            System.out.println("Unknown localhost");
-        }
-        return hostname;
     }
 
     private String getLocalIp() {
@@ -185,7 +175,7 @@ public class HostCommands {
             try {
                 Long hostId = Long.parseLong(hid);
                 if (hostId == 0L) {
-                    host = hostClient.getHostByName(getLocalHostname());
+                    host = hostClient.getHostByName(AvailabiltyCheck.getLocalHostName());
                     if (Strings.isEmpty(host.getAddress())) {
                         host.setAddress(getLocalIp());
                     }
@@ -194,10 +184,10 @@ public class HostCommands {
                 }
             } catch (NumberFormatException e) {
                 if ("localhost".equals(hid)) {
-                    hid = getLocalHostname();
+                    hid = AvailabiltyCheck.getLocalHostName();
                 }
                 host = hostClient.getHostByName(hid);
-                if (hid.equals(getLocalHostname()) && Strings.isEmpty(host.getAddress())) {
+                if (hid.equals(AvailabiltyCheck.getLocalHostName()) && Strings.isEmpty(host.getAddress())) {
                     host.setAddress(getLocalIp());
                 }
             }

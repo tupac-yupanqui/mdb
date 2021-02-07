@@ -1,7 +1,6 @@
 package de.wko.mdb.cli;
 
-import de.wko.mdb.fs.FileSystem;
-import de.wko.mdb.fs.LocalFileSystem;
+import de.wko.mdb.fs.AbstractFileSystem;
 import de.wko.mdb.types.AuthData;
 import de.wko.mdb.types.request.LoginRequest;
 import org.apache.logging.log4j.util.Strings;
@@ -16,8 +15,8 @@ public class CliContext {
     private AuthData authData = null;
     private LoginRequest loginRequest = null;
 
-    private FileSystem currentFileSystem = null;
-    private FileSystem localFileSystem = null;
+    private AbstractFileSystem currentFileSystem = null;
+    private AbstractFileSystem localFileSystem = null;
 
     public CliContext() {
         settings = new Settings();
@@ -64,22 +63,19 @@ public class CliContext {
         settings.store();
     }
 
-    public void setCurrentFileSystem(FileSystem fs) {
-        if (currentFileSystem!=null) {
-            fs.close();
-        }
+    public void setCurrentFileSystem(AbstractFileSystem fs) {
         currentFileSystem = fs;
     }
 
-    public FileSystem getCurrentFileSystem() {
+    public AbstractFileSystem getCurrentFileSystem() {
         return currentFileSystem;
     }
 
-    public FileSystem getLocalFileSystem() {
+    public AbstractFileSystem getLocalFileSystem() {
         return localFileSystem;
     }
 
-    public void setLocalFileSystem(FileSystem localFileSystem) {
+    public void setLocalFileSystem(AbstractFileSystem localFileSystem) {
         this.localFileSystem = localFileSystem;
     }
 }

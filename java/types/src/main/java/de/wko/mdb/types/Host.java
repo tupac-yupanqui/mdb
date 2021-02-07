@@ -9,6 +9,7 @@ public class Host {
     EHostType type = EHostType.UNKNOWN;
     String login;
     String password;
+    String drive;
 
     public Host() {
 
@@ -60,5 +61,13 @@ public class Host {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDrive() {
+        return drive==null?"":drive;
+    }
+
+    public void setDrive(String drive) {
+        this.drive = drive;
     }
 }

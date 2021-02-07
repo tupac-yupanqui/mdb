@@ -1,22 +1,31 @@
 package de.wko.mdb.cli.tables;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataTable {
     protected static final char ALIGN_LEFT = 'l';
     protected static final char ALIGN_RIGHT = 'r';
     protected static final char ALIGN_CENTER = 'c';
 
-    protected Column[] columns;
+    protected List<Column> columns = new ArrayList();
 
     int width = 0;
 
     public void printHeader() {
-        width = columns.length-1;
+        width = columns.size()-1;
         for (Column c : columns) {
             width += c.width;
         }
         System.out.println("-".repeat(width));
         for (Column c : columns) {
-            System.out.print(String.format("%-"+(c.width+1)+"s",c.title));
+            if (c.align==ALIGN_RIGHT) {
+                System.out.print(StringUtils.leftPad(c.title, c.width, ' ')+" ");
+            } else {
+                System.out.print(StringUtils.rightPad(c.title, c.width+1, ' '));
+            }
         }
         System.out.println();
         System.out.println("-".repeat(width));
@@ -28,7 +37,7 @@ public class DataTable {
     public void printRow(String... params) {
         int i=0;
         for (String p : params) {
-            printColumn(columns[i], p, (++i == columns.length) );
+            printColumn(columns.get(i), p, (++i == columns.size()) );
         }
     }
 
@@ -54,5 +63,12 @@ public class DataTable {
     }
     public static String centerString (int width, String s, boolean isLast) {
         return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s))+(isLast?'\n':' ');
+    }
+
+    protected static String truncate(String s, int l) {
+        if (s.length()>l-1) {
+            return s.substring(0, l-4)+"...";
+        }
+        return s;
     }
 }

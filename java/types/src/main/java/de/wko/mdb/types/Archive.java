@@ -3,11 +3,11 @@ package de.wko.mdb.types;
 import de.wko.mdb.types.enums.EArchiveType;
 
 public class Archive {
-    private Long id;
+    private Long id = 0L;
     private String name;
     private String path;
     private String descr;
-    private EArchiveType type;
+    private EArchiveType type = EArchiveType.UNKNOWN;
     private Long hostId;
 
     public Long getId() {
