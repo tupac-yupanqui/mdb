@@ -7,6 +7,8 @@ import de.wko.mdb.types.AuthData;
 import de.wko.mdb.types.Host;
 import de.wko.mdb.types.enums.EHostType;
 import de.wko.mdb.types.request.LoginRequest;
+import org.jline.utils.AttributedStringBuilder;
+import org.jline.utils.AttributedStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +86,7 @@ public class CLI implements CommandLineRunner {
                 continue;
             }
         }
-        System.out.println("angemeldet als "+context.getAuthData().getUsername());
+        System.out.println("Login:  "+context.getAuthData().getUsername());
 
         context.setLocalFileSystem(fsManager.createFileSystem(0L));
         context.setCurrentFileSystem(context.getLocalFileSystem());
@@ -92,7 +94,6 @@ public class CLI implements CommandLineRunner {
 
     @PreDestroy
     public void finish() {
-        System.out.println("ENDE");
         context.saveSettings();
     }
 

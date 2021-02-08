@@ -823,3 +823,17 @@ PORT 192,168,178,87,193,11
 LIST
 150 Opening BINARY mode data connection for 'file list'.
 226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,212,16
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.

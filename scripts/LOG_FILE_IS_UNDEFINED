@@ -1,0 +1,21 @@
+2021-02-07 17:59:18.833  INFO 11116 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 11116 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 17:59:18.841  INFO 11116 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 17:59:36.332  INFO 11116 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 18.276 seconds (JVM running for 18.811)
+2021-02-07 18:00:25.522  INFO 4180 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 4180 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 18:00:25.522  INFO 4180 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 18:00:34.366  INFO 4180 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 9.622 seconds (JVM running for 10.171)
+2021-02-07 18:01:02.547  INFO 13112 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 13112 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 18:01:02.547  INFO 13112 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 18:01:04.905  INFO 13112 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.135 seconds (JVM running for 3.707)
+2021-02-07 18:06:57.756  INFO 7552 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 7552 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 18:06:57.756  INFO 7552 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 18:07:00.163  INFO 7552 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.25 seconds (JVM running for 3.793)
+2021-02-07 18:08:26.697  INFO 10848 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 10848 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 18:08:26.697  INFO 10848 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 18:08:29.085  INFO 10848 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.233 seconds (JVM running for 3.834)
+2021-02-07 18:09:52.541  INFO 10436 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 10436 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 18:09:52.543  INFO 10436 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 18:09:54.875  INFO 10436 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.156 seconds (JVM running for 3.93)
+2021-02-07 18:43:35.978  INFO 13632 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on TupacAmaru with PID 13632 (C:\entw\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by Wolfgang in C:\entw\mdb\scripts)
+2021-02-07 18:43:35.978  INFO 13632 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-07 18:43:38.346  INFO 13632 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.295 seconds (JVM running for 3.849)

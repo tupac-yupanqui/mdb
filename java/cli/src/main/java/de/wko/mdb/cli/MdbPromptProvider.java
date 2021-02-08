@@ -22,6 +22,9 @@ public class MdbPromptProvider implements PromptProvider {
             String hname = ((ArchiveFileSystem) fs).getHost().getName().replaceAll("\\s","");
             prompt = aname+"@"+hname+"> ";
         }
-        return new AttributedString(prompt, AttributedStyle.DEFAULT.background(AttributedStyle.RED));
+        //AttributedStyle as = AttributedStyle.DEFAULT.background(AttributedStyle.RED);
+        AttributedStyle as = AttributedStyle.DEFAULT.foreground(AttributedStyle.GREEN);
+        as.foreground(AttributedStyle.BLUE);
+        return new AttributedString(prompt, as);
     }
 }
