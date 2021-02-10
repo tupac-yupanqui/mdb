@@ -2,10 +2,12 @@ package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.AlbumEntity;
 import de.wko.mdb.data.entity.ArchiveEntity;
+import de.wko.mdb.data.entity.FolderEntity;
 import de.wko.mdb.data.entity.HostEntity;
 import de.wko.mdb.data.repository.ArchiveRepository;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.Archive;
+import de.wko.mdb.types.Folder;
 import de.wko.mdb.types.Host;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ import java.util.Optional;
 public class ArchiveService {
     @Autowired
     ArchiveRepository archiveRepository;
+
+    @Autowired
+    FolderService folderService;
 
     public Archive getArchiveById(Long id) {
         Optional<ArchiveEntity> ho = archiveRepository.findById(id);
@@ -45,17 +50,26 @@ public class ArchiveService {
     }
 
     public Archive save(Archive archive) {
+        ArchiveEntity ae = null;
         Optional<ArchiveEntity> ao = archiveRepository.findById(archive.getId());
         if (ao.isPresent()) {
-            ArchiveEntity ae = ao.get();
+            ae = ao.get();
             ae.fromType(archive);
-            return archiveRepository.save(ae).getType();
+            ae = archiveRepository.save(ae);
         } else if (archive.getId()==0){
-            ArchiveEntity ae = new ArchiveEntity();
+            ae = new ArchiveEntity();
             ae.fromType(archive);
-            System.out.println("Archiv ID: "+archive.getId());
-            return archiveRepository.save(ae).getType();
+            ae = archiveRepository.save(ae);
         }
+
+        if (ae!=null) {
+            Folder root = folderService.getRootFolder(ae.getId());
+            if (root==null) {
+                folderService.createRootFolder(ae.getId());
+            }
+            return ae.getType();
+        }
+
         return null;
     }
 

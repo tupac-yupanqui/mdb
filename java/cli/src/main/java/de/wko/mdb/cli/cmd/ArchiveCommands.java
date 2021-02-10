@@ -34,7 +34,7 @@ public class ArchiveCommands {
     @Autowired
     HostClient hostClient;
 
-    @ShellMethod(value = "List all known archives", key = "list archives")
+    @ShellMethod(value = "Alle bekannten Archive anzeigen", key = "list archives")
     public void listArchives() {
         //System.out.println(CLI.cwd);
         return;
@@ -87,7 +87,7 @@ public class ArchiveCommands {
         }
     }
 
-    @ShellMethod(value = "Edit Archiv", key = "edit archive")
+    @ShellMethod(value = "Archiv bearbeiten", key = "edit archive")
     public void editArchive(
             @ShellOption(defaultValue="0") String aid) {
 

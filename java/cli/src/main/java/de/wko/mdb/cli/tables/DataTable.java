@@ -22,9 +22,9 @@ public class DataTable {
         System.out.println("-".repeat(width));
         for (Column c : columns) {
             if (c.align==ALIGN_RIGHT) {
-                System.out.print(StringUtils.leftPad(c.title, c.width, ' ')+" ");
+                System.out.print(StringUtils.leftPad(convert(c.title), c.width, ' ')+" ");
             } else {
-                System.out.print(StringUtils.rightPad(c.title, c.width+1, ' '));
+                System.out.print(StringUtils.rightPad(convert(c.title), c.width+1, ' '));
             }
         }
         System.out.println();
@@ -37,7 +37,7 @@ public class DataTable {
     public void printRow(String... params) {
         int i=0;
         for (String p : params) {
-            printColumn(columns.get(i), p, (++i == columns.size()) );
+            printColumn(columns.get(i), convert(p), (++i == columns.size()) );
         }
     }
 
@@ -70,5 +70,15 @@ public class DataTable {
             return s.substring(0, l-4)+"...";
         }
         return s;
+    }
+
+    protected String convert(String s) {
+        return s.replace("ö","oe")
+                .replace("ä","ae")
+                .replace("ü","ue")
+                .replace("Ä","Ae")
+                .replace("Ö","Oe")
+                .replace("Ü", "Ue")
+                .replace("ß","ss");
     }
 }

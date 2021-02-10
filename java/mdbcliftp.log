@@ -837,3 +837,18 @@ PORT 192,168,178,87,212,16
 LIST
 150 Opening BINARY mode data connection for 'file list'.
 226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+220-FileZilla Server version 0.9.41 beta
+220-written by Tim Kosse (Tim.Kosse@gmx.de)
+220 Please visit http://sourceforge.net/projects/filezilla/
+USER admin
+331 Password required for admin
+PASS Wokoko1.
+230 Logged on
+CWD /
+250 CWD successful. "/" is current directory.

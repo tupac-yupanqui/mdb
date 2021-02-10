@@ -15,5 +15,6 @@ mvnw.cmd
 
 *.iml
 
+LOG_FILE*
 
 node_modules/

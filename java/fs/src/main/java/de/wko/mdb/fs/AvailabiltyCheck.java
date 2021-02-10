@@ -59,8 +59,12 @@ public class AvailabiltyCheck {
         if (a.getHostId()==h.getId()) {
             switch (h.getType()) {
                 case HARDDRIVE:
+                    if (AvailabiltyCheck.getLocalHostName().equalsIgnoreCase(h.getName())) {
+                        return true;
+                    }
+                    return false;
                 case FTP:
-                    return true;
+                    return FtpFileSystem.isAvailable(h);
                 case MOBILE:
                     for (Volume v : volumes) {
                         if (h.getAddress().equalsIgnoreCase(v.getName())) {

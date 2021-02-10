@@ -7,6 +7,7 @@ import de.wko.mdb.fs.FileSystemException;
 import de.wko.mdb.fs.sort.FileComparator;
 import de.wko.mdb.types.MdbFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -39,9 +40,13 @@ public class FilesystemCommands {
     public void ls() {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
-            List<MdbFile> files = fs.listDir("");
-            Collections.sort(files, FileComparator.getFileComparator(FileComparator.SORT_TYPE));
-            new FileTable(files).print();
+            if (fs.isFilesystemAvailable()) {
+                List<MdbFile> files = fs.listDir("");
+                Collections.sort(files, FileComparator.getFileComparator(FileComparator.SORT_TYPE));
+                new FileTable(files).print();
+            } else {
+                System.out.println("Kein Zugriff auf Verzeichnis");
+            }
         } catch (FileSystemException e) {
             System.out.println(e.getMessage());
         }
@@ -52,10 +57,14 @@ public class FilesystemCommands {
     public void cd(@ShellOption(defaultValue = "") String d) {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
-            if (d.length()==0) {
-                ls();
+            if (fs.isFilesystemAvailable()) {
+                if (d.length()==0) {
+                    ls();
+                } else {
+                    fs.changeCurrentDir(d);
+                }
             } else {
-                fs.changeCurrentDir(d);
+                System.out.println("Kein Zugriff auf Verzeichnis");
             }
         } catch (FileSystemException e) {
             System.out.println(e.getMessage());
@@ -67,7 +76,11 @@ public class FilesystemCommands {
     public void mkdir(@ShellOption String d) {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
-            fs.makeDir(d);
+            if (fs.isFilesystemAvailable()) {
+                fs.makeDir(d);
+            } else {
+                System.out.println("Kein Zugriff auf Verzeichnis");
+            }
         } catch (FileSystemException e) {
             System.out.println(e.getMessage());
         }
@@ -78,12 +91,15 @@ public class FilesystemCommands {
     public void rmdir(@ShellOption String d) {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
-            fs.removeDir(d);
+            if (fs.isFilesystemAvailable()) {
+                fs.removeDir(d);
+            } else {
+                System.out.println("Kein Zugriff auf Verzeichnis");
+            }
         } catch (FileSystemException e) {
             System.out.println(e.getMessage());
         }
         return;
     }
-
 
 }

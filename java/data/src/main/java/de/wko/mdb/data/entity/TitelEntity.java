@@ -19,6 +19,7 @@ import javax.persistence.*;
 })
 public class TitelEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int length;

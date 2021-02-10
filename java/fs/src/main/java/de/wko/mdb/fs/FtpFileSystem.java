@@ -139,6 +139,10 @@ public class FtpFileSystem extends ArchiveFileSystem {
                 client.disconnect();
                 return false;
             }
+            if (!client.login(host.getLogin(), host.getPassword())) {
+                client.disconnect();
+                return false;
+            }
             client.disconnect();
         } catch (IOException e) {
             return false;

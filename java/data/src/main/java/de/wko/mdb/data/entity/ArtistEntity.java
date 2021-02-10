@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name="artists")
 public class ArtistEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic(optional = false)
     @Column(nullable = false)

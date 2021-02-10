@@ -15,7 +15,7 @@ import javax.persistence.*;
 })
 public class ArchiveEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic(optional = false)
     @Column(nullable = false)
