@@ -27,11 +27,10 @@ public class ContentService {
     }
 
     public FolderContent getContentByFolderPath(Long archiveId, String path) {
-        Optional<FolderEntity> folderEntity = folderService.getFolderByPath(archiveId, path);
+        Optional<FolderEntity> folderEntity = folderService.getFolderEntityByPath(archiveId, path);
         if (folderEntity.isPresent()) {
             return getContentByFolderId(folderEntity.get().getId());
         }
-        System.out.println("Folder not found "+path+" - "+archiveId);
         return null;
     }
 }

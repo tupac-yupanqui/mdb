@@ -3,6 +3,7 @@ package de.wko.mdb.cli.cmd;
 import de.wko.mdb.cli.tables.ArchiveTable;
 import de.wko.mdb.cli.tables.HostTable;
 import de.wko.mdb.cli.tools.ConsoleReader;
+import de.wko.mdb.cli.tools.ReaderExitException;
 import de.wko.mdb.fs.AvailabiltyCheck;
 import de.wko.mdb.rcl.ArchiveClient;
 import de.wko.mdb.rcl.HostClient;
@@ -67,37 +68,41 @@ public class HostCommands {
     }
 
     @ShellMethod(value = "Edit host info", key = "edit host")
-    public String editHost(
+    public void editHost(
             @ShellOption(defaultValue="0") String hid) {
 
         Host host = getHost(hid);
         if (host == null) {
             System.out.println("Host "+hid+" nicht gefunden");
-            return null;
+            return;
         }
 
         try {
             editHost(host);
             printHost(host);
             hostClient.saveHost(host);
+        } catch (ReaderExitException e) {
         } catch (MdbRestException e) {
             System.out.println("MdbRestException "+e.getResponse().getMessage());
             e.printStackTrace();
         }
 
-        return null;
+        return;
     }
 
     @ShellMethod(value = "Create new host", key = "create host")
     public String createHost() {
         Host host = new Host();
-        editHost(host);
         try {
-            host = hostClient.saveHost(host);
-            printHost(host);
-        } catch (MdbRestException e) {
-            System.out.println("MdbRestException "+e.getResponse().getMessage());
-            e.printStackTrace();
+            editHost(host);
+            try {
+                host = hostClient.saveHost(host);
+                printHost(host);
+            } catch (MdbRestException e) {
+                System.out.println("MdbRestException "+e.getResponse().getMessage());
+                e.printStackTrace();
+            }
+        } catch (ReaderExitException e) {
         }
         return null;
     }
@@ -125,9 +130,12 @@ public class HostCommands {
             return null;
         }
 
-        ConsoleReader reader = new ConsoleReader();
-        if (!reader.readBoolean("Host "+host.getName()+" wirklich löschen?", false)) {
-            return null;
+        try {
+            ConsoleReader reader = new ConsoleReader();
+            if (!reader.readBoolean("Host "+host.getName()+" wirklich löschen?", false)) {
+                return null;
+            }
+        } catch (ReaderExitException e) {
         }
 
         try {
@@ -140,7 +148,7 @@ public class HostCommands {
         return null;
     }
 
-    private Host editHost(Host host) {
+    private Host editHost(Host host) throws ReaderExitException  {
         ConsoleReader reader = new ConsoleReader();
         System.out.println("Edit Host [ID="+host.getId()+"]");
         host.setName(reader.readStringRequired("Name", host.getName()));

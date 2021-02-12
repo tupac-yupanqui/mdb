@@ -34,3 +34,57 @@
 2021-02-08 10:55:52.433  INFO 19984 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on W4DEUMSY9002167 with PID 19984 (C:\dev\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by wko in C:\dev\mdb\scripts)
 2021-02-08 10:55:52.440  INFO 19984 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
 2021-02-08 10:55:59.837  INFO 19984 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 9.65 seconds (JVM running for 11.018)
+2021-02-10 10:01:08.586  INFO 193520 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on W4DEUMSY9002167 with PID 193520 (C:\dev\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by wko in C:\dev\mdb\scripts)
+2021-02-10 10:01:08.613  INFO 193520 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-10 10:01:36.286  INFO 193520 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 36.394 seconds (JVM running for 40.564)
+2021-02-10 10:18:07.536  INFO 108728 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on W4DEUMSY9002167 with PID 108728 (C:\dev\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by wko in C:\dev\mdb\scripts)
+2021-02-10 10:18:07.562  INFO 108728 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-10 10:18:25.050  INFO 108728 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 23.594 seconds (JVM running for 27.892)
+2021-02-10 11:55:02.686  INFO 198560 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI v1.0-SNAPSHOT on W4DEUMSY9002167 with PID 198560 (C:\dev\mdb\java\cli\target\cli-1.0-SNAPSHOT.jar started by wko in C:\dev\mdb\scripts)
+2021-02-10 11:55:02.752  INFO 198560 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-10 11:55:17.277  INFO 198560 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 20.352 seconds (JVM running for 24.614)
+2021-02-10 11:57:02.627  WARN 198560 --- [WindowsStreamPump] org.jline                                : Error in WindowsStreamPump
+
+java.io.IOException: Read end dead
+	at java.base/java.io.PipedInputStream.checkStateForReceive(PipedInputStream.java:262)
+	at java.base/java.io.PipedInputStream.receive(PipedInputStream.java:201)
+	at java.base/java.io.PipedOutputStream.write(PipedOutputStream.java:122)
+	at org.jline.terminal.impl.AbstractWindowsTerminal.processInputByte(AbstractWindowsTerminal.java:405)
+	at org.jline.terminal.impl.AbstractWindowsTerminal.pump(AbstractWindowsTerminal.java:366)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+2021-02-10 11:57:09.779  INFO 198560 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-02-10 11:57:09.783 ERROR 198560 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+java.io.IOError: java.io.IOException: Write end dead
+	at org.jline.keymap.BindingReader.readCharacter(BindingReader.java:142)
+	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:109)
+	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:60)
+	at org.jline.reader.impl.LineReaderImpl.readBinding(LineReaderImpl.java:720)
+	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:522)
+	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:390)
+	at org.springframework.shell.jline.InteractiveShellApplicationRunner$JLineInputProvider.readInput(InteractiveShellApplicationRunner.java:115)
+	at org.springframework.shell.Shell.run(Shell.java:129)
+	at org.springframework.shell.jline.InteractiveShellApplicationRunner.run(InteractiveShellApplicationRunner.java:84)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:786)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:776)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:322)
+	at de.wko.mdb.cli.CLI.main(CLI.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:109)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88)
+Caused by: java.io.IOException: Write end dead
+	at java.base/java.io.PipedInputStream.read(PipedInputStream.java:310)
+	at java.base/java.io.PipedInputStream.read(PipedInputStream.java:377)
+	at org.jline.utils.InputStreamReader.read(InputStreamReader.java:270)
+	at org.jline.utils.InputStreamReader.read(InputStreamReader.java:200)
+	at org.jline.utils.NonBlockingReader.run(NonBlockingReader.java:276)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+

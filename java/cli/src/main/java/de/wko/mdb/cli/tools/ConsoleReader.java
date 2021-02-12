@@ -6,24 +6,44 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleReader {
+    private static final String EXIT_MARKER = "exit";
+
     private Scanner scanner = new Scanner(System.in);
 
     public ConsoleReader() {
 
     }
 
-    public String readStringRequired(String label, String def) {
+    public String readStringRequired(String label, String def) throws ReaderExitException {
         return readString(label, def, true);
     }
-    public String readString(String label, String def) {
+
+    public String readString(String label, String def) throws ReaderExitException {
         return readString(label, def, false);
     }
-    public String readString(String label, String def, boolean required) {
+
+    public String readString(String label) throws ReaderExitException {
+        do {
+            System.out.print(String.format("%s: ", label));
+            String inp = scanner.nextLine();
+            if (Strings.isNotEmpty(inp)) {
+                if (inp.equalsIgnoreCase(EXIT_MARKER)) {
+                    throw new ReaderExitException();
+                }
+                return inp;
+            }
+        } while(true);
+    }
+
+    public String readString(String label, String def, boolean required) throws ReaderExitException{
         if (def==null) def="";
         do {
             System.out.print(String.format("%s%s [%s]: ", label, required?"*":"", def));
             String inp = scanner.nextLine();
             if (Strings.isNotEmpty(inp)) {
+                if (inp.equalsIgnoreCase(EXIT_MARKER)) {
+                    throw new ReaderExitException();
+                }
                 if (inp.equals("##")) {
                     if (required) {
                         System.out.println("Eingabe erforderlich");
@@ -44,7 +64,7 @@ public class ConsoleReader {
         } while (true);
     }
 
-    public String readFromList(String label, List<String> values, String def) {
+    public String readFromList(String label, List<String> values, String def) throws ReaderExitException {
 
         do {
             System.out.print(label +" ");
@@ -59,6 +79,9 @@ public class ConsoleReader {
             System.out.print(String.format("Auswahl [%d]: ", values.indexOf(def)+1));
             String inp = scanner.nextLine().trim();
             if (Strings.isNotEmpty(inp)) {
+                if (inp.equalsIgnoreCase(EXIT_MARKER)) {
+                    throw new ReaderExitException();
+                }
                 int r;
                 try {
                     r = Integer.valueOf(inp);
@@ -82,10 +105,13 @@ public class ConsoleReader {
         } while (true);
     }
 
-    public Boolean readBoolean(String label, boolean def) {
+    public Boolean readBoolean(String label, boolean def) throws ReaderExitException {
         System.out.print(String.format(label+" [%s]: ", def?"J/n":"j/N"));
         String inp = scanner.nextLine();
         if (Strings.isNotEmpty(inp)) {
+            if (inp.equalsIgnoreCase(EXIT_MARKER)) {
+                throw new ReaderExitException();
+            }
             return inp.equalsIgnoreCase("J");
         } else {
             return def;

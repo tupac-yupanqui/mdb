@@ -1,7 +1,7 @@
 package de.wko.mdb.types;
 
 public class Artist {
-    private Long id;
+    private Long id = 0L;
     private String name;
 
     public Long getId() {

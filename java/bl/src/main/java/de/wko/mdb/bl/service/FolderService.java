@@ -28,7 +28,6 @@ public class FolderService {
         return null;
     }
 
-
     public List<Folder> getFolderByParentId(Long parentId) {
         List<FolderEntity> list = folderRepository.getFolderByParent(parentId);
         List<Folder> result = new ArrayList<>();
@@ -63,7 +62,13 @@ public class FolderService {
         return null;
     }
 
-    public Optional<FolderEntity> getFolderByPath(Long archiveId, String path) {
+    public Folder getFolderByPath(Long archiveId, String path) {
+        Optional<FolderEntity> entity = getFolderEntityByPath(archiveId, path);
+        if (entity.isPresent()) return entity.get().getType();
+        return null;
+    }
+
+    public Optional<FolderEntity> getFolderEntityByPath(Long archiveId, String path) {
         String pathElements[] = path.split("/");
 
         System.out.println("Get Parent");
@@ -73,10 +78,8 @@ public class FolderService {
 
         System.out.println("Found");
         for (int i=1; i<pathElements.length; i++) {
-            System.out.println("Get folder "+folder.get().getId()+"/"+pathElements[i]);
             folder = folderRepository.getFolderByParentAndPath(folder.get().getId(), pathElements[i]);
             if (!folder.isPresent()) return folder;
-            System.out.println("Found");
         }
         return folder;
     }

@@ -3,6 +3,7 @@ package de.wko.mdb.cli.cmd;
 import de.wko.mdb.cli.CliContext;
 import de.wko.mdb.cli.tables.ArchiveTable;
 import de.wko.mdb.cli.tools.ConsoleReader;
+import de.wko.mdb.cli.tools.ReaderExitException;
 import de.wko.mdb.fs.ArchiveFileSystem;
 import de.wko.mdb.fs.AvailabiltyCheck;
 import de.wko.mdb.fs.AbstractFileSystem;
@@ -119,28 +120,34 @@ public class ArchiveCommands {
                 return;
             }
         }
-        editArchive(archive);
-        printArchive(archive);
-        saveArchive(archive);
+        try {
+            editArchive(archive);
+            printArchive(archive);
+            saveArchive(archive);
+        } catch (ReaderExitException e) {
+        }
         return;
     }
 
     @ShellMethod(value = "Neues Archiv erzeugen", key = "create archive")
     public void createArchive() {
         Archive archive = new Archive();
-        editArchive(archive);
         try {
-            archive = archiveClient.saveArchive(archive);
-            printArchive(archive);
-        } catch (MdbRestException e) {
-            System.out.println("MdbRestException "+e.getResponse().getMessage());
-            e.printStackTrace();
+            editArchive(archive);
+            try {
+                archive = archiveClient.saveArchive(archive);
+                printArchive(archive);
+            } catch (MdbRestException e) {
+                System.out.println("MdbRestException "+e.getResponse().getMessage());
+                e.printStackTrace();
+            }
+        } catch (ReaderExitException e) {
         }
         return;
     }
 
 
-    private Archive editArchive(Archive archive) {
+    private Archive editArchive(Archive archive) throws ReaderExitException  {
         List<Host> hosts;
         List<String> hostNames = new ArrayList<>();
         String hostName = "";

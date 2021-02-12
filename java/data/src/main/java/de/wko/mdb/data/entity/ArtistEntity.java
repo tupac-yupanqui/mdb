@@ -1,11 +1,18 @@
 package de.wko.mdb.data.entity;
 
 import de.wko.mdb.types.Artist;
+import de.wko.mdb.types.Host;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="artists")
+@NamedQueries({
+        @NamedQuery(
+                name = "ArtistEntity.findArtistByPattern",
+                query = "SELECT a FROM ArtistEntity a WHERE a.name LIKE CONCAT('%',?1,'%')"
+        )
+})
 public class ArtistEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +43,10 @@ public class ArtistEntity {
         a.setName(this.name);
         return a;
     }
+
+    public void fromType(Artist artist) {
+        this.id = artist.getId();
+        this.name = artist.getName();
+    }
+
 }

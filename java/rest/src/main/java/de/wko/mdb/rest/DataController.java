@@ -31,38 +31,38 @@ public class DataController {
         binder.registerCustomEditor(AlbumFilter.class, new FilterEditor(jacksonObjectMapper));
     }
 
-    @GetMapping("/artist")
+    @GetMapping("/dartist")
     public Artist artist() {
         Artist a = service.getById(1L);
         return a;
     }
 
-    @GetMapping("/artists")
+    @GetMapping("/dartists")
     public List<Artist> artists() {
         return service.getAll();
     }
 
-    @GetMapping("/album")
+    @GetMapping("/dalbum")
     public Album album() {
         Album a = albumservice.getById(1L);
         return a;
     }
 
-    @GetMapping("/albums")
+    @GetMapping("/dalbums")
     @ResponseBody
     public List<Album> albums(@RequestParam(required = false) AlbumFilter filter) {
         if (filter==null) filter = new AlbumFilter();
         return albumservice.getFilteredAlbums(filter);
     }
 
-    @GetMapping("/counta")
+    @GetMapping("/dcounta")
     public Long counta(@RequestParam(required = false) AlbumFilter filter) {
         if (filter==null) filter = new AlbumFilter();
         return albumservice.countFilteredAlbums(filter);
     }
 
 
-    @GetMapping("/album/view")
+    @GetMapping("/dalbum/view")
     @ResponseBody
     public AlbumDetails getAlbumDetails(@RequestParam int id) {
         return albumservice.getAlbumDetails(id);

@@ -34,4 +34,27 @@ public enum EFolderType {
         return EnumSet.allOf(EFolderType.class).stream().filter(f -> f!=UNKNOWN).map(f -> f.getDescr()).collect(Collectors.toList());
     }
 
+    public static List<String> getValueList(EFolderType parent) {
+        List<String> result = getValueList();
+        switch (parent) {
+            case ROOT:
+                result.remove(ROOT.getDescr());
+                result.remove(ALBUM.getDescr());
+                result.remove(SUBALBUM.getDescr());
+                break;
+            case ARTIST:
+                result.remove(ROOT.getDescr());
+                result.remove(ARTIST.getDescr());
+                result.remove(SUBALBUM.getDescr());
+                break;
+            case ALBUM:
+                result.remove(ROOT.getDescr());
+                result.remove(ALBUM.getDescr());
+                result.remove(ARTIST.getDescr());
+                result.remove(LIST.getDescr());
+                break;
+        }
+        return result;
+    }
+
 }
