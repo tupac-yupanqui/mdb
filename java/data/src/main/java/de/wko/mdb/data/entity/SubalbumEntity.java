@@ -39,4 +39,9 @@ public class SubalbumEntity {
         return a;
     }
 
+    public void fromType(Subalbum subalbum) {
+        this.id = subalbum.getId();
+        this.name = subalbum.getName();
+    }
+
 }

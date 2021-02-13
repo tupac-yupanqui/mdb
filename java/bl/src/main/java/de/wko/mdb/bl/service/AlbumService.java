@@ -1,15 +1,13 @@
 package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.AlbumEntity;
+import de.wko.mdb.data.entity.ArtistEntity;
 import de.wko.mdb.data.entity.SubalbumEntity;
 import de.wko.mdb.data.entity.TitelEntity;
 import de.wko.mdb.data.filter.AlbumFilter;
 import de.wko.mdb.data.repository.AlbumRepository;
 import de.wko.mdb.data.repository.TitelRepository;
-import de.wko.mdb.types.Album;
-import de.wko.mdb.types.AlbumDetails;
-import de.wko.mdb.types.Titel;
-import de.wko.mdb.types.TitelList;
+import de.wko.mdb.types.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +34,42 @@ public class AlbumService {
         }
         return optional.get().getType();
     }
+
+    public Album findByName(String name) {
+        AlbumEntity he = albumRepository.findByName(name);
+        return he==null ? null : he.getType();
+    }
+
+    public List<Album> findByPattern(String pattern) {
+        System.out.println("Find2: "+pattern);
+        Iterable<AlbumEntity> all = albumRepository.findAlbumByPattern(pattern);
+        List<Album> result = new ArrayList<>();
+        for (AlbumEntity a : all) {
+            result.add(a.getType());
+        }
+        System.out.println("Find2: "+result.size());
+        return result;
+    }
+
+    public Album save(Album album) {
+        Optional<AlbumEntity> ao = albumRepository.findById(album.getId());
+        if (ao.isPresent()) {
+            AlbumEntity ae = ao.get();
+            ae.fromType(album);
+            return albumRepository.save(ae).getType();
+        } else if (album.getId()==0){
+            AlbumEntity ae = new AlbumEntity();
+            ae.fromType(album);
+            return albumRepository.save(ae).getType();
+        }
+        return null;
+    }
+
+    public void delete(Long id) {
+        albumRepository.deleteById(id);
+    }
+
+
 
     public List<Album> getByArtistId(Long artistId) {
         List<AlbumEntity> list = albumRepository.findByArtistId(artistId);

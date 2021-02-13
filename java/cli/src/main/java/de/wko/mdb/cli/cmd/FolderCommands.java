@@ -2,10 +2,7 @@ package de.wko.mdb.cli.cmd;
 
 import de.wko.mdb.cli.CliContext;
 import de.wko.mdb.cli.tables.FolderTable;
-import de.wko.mdb.cli.tools.ArtistHelper;
-import de.wko.mdb.cli.tools.ConsoleReader;
-import de.wko.mdb.cli.tools.ListHelper;
-import de.wko.mdb.cli.tools.ReaderExitException;
+import de.wko.mdb.cli.tools.*;
 import de.wko.mdb.fs.ArchiveFileSystem;
 import de.wko.mdb.fs.FileSystemException;
 import de.wko.mdb.fs.LocalFileSystem;
@@ -218,13 +215,72 @@ public class FolderCommands {
         return artist;
     }
 
+    private Album searchAlbum(Album album) throws ReaderExitException, MdbRestException {
+        ConsoleReader reader = new ConsoleReader();
+        do {
+            String auswahl = reader.readString("Suche nach");
+            List<Album> albums = albumClient.getAlbumByPattern(auswahl);
+            auswahl = reader.readFromList("Suchergebnis", AlbumHelper.getList(albums, "Neue Suche"), "");
+            album = AlbumHelper.getSelection(albums, auswahl);
+        } while (album == null);
+        return album;
+    }
+
+    private Album selectAlbum(Album album) throws ReaderExitException, MdbRestException {
+        ConsoleReader reader = new ConsoleReader();
+        String auswahl = reader.readString("Name Album");
+        album = albumClient.getAlbumByName(auswahl);
+        if (album == null) {
+            album = new Album();
+            album.setName(auswahl);
+            album = albumClient.saveAlbum(album);
+        }
+        return album;
+    }
+
+    private void editAlbumFolder(Folder folder)   throws ReaderExitException, MdbRestException {
+        ConsoleReader reader = new ConsoleReader();
+        Album album = folder.getObjectId() == 0L ? albumClient.getAlbumByName(folder.getName()) : albumClient.getAlbumById(folder.getObjectId());
+        if (album == null) {
+            List<String> auswahlAktion = Arrays.asList("Anlegen", "Suchen", "Eingabe");
+            String auswahl = reader.readFromList(String.format("Artist '%s' (neu)", folder.getName()), auswahlAktion, "Anlegen");
+            switch (auswahlAktion.indexOf(auswahl)) {
+                case 0:
+                    album.setName(folder.getName());
+                    album = albumClient.saveAlbum(album);
+                    break;
+                case 1:
+                    album = searchAlbum(album);
+                    break;
+                case 2:
+                    album = selectAlbum(album);
+                    break;
+            }
+        } else {
+            List<String> auswahlAktion = Arrays.asList("Auswählen", "Suchen", "Eingabe");
+            String auswahl = reader.readFromList(String.format("Album '%s' (ID %d)", album.getName(), album.getId()), auswahlAktion, "Auswählen");
+            switch (auswahlAktion.indexOf(auswahl)) {
+                case 0:
+                    break;
+                case 1:
+                    album = searchAlbum(album);
+                    break;
+                case 2:
+                    album = selectAlbum(album);
+                    break;
+            }
+        }
+        folder.setObjectId(album.getId());
+        folderClient.saveFolder(folder);
+    }
+
     private void editArtistFolder(Folder folder) throws ReaderExitException, MdbRestException {
         ConsoleReader reader = new ConsoleReader();
         Artist artist = folder.getObjectId() == 0L ? artistClient.getArtistByName(folder.getName()) : artistClient.getArtistById(folder.getObjectId());
         if (artist == null) {
-            List<String> auswahl = Arrays.asList("Anlegen", "Suchen", "Eingabe");
-            String ausw = reader.readFromList(String.format("Artist '%s' (neu)", folder.getName()), auswahl, "Anlegen");
-            switch (auswahl.indexOf(ausw)) {
+            List<String> auswahlAktion = Arrays.asList("Anlegen", "Suchen", "Eingabe");
+            String auswahl = reader.readFromList(String.format("Album '%s' (neu)", folder.getName()), auswahlAktion, "Anlegen");
+            switch (auswahlAktion.indexOf(auswahl)) {
                 case 0:
                     artist.setName(folder.getName());
                     artist = artistClient.saveArtist(artist);
@@ -255,10 +311,4 @@ public class FolderCommands {
 
     }
 
-    private void editAlbumFolder(Folder folder) throws ReaderExitException, MdbRestException {
-        ConsoleReader reader = new ConsoleReader();
-        Album album = folder.getObjectId() == 0L ? albumClient.getAlbumByName(folder.getName()) : albumClient.getAlbumById(folder.getObjectId());
-        if (album == null) {
-        }
-    }
 }

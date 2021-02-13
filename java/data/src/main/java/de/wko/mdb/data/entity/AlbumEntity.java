@@ -2,15 +2,23 @@ package de.wko.mdb.data.entity;
 
 import de.wko.mdb.data.Util;
 import de.wko.mdb.types.Album;
+import de.wko.mdb.types.Artist;
+import de.wko.mdb.types.Subalbum;
 
 import javax.persistence.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name="albums")
 @NamedQueries({
+        @NamedQuery(
+                name = "AlbumEntity.findAlbumByPattern",
+                query = "SELECT a FROM AlbumEntity a WHERE a.name LIKE CONCAT('%',?1,'%')"
+        ),
         @NamedQuery(
                 name = "AlbumEntity.findByArtist",
                 query = "SELECT a FROM AlbumEntity a WHERE a.artist.id = ?1"
@@ -115,6 +123,24 @@ public class AlbumEntity {
         }
         a.setArtist(this.artist.getType());
         return a;
+    }
+
+    public void fromType(Album album) {
+        this.id = album.getId();
+        this.name = album.getName();
+        this.cover = album.getCover();
+        this.coversmall = album.getCoversmall();
+        try {
+            this.release = Util.sdf.parse(album.getRelease());
+        } catch (ParseException e) {
+            this.release = null;
+        }
+        this.subalbums = new ArrayList<>();
+        for (Subalbum sa : album.getSubalbums()) {
+            SubalbumEntity sae = new SubalbumEntity();
+            sae.fromType(sa);
+            this.subalbums.add(sae);
+        }
     }
 
 }
