@@ -39,7 +39,7 @@ public class FolderTable extends DataTable {
         }
         if (tracks!=null) {
             for (Track t : tracks) {
-                printRow(t.getId()!=null?t.getId().toString():"", t.getFilename(), "TRACK");
+                printRow(t.getId()!=null?t.getId().toString():"", t.getFilename(), t.getId()==null ? "?" : "Track");
             }
         }
         printFooter();

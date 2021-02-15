@@ -852,3 +852,465 @@ PASS Wokoko1.
 230 Logged on
 CWD /
 250 CWD successful. "/" is current directory.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,208,254
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,210,83
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,210,104
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,212,61
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,212,95
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+CWD /musi2/xandria
+550 /musi2/xandria: No such file or directory.
+CWD /musi2/Xandria
+250 CWD command successful.
+PORT 192,168,178,87,212,160
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,212,210
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,216,183
+421 Timeout (300 seconds): closing control connection.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/xandria
+550 /musi2/xandria: No such file or directory.
+CWD /musi2/Xandria
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,217,28
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/Xandria
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,225,206
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,225,240
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,226,17
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/Xandria
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,226,146
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/Xandria
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,226,242
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /Xandria/India
+553 /Xandria/India: No such file or directory.
+PORT 192,168,178,87,227,8
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/Xandira
+550 /musi2/Xandira: No such file or directory.
+CWD /musi2/Xandria
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,227,254
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/Xandria/India
+350 File exists, ready for destination name.
+RNTO /musi2/Xandria/Indiann
+250 RNTO command successful.
+PORT 192,168,178,87,228,14
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,228,36
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/Xandria/Indiann
+350 File exists, ready for destination name.
+RNTO /musi2/Xandria/India
+250 RNTO command successful.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,233,44
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/e577139645.png
+350 File exists, ready for destination name.
+RNTO /musi2/eee.png
+250 RNTO command successful.
+PORT 192,168,178,87,233,92
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+CWD /musi2/Xandria
+250 CWD command successful.
+PORT 192,168,178,87,233,182
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,233,205
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/XandriaIndia
+550 /musi2/XandriaIndia: No such file or directory.
+PORT 192,168,178,87,233,239
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,234,31
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/XandriaIndia
+550 /musi2/XandriaIndia: No such file or directory.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,238,247
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/eee.png
+350 File exists, ready for destination name.
+RNTO /musi2/rrr.png
+250 RNTO command successful.
+PORT 192,168,178,87,239,8
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+CWD /musi2/Xandria
+250 CWD command successful.
+RNFR /musi2/XandriaIndia
+550 /musi2/XandriaIndia: No such file or directory.
+PORT 192,168,178,87,239,28
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,239,201
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/rrr.png
+350 File exists, ready for destination name.
+RNTO /musi2/hhh.png
+250 RNTO command successful.
+CWD /musi2/Xandira
+550 /musi2/Xandira: No such file or directory.
+CWD /musi2/Xandria
+250 CWD command successful.
+RNFR /musi2/Xandria/India
+350 File exists, ready for destination name.
+RNTO /musi2/Xandria/fff
+250 RNTO command successful.
+PORT 192,168,178,87,239,237
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/Xandria/fff
+350 File exists, ready for destination name.
+RNTO /musi2/Xandria/India
+250 RNTO command successful.
+PORT 192,168,178,87,239,249
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,240,19
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/Xandria/India
+350 File exists, ready for destination name.
+RNTO /musi2/Xandria/kkk
+250 RNTO command successful.
+PORT 192,168,178,87,240,32
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,240,41
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,240,71
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,240,91
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+RNFR /musi2/Xandria/kkk
+350 File exists, ready for destination name.
+RNTO /musi2/Xandria/India
+250 RNTO command successful.
+PORT 192,168,178,87,240,110
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,212,172
+421 Timeout (300 seconds): closing control connection.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,212,220
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,213,106
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,213,120
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,213,189
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,214,209
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+CWD /musi2/Aeternitas
+250 CWD command successful.
+PORT 192,168,178,87,215,107
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,215,108
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,215,210
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,216,11
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,216,31
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+CWD /musi2/Aeternitas//House of Usher
+250 CWD command successful.
+PORT 192,168,178,87,216,67
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,222,104
+421 Timeout (300 seconds): closing control connection.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/Aeternitas
+250 CWD command successful.
+SYST
+215 UNIX Type: L8
+PORT 192,168,178,87,222,185
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+CWD /musi2/Aeternitas//House of Usher
+250 CWD command successful.
+PORT 192,168,178,87,222,205
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+PORT 192,168,178,87,222,207
+200 PORT command successful.
+LIST
+150 Opening BINARY mode data connection for 'file list'.
+226 Transfer complete.
+220 DiskStation FTP server ready.
+USER admin
+331 Password required for admin.
+PASS Wokoko1.
+230 User admin logged in.
+CWD /musi2
+250 CWD command successful.
+CWD /musi2/Aeternitas
+250 CWD command successful.

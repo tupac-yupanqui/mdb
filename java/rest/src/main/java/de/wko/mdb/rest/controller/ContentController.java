@@ -16,6 +16,7 @@ public class ContentController {
     @GetMapping("/content/list")
     @ResponseBody
     public FolderContent getById(@RequestParam Long aid, @RequestParam String path) {
+System.out.println("get "+aid+" "+path);
         FolderContent result = contentService.getContentByFolderPath(aid, path);
         return result;
     }

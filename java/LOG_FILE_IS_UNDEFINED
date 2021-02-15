@@ -14,3 +14,318 @@
 2021-02-12 16:24:53.649  INFO 8260 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
 2021-02-12 16:24:56.886  WARN 8260 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
 2021-02-12 16:24:56.996  INFO 8260 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.557 seconds (JVM running for 7.011)
+2021-02-13 08:16:47.543  INFO 12496 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 12496 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 08:16:47.545  INFO 12496 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 08:16:51.128  WARN 12496 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 08:16:51.246  INFO 12496 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.686 seconds (JVM running for 5.718)
+2021-02-13 08:38:40.972  INFO 9956 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 9956 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 08:38:40.978  INFO 9956 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 08:38:43.336  WARN 9956 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 08:38:43.572  INFO 9956 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.684 seconds (JVM running for 4.371)
+2021-02-13 08:40:06.654  INFO 17308 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 17308 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 08:40:06.659  INFO 17308 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 08:40:08.874  WARN 17308 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 08:40:09.009  INFO 17308 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.338 seconds (JVM running for 4.022)
+2021-02-13 08:44:14.690  INFO 9644 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 9644 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 08:44:14.693  INFO 9644 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 08:44:16.875  WARN 9644 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 08:44:17.074  INFO 9644 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.461 seconds (JVM running for 4.217)
+2021-02-13 08:46:39.601  INFO 11536 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 11536 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 08:46:39.604  INFO 11536 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 08:46:42.248  WARN 11536 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 08:46:42.384  INFO 11536 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.79 seconds (JVM running for 4.567)
+2021-02-13 09:23:45.772  INFO 19156 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 19156 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:23:45.775  INFO 19156 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:23:48.516  WARN 19156 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:23:48.642  INFO 19156 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.72 seconds (JVM running for 4.554)
+2021-02-13 09:25:40.931  INFO 1628 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 1628 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:25:40.934  INFO 1628 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:25:43.365  WARN 1628 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:25:43.483  INFO 1628 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.394 seconds (JVM running for 4.186)
+2021-02-13 09:26:38.738  INFO 1516 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 1516 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:26:38.741  INFO 1516 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:26:41.011  WARN 1516 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:26:41.129  INFO 1516 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.325 seconds (JVM running for 4.151)
+2021-02-13 09:28:48.825  INFO 16524 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 16524 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:28:48.828  INFO 16524 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:28:51.162  WARN 16524 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:28:51.287  INFO 16524 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.433 seconds (JVM running for 4.316)
+2021-02-13 09:33:25.089  INFO 18312 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 18312 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:33:25.095  INFO 18312 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:33:27.477  WARN 18312 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:33:27.595  INFO 18312 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.427 seconds (JVM running for 4.088)
+2021-02-13 09:36:39.054  INFO 15508 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 15508 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:36:39.057  INFO 15508 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:36:41.451  WARN 15508 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:36:41.585  INFO 15508 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.348 seconds (JVM running for 4.181)
+2021-02-13 09:37:59.024  INFO 4836 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 4836 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:37:59.040  INFO 4836 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:38:01.459  WARN 4836 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:38:01.628  INFO 4836 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.701 seconds (JVM running for 5.169)
+2021-02-13 09:39:13.794  INFO 16840 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 16840 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:39:13.798  INFO 16840 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:39:16.112  WARN 16840 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:39:16.243  INFO 16840 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.332 seconds (JVM running for 4.028)
+2021-02-13 09:40:15.978  INFO 5888 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 5888 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:40:15.981  INFO 5888 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:40:18.309  WARN 5888 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:40:18.429  INFO 5888 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.299 seconds (JVM running for 3.937)
+2021-02-13 09:41:43.906  INFO 14436 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 14436 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:41:43.909  INFO 14436 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:41:46.226  WARN 14436 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:41:46.355  INFO 14436 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.405 seconds (JVM running for 4.181)
+2021-02-13 09:47:49.959  INFO 18740 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 18740 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:47:49.964  INFO 18740 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:47:52.206  WARN 18740 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:47:52.455  INFO 18740 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.462 seconds (JVM running for 4.241)
+2021-02-13 09:50:50.627  INFO 17652 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 17652 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:50:50.638  INFO 17652 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:50:52.954  WARN 17652 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:50:53.165  INFO 17652 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.479 seconds (JVM running for 4.227)
+2021-02-13 09:53:40.934  INFO 7476 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 7476 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:53:40.940  INFO 7476 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:53:43.154  WARN 7476 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:53:43.267  INFO 7476 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.421 seconds (JVM running for 4.108)
+2021-02-13 09:55:11.321  INFO 1960 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 1960 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:55:11.324  INFO 1960 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:55:13.690  WARN 1960 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:55:13.815  INFO 1960 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.553 seconds (JVM running for 4.353)
+2021-02-13 09:57:57.407  INFO 17676 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 17676 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 09:57:57.410  INFO 17676 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 09:57:59.874  WARN 17676 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 09:58:00.002  INFO 17676 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.588 seconds (JVM running for 4.439)
+2021-02-13 10:25:42.864  INFO 10964 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 10964 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 10:25:42.867  INFO 10964 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 10:25:45.144  WARN 10964 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 10:25:45.288  INFO 10964 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.418 seconds (JVM running for 4.142)
+2021-02-13 10:43:07.192  INFO 15632 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 15632 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 10:43:07.195  INFO 15632 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 10:43:09.516  WARN 15632 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 10:43:09.632  INFO 15632 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.402 seconds (JVM running for 4.312)
+2021-02-13 11:01:48.823  INFO 16672 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 16672 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 11:01:48.827  INFO 16672 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 11:01:51.237  WARN 16672 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 11:01:51.352  INFO 16672 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.427 seconds (JVM running for 4.289)
+2021-02-13 11:25:24.590  INFO 18728 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 18728 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 11:25:24.593  INFO 18728 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 11:25:27.092  WARN 18728 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 11:25:27.219  INFO 18728 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.518 seconds (JVM running for 4.329)
+2021-02-13 11:33:45.794  INFO 12084 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 12084 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 11:33:45.796  INFO 12084 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 11:33:48.334  WARN 12084 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 11:33:48.492  INFO 12084 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.482 seconds (JVM running for 4.149)
+2021-02-13 18:05:39.976  INFO 5464 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 5464 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:05:39.979  INFO 5464 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:05:42.315  WARN 5464 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 18:05:42.436  INFO 5464 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.381 seconds (JVM running for 4.119)
+2021-02-13 18:07:04.234  INFO 10828 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 10828 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:07:04.247  INFO 10828 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:07:06.711  WARN 10828 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 18:07:06.835  INFO 10828 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.322 seconds (JVM running for 4.156)
+2021-02-13 18:09:06.902  INFO 18764 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 18764 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:09:06.905  INFO 18764 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:09:08.719  INFO 18764 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-13 18:09:08.765  WARN 18764 --- [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'CLI': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.shell.result.ResultHandlerConfig': Invocation of init method failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2021-02-13 18:09:08.765  INFO 18764 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-13 18:09:08.776  INFO 18764 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-02-13 18:09:08.781 ERROR 18764 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'CLI': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.shell.result.ResultHandlerConfig': Invocation of init method failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at de.wko.mdb.cli.CLI.main(CLI.java:67)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.shell.result.ResultHandlerConfig': Invocation of init method failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1109)
+	at de.wko.mdb.cli.CLI.postMapping(CLI.java:104)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 16 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:723)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.resolveBeanReference(ConfigurationClassEnhancer.java:362)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:334)
+	at org.springframework.shell.result.ResultHandlerConfig$$EnhancerBySpringCGLIB$$fcd66c66.mainResultHandler(<generated>)
+	at org.springframework.shell.result.ResultHandlerConfig.wireIterableResultHandler(ResultHandlerConfig.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 42 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.beforeSingletonCreation(DefaultSingletonBeanRegistry.java:347)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:219)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1525)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1489)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1378)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1265)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1227)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:715)
+	... 62 common frames omitted
+
+2021-02-13 18:09:44.675 DEBUG 11508 --- [background-preinit] .i.e.ValidatorFactoryConfigurationHelper : HV000252: Using org.hibernate.validator.internal.engine.DefaultPropertyNodeNameProvider as property node name provider.
+2021-02-13 18:09:44.854  INFO 11508 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 11508 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:09:44.858  INFO 11508 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:09:46.925  INFO 11508 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-13 18:09:46.962  WARN 11508 --- [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'CLI': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.shell.result.ResultHandlerConfig': Invocation of init method failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2021-02-13 18:09:46.964  INFO 11508 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-13 18:09:46.973  INFO 11508 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-02-13 18:09:46.979 ERROR 11508 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'CLI': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.shell.result.ResultHandlerConfig': Invocation of init method failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at de.wko.mdb.cli.CLI.main(CLI.java:67)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.shell.result.ResultHandlerConfig': Invocation of init method failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1109)
+	at de.wko.mdb.cli.CLI.postMapping(CLI.java:104)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 16 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'mainResultHandler': Unsatisfied dependency expressed through method 'setResultHandlers' parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:723)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.resolveBeanReference(ConfigurationClassEnhancer.java:362)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:334)
+	at org.springframework.shell.result.ResultHandlerConfig$$EnhancerBySpringCGLIB$$ba7c0506.mainResultHandler(<generated>)
+	at org.springframework.shell.result.ResultHandlerConfig.wireIterableResultHandler(ResultHandlerConfig.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 42 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'attributedCharSequenceResultHandler': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.beforeSingletonCreation(DefaultSingletonBeanRegistry.java:347)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:219)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1525)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1489)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1378)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1265)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1227)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:715)
+	... 62 common frames omitted
+
+2021-02-13 18:11:08.696  INFO 17948 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 17948 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:11:08.700  INFO 17948 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:11:10.598  INFO 17948 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-13 18:11:11.010  WARN 17948 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 18:11:11.216  INFO 17948 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.646 seconds (JVM running for 4.402)
+2021-02-13 18:45:38.157  INFO 7708 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 7708 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:45:38.159  INFO 7708 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:45:40.156  INFO 7708 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-13 18:45:40.495  WARN 7708 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 18:45:40.920  INFO 7708 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.829 seconds (JVM running for 4.483)
+2021-02-13 18:47:25.618  INFO 18612 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 18612 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:47:25.623  INFO 18612 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:47:28.049  WARN 18612 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 18:47:28.161  INFO 18612 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.656 seconds (JVM running for 4.393)
+2021-02-13 18:48:36.551  INFO 7560 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on TupacAmaru with PID 7560 (C:\entw\mdb\java\cli\target\classes started by Wolfgang in C:\entw\mdb\java)
+2021-02-13 18:48:36.554  INFO 7560 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-02-13 18:48:38.838  WARN 7560 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-02-13 18:48:38.948  INFO 7560 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.581 seconds (JVM running for 4.34)

@@ -14,6 +14,7 @@ public abstract class AbstractFileSystem {
     abstract public List<MdbFile> listDir(String d) throws FileSystemException;
     abstract public void makeDir(String d) throws FileSystemException;
     abstract public void removeDir(String d) throws FileSystemException;
+    abstract public void rename(String alt, String neu) throws FileSystemException;
 
     public boolean isFilesystemAvailable() {
         return filesystemAvailable;
@@ -34,4 +35,5 @@ public abstract class AbstractFileSystem {
     public String replace(String p) {
         return p.replace('\\','/');
     }
+
 }

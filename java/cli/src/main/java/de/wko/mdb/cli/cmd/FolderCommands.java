@@ -118,6 +118,8 @@ public class FolderCommands {
                             folder.setType(EFolderType.UNKNOWN);
                         }
                         editFolder(folder);
+                    } else {
+                        System.out.println("File "+file.getName());
                     }
                 }
             } else {
@@ -141,6 +143,15 @@ public class FolderCommands {
             }
 
             ConsoleReader reader = new ConsoleReader();
+            String filename = reader.readString("Name", folder.getName(), true);
+            if (!filename.equalsIgnoreCase(folder.getName())) {
+                try {
+                    context.getCurrentFileSystem().rename(folder.getName(), filename);
+                    folder.setName(filename);
+                } catch (FileSystemException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
             String type = reader.readFromList("Foldertyp", EFolderType.getValueList(parent.getType()), folder.getType().getDescr());
             folder.setType(EFolderType.fromString(type));
 
@@ -282,6 +293,7 @@ public class FolderCommands {
             String auswahl = reader.readFromList(String.format("Album '%s' (neu)", folder.getName()), auswahlAktion, "Anlegen");
             switch (auswahlAktion.indexOf(auswahl)) {
                 case 0:
+                    artist = new Artist();
                     artist.setName(folder.getName());
                     artist = artistClient.saveArtist(artist);
                     break;

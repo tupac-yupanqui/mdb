@@ -97,6 +97,15 @@ public class LocalFileSystem extends AbstractFileSystem {
         }
     }
 
+    @Override
+    public void rename(String alt, String neu) throws FileSystemException {
+        File falt = new File(alt);
+        if (!falt.exists()) {
+            throw new FileSystemException("Datei kann nicht umbenannt werden");
+        }
+        falt.renameTo(new File(neu));
+    }
+
     public void close() {
     }
 }

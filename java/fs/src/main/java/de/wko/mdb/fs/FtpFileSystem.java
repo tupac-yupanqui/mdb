@@ -9,6 +9,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -127,6 +128,16 @@ public class FtpFileSystem extends ArchiveFileSystem {
             }
         } catch (IOException e) {
             throw new FileSystemException("Verzeichnis kann nicht gelöscht werden: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void rename(String alt, String neu) throws FileSystemException {
+        try {
+            System.out.println("Umbennen "+getCurrentDirStr()+alt+ " nach  "+getCurrentDirStr()+neu);
+            client.rename(getCurrentDirStr()+alt, getCurrentDirStr()+neu);
+        } catch (IOException e) {
+            throw new FileSystemException("Datei kann nicht umbenannt werden: "+e.getMessage());
         }
     }
 

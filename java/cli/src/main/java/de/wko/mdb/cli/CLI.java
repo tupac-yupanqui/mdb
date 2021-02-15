@@ -1,34 +1,31 @@
 package de.wko.mdb.cli;
 
+import de.wko.mdb.cli.cmd.FilesystemCommands;
+import de.wko.mdb.cli.cmd.FolderCommands;
+import de.wko.mdb.cli.cmd.StatusCommands;
 import de.wko.mdb.cli.tools.FileSystemManager;
 import de.wko.mdb.rcl.AuthClient;
 import de.wko.mdb.rcl.MdbRestException;
-import de.wko.mdb.types.AuthData;
-import de.wko.mdb.types.Host;
-import de.wko.mdb.types.enums.EHostType;
 import de.wko.mdb.types.request.LoginRequest;
-import org.jline.utils.AttributedStringBuilder;
-import org.jline.utils.AttributedStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
-import org.springframework.web.client.RestClientException;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.Console;
 import java.io.PrintStream;
-import java.util.EnumSet;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 
 @SpringBootApplication
@@ -46,8 +43,19 @@ public class CLI implements CommandLineRunner {
     @Autowired
     AuthClient client;
 
+    @Autowired
+    ApplicationContext appContext;
+
+    @Autowired
+    StatusCommands statusCommands;
+    @Autowired
+    FolderCommands folderCommands;
+    @Autowired
+    FilesystemCommands filesystemCommands;
+
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(CLI.class);
+
         app.setBanner(new Banner() {
             @Override
             public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
@@ -90,6 +98,10 @@ public class CLI implements CommandLineRunner {
 
         context.setLocalFileSystem(fsManager.createFileSystem(0L));
         context.setCurrentFileSystem(context.getLocalFileSystem());
+
+        statusCommands.openArchive(1L);
+        filesystemCommands.cd("Aeternitas");
+        filesystemCommands.cd("House of Usher");
     }
 
     @PreDestroy

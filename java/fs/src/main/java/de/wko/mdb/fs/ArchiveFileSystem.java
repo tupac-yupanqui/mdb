@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.attribute.DosFileAttributeView;
+import java.nio.file.attribute.DosFileAttributes;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,6 +65,8 @@ public class ArchiveFileSystem extends AbstractFileSystem {
             File[] files = f.listFiles();
 
             for (File osFile : files) {
+                DosFileAttributeView view = Files.getFileAttributeView(osFile.toPath(), DosFileAttributeView.class);
+                if (view.readAttributes().isSystem()) continue;
                 MdbFile file = new MdbFile();
                 file.setName(osFile.getName());
                 file.setSize(osFile.length());
@@ -84,6 +88,17 @@ public class ArchiveFileSystem extends AbstractFileSystem {
     @Override
     public void removeDir(String d) throws FileSystemException {
 
+    }
+
+    @Override
+    public void rename(String alt, String neu) throws FileSystemException {
+        String path = getCurrentDirStr();
+        System.out.println("Umbenennen "+path+alt+ " nach  "+path+neu);
+        File falt = new File(path+alt);
+        if (!falt.exists()) {
+            throw new FileSystemException("Datei kann nicht umbenannt werden");
+        }
+        falt.renameTo(new File(path+neu));
     }
 
     public Host getHost() {
@@ -115,6 +130,7 @@ public class ArchiveFileSystem extends AbstractFileSystem {
     }
     protected String getCurrentDirStr() {
         String s = replace(host.getDrive()+archive.getPath()+currentDir);
+        if (!s.endsWith("/")) s += "/";
         return s.length()==0 ? "/" : s;
     }
     protected String getCurrentDirShort(File d) throws IOException {

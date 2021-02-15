@@ -36,7 +36,7 @@ public class FilesystemCommands {
         return;
     }
 
-    @ShellMethod(value = "Verzeichnis auflisten", key = {"ls","dir"})
+    @ShellMethod(value = "Verzeichnis auflisten", key = {"ls", "dir"})
     public void ls() {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
@@ -58,7 +58,7 @@ public class FilesystemCommands {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
             if (fs.isFilesystemAvailable()) {
-                if (d.length()==0) {
+                if (d.length() == 0) {
                     ls();
                 } else {
                     fs.changeCurrentDir(d);
@@ -93,6 +93,21 @@ public class FilesystemCommands {
         try {
             if (fs.isFilesystemAvailable()) {
                 fs.removeDir(d);
+            } else {
+                System.out.println("Kein Zugriff auf Verzeichnis");
+            }
+        } catch (FileSystemException e) {
+            System.out.println(e.getMessage());
+        }
+        return;
+    }
+
+    @ShellMethod(value = "Datei umbenennen", key = {"rename"})
+    public void rename(@ShellOption String alt, @ShellOption String neu) {
+        AbstractFileSystem fs = context.getCurrentFileSystem();
+        try {
+            if (fs.isFilesystemAvailable()) {
+                fs.rename(alt, neu);
             } else {
                 System.out.println("Kein Zugriff auf Verzeichnis");
             }
