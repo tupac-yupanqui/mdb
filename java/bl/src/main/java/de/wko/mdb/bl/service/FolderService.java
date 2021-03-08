@@ -28,8 +28,8 @@ public class FolderService {
         return null;
     }
 
-    public List<Folder> getFolderByParentId(Long parentId) {
-        List<FolderEntity> list = folderRepository.getFolderByParent(parentId);
+    public List<Folder> getFoldersByParentId(Long parentId) {
+        List<FolderEntity> list = folderRepository.getFoldersByParent(parentId);
         List<Folder> result = new ArrayList<>();
         for (FolderEntity fe : list) {
             result.add(fe.getType());

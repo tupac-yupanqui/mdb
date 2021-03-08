@@ -2,15 +2,14 @@ package de.wko.mdb.cli.tables;
 
 import de.wko.mdb.types.Folder;
 import de.wko.mdb.types.FolderContent;
-import de.wko.mdb.types.Host;
-import de.wko.mdb.types.Track;
+import de.wko.mdb.types.FileObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FolderTable extends DataTable {
     private List<Folder> folders;
-    private List<Track> tracks;
+    private List<FileObject> tracks;
 
     public FolderTable(List<Folder> list) {
         this.folders = list;
@@ -38,8 +37,8 @@ public class FolderTable extends DataTable {
             }
         }
         if (tracks!=null) {
-            for (Track t : tracks) {
-                printRow(t.getId()!=null?t.getId().toString():"", t.getFilename(), "TRACK");
+            for (FileObject t : tracks) {
+                printRow(t.getId()!=null?t.getId().toString():"", t.getFilename(), t.getType()==null?"???":t.getType().getDescr());
             }
         }
         printFooter();

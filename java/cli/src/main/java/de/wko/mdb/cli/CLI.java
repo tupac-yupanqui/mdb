@@ -1,6 +1,11 @@
 package de.wko.mdb.cli;
 
+import de.wko.mdb.cli.cmd.ArchiveCommands;
+import de.wko.mdb.cli.cmd.FilesystemCommands;
+import de.wko.mdb.cli.cmd.FolderCommands;
+import de.wko.mdb.cli.cmd.StatusCommands;
 import de.wko.mdb.cli.tools.FileSystemManager;
+import de.wko.mdb.cli.tools.ScriptRunner;
 import de.wko.mdb.rcl.AuthClient;
 import de.wko.mdb.rcl.MdbRestException;
 import de.wko.mdb.types.AuthData;
@@ -25,6 +30,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.Console;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Scanner;
@@ -37,6 +43,8 @@ public class CLI implements CommandLineRunner {
     private static Logger LOG = LoggerFactory
             .getLogger(CLI.class);
 
+    static List<String> startScripts  = new ArrayList<>();
+
     @Autowired
     CliContext context;
 
@@ -45,6 +53,9 @@ public class CLI implements CommandLineRunner {
 
     @Autowired
     AuthClient client;
+
+    @Autowired
+    ScriptRunner runner;
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(CLI.class);
@@ -56,9 +67,13 @@ public class CLI implements CommandLineRunner {
                 System.out.println("----------");
             }
         });
+        for (String a : args) {
+            startScripts.add(a);
+        }
         //app.setBannerMode(Banner.Mode.OFF);
         app.setWebApplicationType(WebApplicationType.NONE);
         app.run(args);
+
     }
 
     @Override
@@ -90,6 +105,8 @@ public class CLI implements CommandLineRunner {
 
         context.setLocalFileSystem(fsManager.createFileSystem(0L));
         context.setCurrentFileSystem(context.getLocalFileSystem());
+
+        runner.start(startScripts);
     }
 
     @PreDestroy

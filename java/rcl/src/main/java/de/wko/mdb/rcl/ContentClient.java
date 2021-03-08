@@ -9,7 +9,7 @@ import java.util.Map;
 @Component
 public class ContentClient extends RestClient {
 
-    public FolderContent getFoldersByArchiveId(Long archiveId, String path) throws MdbRestException {
+    public FolderContent getContentByPath(Long archiveId, String path) throws MdbRestException {
         Map params = new HashMap();
         params.put("aid", archiveId);
         params.put("path", path);

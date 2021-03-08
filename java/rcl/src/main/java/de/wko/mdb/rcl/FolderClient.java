@@ -1,9 +1,6 @@
 package de.wko.mdb.rcl;
 
-import de.wko.mdb.types.Artist;
-import de.wko.mdb.types.Folder;
-import de.wko.mdb.types.FolderContent;
-import de.wko.mdb.types.Host;
+import de.wko.mdb.types.*;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

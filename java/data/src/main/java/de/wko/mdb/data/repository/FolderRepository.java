@@ -14,8 +14,8 @@ public interface FolderRepository extends CrudRepository<FolderEntity,Long>, Fol
     @Query(name = "FolderEntity.findRootFolder")
     Optional<FolderEntity> getRootFolder(long archiveId);
 
-    @Query(name = "FolderEntity.getFolderByParent")
-    List<FolderEntity> getFolderByParent(Long parentId);
+    @Query(name = "FolderEntity.getFoldersByParent")
+    List<FolderEntity> getFoldersByParent(Long parentId);
 
     @Query(name = "FolderEntity.getFolderByArchiveAndPath")
     Optional<FolderEntity> getFolderByArchiveAndPath(Long archiveId, String path);

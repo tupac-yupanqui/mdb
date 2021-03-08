@@ -1,10 +1,13 @@
 package de.wko.mdb.types;
 
-public class Track {
+import de.wko.mdb.types.enums.EFileType;
+
+public class FileObject {
     private Long id;
-    private Long titelId;
-    private Long folderId;
+    private Long objectId;
     private String filename;
+    private Long folderId;
+    private EFileType type;
 
     public Long getId() {
         return id;
@@ -14,12 +17,12 @@ public class Track {
         this.id = id;
     }
 
-    public Long getTitelId() {
-        return titelId;
+    public Long getObjectId() {
+        return objectId;
     }
 
-    public void setTitelId(Long titelId) {
-        this.titelId = titelId;
+    public void setObjectId(Long objectId) {
+        this.objectId = objectId;
     }
 
     public Long getFolderId() {
@@ -36,5 +39,13 @@ public class Track {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public EFileType getType() {
+        return type;
+    }
+
+    public void setType(EFileType type) {
+        this.type = type;
     }
 }

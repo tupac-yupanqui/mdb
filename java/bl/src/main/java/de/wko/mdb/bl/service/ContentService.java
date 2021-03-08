@@ -1,9 +1,6 @@
 package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.FolderEntity;
-import de.wko.mdb.data.repository.FolderRepository;
-import de.wko.mdb.data.repository.TrackRepository;
-import de.wko.mdb.types.Folder;
 import de.wko.mdb.types.FolderContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +14,12 @@ public class ContentService {
     FolderService folderService;
 
     @Autowired
-    TrackService trackService;
+    FileService fileService;
 
     public FolderContent getContentByFolderId(Long folderId) {
         FolderContent content = new FolderContent();
-        content.setFolderList(folderService.getFolderByParentId(folderId));
-        content.setTrackList(trackService.getTrackByParentId(folderId));
+        content.setFolderList(folderService.getFoldersByParentId(folderId));
+        content.setTrackList(fileService.getFilesByFolderId(folderId));
         return content;
     }
 

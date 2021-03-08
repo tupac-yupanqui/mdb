@@ -22,6 +22,7 @@ public class RestConfig {
     public static final String PATH_LIST_CONTENT = "PATH_LIST_CONTENT";
     public static final String PATH_GET_FOLDER_BY_ID = "PATH_GET_FOLDER_BY_ID";
     public static final String PATH_GET_FOLDER_BY_PATH = "PATH_GET_FOLDER_BY_PATH";
+    public static final String PATH_GET_FILE_BY_FOLDER_AND_NAME = "PATH_GET_FILE_BY_FOLDER_AND_NAME";
     public static final String PATH_SAVE_FOLDER = "PATH_SAVE_FOLDER";
     public static final String PATH_GET_ARTIST_BY_NAME = "PATH_GET_ARTIST_BY_NAME";
     public static final String PATH_GET_ARTIST_BY_ID = "PATH_GET_ARTIST_BY_ID";
@@ -53,6 +54,7 @@ public class RestConfig {
         urlMap.put(PATH_LIST_CONTENT, "/content/list?aid={aid}&path={path}");
         urlMap.put(PATH_GET_FOLDER_BY_ID, "/folder/{id}");
         urlMap.put(PATH_GET_FOLDER_BY_PATH, "/folder/getbypath?aid={aid}&path={path}");
+        urlMap.put(PATH_GET_FILE_BY_FOLDER_AND_NAME, "/file/getbyfolder?fid={fid}&name={name}");
         urlMap.put(PATH_SAVE_FOLDER, "/folder/save");
         urlMap.put(PATH_GET_ARTIST_BY_NAME, "/artist?name={name}");
         urlMap.put(PATH_GET_ARTIST_BY_PATTERN, "/artist/search?pattern={pattern}");

@@ -21,7 +21,6 @@ public class StatusCommands {
     @Autowired
     CliContext context;
 
-
     @ShellMethod(value = "Öffenen eines Archives", key = "open archive")
     public void openArchive(
             @ShellOption Long archiveId) {

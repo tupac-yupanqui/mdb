@@ -1,6 +1,8 @@
 package de.wko.mdb.cli.cmd;
 
+import com.google.common.io.Files;
 import de.wko.mdb.cli.CliContext;
+import de.wko.mdb.cli.Commands;
 import de.wko.mdb.cli.tables.FolderTable;
 import de.wko.mdb.cli.tools.*;
 import de.wko.mdb.fs.ArchiveFileSystem;
@@ -9,7 +11,9 @@ import de.wko.mdb.fs.LocalFileSystem;
 import de.wko.mdb.fs.sort.FileComparator;
 import de.wko.mdb.rcl.*;
 import de.wko.mdb.types.*;
+import de.wko.mdb.types.enums.EFileType;
 import de.wko.mdb.types.enums.EFolderType;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
@@ -32,6 +36,9 @@ public class FolderCommands {
     FolderClient folderClient;
 
     @Autowired
+    FileClient fileClient;
+
+    @Autowired
     ArtistClient artistClient;
 
     @Autowired
@@ -40,7 +47,7 @@ public class FolderCommands {
     @Autowired
     CliContext context;
 
-    @ShellMethod(value = "Liste der Inhalte", key = "list content")
+    @ShellMethod(value = "Liste der Inhalte", key = Commands.CMD_LIST_CONTENT)
     public void listFolders(@ShellOption(value = "-n", help = "nur neue Inhalte") boolean newOnly,
                             @ShellOption(value = "-x", help = "nur existierende Inhalte") boolean existOnly) {
         if (!context.getCurrentFileSystem().isFilesystemAvailable()
@@ -49,10 +56,10 @@ public class FolderCommands {
             return;
         }
         ArchiveFileSystem fs = (ArchiveFileSystem) context.getCurrentFileSystem();
-        try {
-            Long aid = fs.getArchive().getId();
+        Long aid = fs.getArchive().getId();
 
-            FolderContent content = contentClient.getFoldersByArchiveId(aid, fs.getCurrentDir());
+        try {
+            FolderContent content = contentClient.getContentByPath(aid, fs.getCurrentDir());
             if (content == null) {
                 System.out.println("Der übergeordnete Folder existiert nicht und muss vorher angelegt werden.");
                 return;
@@ -72,7 +79,7 @@ public class FolderCommands {
 
     }
 
-    @ShellMethod(value = "Inhalt bearbeiten", key = "edit content")
+    @ShellMethod(value = "Inhalt bearbeiten", key = Commands.CMD_EDIT_CONTENT)
     public void editContent(
             @ShellOption(defaultValue = "") String objectToEdit,
             @ShellOption(value = "-n", help = "nur neue Inhalte") boolean newOnly) {
@@ -82,46 +89,64 @@ public class FolderCommands {
             return;
         }
         ConsoleReader reader = new ConsoleReader();
+
         ArchiveFileSystem fs = (ArchiveFileSystem) context.getCurrentFileSystem();
-        Long archiveId = fs.getArchive().getId();
+        Long aid = fs.getArchive().getId();
+
         String basepath = fs.getCurrentDir();
         if (!basepath.equals("/")) basepath += "/";
+
         try {
-            if (fs.isFilesystemAvailable()) {
-                Folder parentFolder = folderClient.getFolderByPath(archiveId, fs.getCurrentDir());
-                if (parentFolder == null) {
-                    System.out.println("Der übergeordnete Folder existiert nicht und muss vorher angelegt werden.");
-                    return;
+            Folder parentFolder = folderClient.getFolderByPath(aid, fs.getCurrentDir());
+            if (parentFolder == null) {
+                System.out.println("Der übergeordnete Folder existiert nicht und muss vorher angelegt werden.");
+                return;
+            }
+            List<MdbFile> files = fs.listDir("");
+            Collections.sort(files, FileComparator.getFileComparator(FileComparator.SORT_TYPE));
+            for (MdbFile file : files) {
+                if (objectToEdit.length() > 0 && !file.getName().equalsIgnoreCase(objectToEdit)) {
+                    continue;
                 }
-                List<MdbFile> files = fs.listDir("");
-                Collections.sort(files, FileComparator.getFileComparator(FileComparator.SORT_TYPE));
-                for (MdbFile file : files) {
-                    if (objectToEdit.length() > 0 && !file.getName().equalsIgnoreCase(objectToEdit)) {
-                        continue;
-                    }
-                    if (file.isDirectory()) {
-                        Folder folder = folderClient.getFolderByPath(archiveId, basepath + file.getName());
-                        if (folder != null) {
-                            if (newOnly) continue;
-                            if (!reader.readBoolean(String.format("Edit Folder '%s'?", file.getName()), false)) {
-                                continue;
-                            }
-                        } else {
-                            if (!reader.readBoolean(String.format("Kein Folder für '%s' vorhanden. Anlegen?", file.getName()), true)) {
-                                continue;
-                            }
-                            folder = new Folder();
-                            folder.setName(file.getName());
-                            folder.setParentId(parentFolder.getId());
-                            folder.setObjectId(0L);
-                            folder.setArchiveId(archiveId);
-                            folder.setType(EFolderType.UNKNOWN);
+                if (file.isDirectory()) {
+                    Folder folder = folderClient.getFolderByPath(aid, basepath + file.getName());
+                    if (folder != null) {
+                        if (newOnly) continue;
+                        if (!reader.readBoolean(String.format("Edit Folder '%s'?", file.getName()), false)) {
+                            continue;
                         }
-                        editFolder(folder);
+                    } else {
+                        if (!reader.readBoolean(String.format("Kein Folder für '%s' vorhanden. Anlegen?", file.getName()), true)) {
+                            continue;
+                        }
+                        folder = new Folder();
+                        folder.setName(file.getName());
+                        folder.setParentId(parentFolder.getId());
+                        folder.setObjectId(0L);
+                        folder.setArchiveId(aid);
+                        folder.setType(EFolderType.UNKNOWN);
                     }
+                    editFolder(folder);
+                } else {
+                    FileObject fileObject = fileClient.getFileByFolderIdAndName(parentFolder.getId(), file.getName());
+                    System.out.println("############ FILE "+file.getName());
+                    if (fileObject != null) {
+                        if (newOnly) continue;
+                        if (!reader.readBoolean(String.format("Edit File '%s'?", file.getName()), false)) {
+                            continue;
+                        }
+                    } else {
+                        if (!reader.readBoolean(String.format("Kein File für '%s' vorhanden. Anlegen?", file.getName()), true)) {
+                            continue;
+                        }
+                        fileObject = new FileObject();
+                        fileObject.setFilename(file.getName());
+                        fileObject.setFolderId(parentFolder.getId());
+                        fileObject.setObjectId(0L);
+                        fileObject.setType(EFileType.UNKNOWN);
+                    }
+                    editFile(fileObject);
                 }
-            } else {
-                System.out.println("Kein Zugriff auf Verzeichnis");
             }
         } catch (ReaderExitException e) {
         } catch (MdbRestException e) {
@@ -159,9 +184,43 @@ public class FolderCommands {
         }
     }
 
+    private void editFile(FileObject file) {
+        System.out.println("EDIT "+file.getFilename());
+        try {
+            ConsoleReader reader = new ConsoleReader();
+            if (file.getType().equals(EFileType.UNKNOWN)) {
+                file.setType(getFileTypeFromFileName(file.getFilename()));
+            }
+            String type = reader.readFromList("Filetyp", EFileType.getValueList(), file.getType().getDescr());
+            file.setType(EFileType.fromString(type));
+
+            switch (file.getType()) {
+                case MP3:
+                    editMp3File(file);
+                    break;
+            }
+
+        } catch (ReaderExitException e) {
+            // nothing to do
+        }
+    }
+
+    private void editMp3File(FileObject file) {
+        
+    }
+
+    private EFileType getFileTypeFromFileName(String fileName) {
+        String extension = Files.getFileExtension(fileName);
+        if (Strings.isEmpty(extension)) return EFileType.UNKNOWN;
+        if (extension.equalsIgnoreCase("mp3")) {
+            return EFileType.MP3;
+        }
+        return EFileType.UNKNOWN;
+    }
+
     private FolderContent getNewContent(ArchiveFileSystem fs, FolderContent existingContent) {
         List<Folder> newFolders = new ArrayList();
-        List<Track> newTracks = new ArrayList<>();
+        List<FileObject> newTracks = new ArrayList<>();
 
         try {
             List<MdbFile> files = fs.listDir(fs.getCurrentDir());
@@ -174,9 +233,9 @@ public class FolderCommands {
                         newFolders.add(f);
                     }
                 } else {
-                    System.out.println(file.getName());
+                    //System.out.println(file.getName());
                     if (!ListHelper.isFileInTrackList(file, existingContent.getTrackList())) {
-                        Track t = new Track();
+                        FileObject t = new FileObject();
                         t.setFilename(file.getName());
                         newTracks.add(t);
                     }

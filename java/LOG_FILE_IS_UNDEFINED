@@ -1,16 +1,36 @@
-2021-02-12 15:32:50.080  INFO 9084 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 9084 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
-2021-02-12 15:32:50.103  INFO 9084 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
-2021-02-12 15:32:56.432  WARN 9084 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
-2021-02-12 15:32:56.767  INFO 9084 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 9.018 seconds (JVM running for 14.663)
-2021-02-12 15:38:20.117  INFO 16808 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 16808 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
-2021-02-12 15:38:20.129  INFO 16808 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
-2021-02-12 15:38:23.357  WARN 16808 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
-2021-02-12 15:38:23.487  INFO 16808 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.526 seconds (JVM running for 6.97)
-2021-02-12 15:40:21.991  INFO 17112 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 17112 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
-2021-02-12 15:40:21.997  INFO 17112 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
-2021-02-12 15:40:24.293  WARN 17112 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
-2021-02-12 15:40:24.406  INFO 17112 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 3.684 seconds (JVM running for 6.271)
-2021-02-12 16:24:53.649  INFO 8260 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 8260 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
-2021-02-12 16:24:53.649  INFO 8260 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
-2021-02-12 16:24:56.886  WARN 8260 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
-2021-02-12 16:24:56.996  INFO 8260 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.557 seconds (JVM running for 7.011)
+2021-03-07 09:53:01.811  INFO 7428 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 7428 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 09:53:01.826  INFO 7428 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 09:53:06.029  WARN 7428 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 09:53:06.139  INFO 7428 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 5.418 seconds (JVM running for 8.592)
+2021-03-07 09:54:08.131  INFO 1404 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 1404 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 09:54:08.131  INFO 1404 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 09:54:10.984  WARN 1404 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 09:54:11.093  INFO 1404 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.19 seconds (JVM running for 6.83)
+2021-03-07 09:55:42.293  INFO 17268 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 17268 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 09:55:42.309  INFO 17268 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 09:55:45.280  WARN 17268 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 09:55:45.373  INFO 17268 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.221 seconds (JVM running for 6.62)
+2021-03-07 09:56:26.531  INFO 1804 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 1804 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 09:56:26.539  INFO 1804 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 09:56:30.518  WARN 1804 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 09:56:30.628  INFO 1804 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 5.286 seconds (JVM running for 7.636)
+2021-03-07 10:05:47.553  INFO 7896 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 7896 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 10:05:47.569  INFO 7896 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 10:05:51.256  WARN 7896 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 10:05:51.366  INFO 7896 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 5.242 seconds (JVM running for 8.544)
+2021-03-07 10:06:50.651  INFO 1836 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 1836 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 10:06:50.698  INFO 1836 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 10:06:53.833  WARN 1836 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 10:06:53.943  INFO 1836 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.568 seconds (JVM running for 6.848)
+2021-03-07 15:24:34.488  INFO 4112 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 4112 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 15:24:34.498  INFO 4112 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 15:24:39.231  WARN 4112 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 15:24:39.364  INFO 4112 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 6.276 seconds (JVM running for 9.235)
+2021-03-07 15:27:18.861  INFO 11464 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 11464 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 15:27:18.866  INFO 11464 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 15:27:22.421  WARN 11464 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 15:27:22.544  INFO 11464 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 4.933 seconds (JVM running for 7.602)
+2021-03-07 15:44:21.195  INFO 18080 --- [main] de.wko.mdb.cli.CLI                       : Starting CLI on W4DEUMSY9002167 with PID 18080 (C:\dev\mdb\java\cli\target\classes started by wko in C:\dev\mdb\java)
+2021-03-07 15:44:21.200  INFO 18080 --- [main] de.wko.mdb.cli.CLI                       : No active profile set, falling back to default profiles: default
+2021-03-07 15:44:24.922  WARN 18080 --- [main] org.jline                                : Unable to create a system terminal, creating a dumb terminal (enable debug logging for more information)
+2021-03-07 15:44:25.109  INFO 18080 --- [main] de.wko.mdb.cli.CLI                       : Started CLI in 5.374 seconds (JVM running for 8.569)

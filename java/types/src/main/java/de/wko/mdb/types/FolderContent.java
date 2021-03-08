@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FolderContent {
     private List<Folder> folderList;
-    private List<Track> trackList;
+    private List<FileObject> trackList;
 
     public List<Folder> getFolderList() {
         return folderList;
@@ -14,11 +14,11 @@ public class FolderContent {
         this.folderList = folderList;
     }
 
-    public List<Track> getTrackList() {
+    public List<FileObject> getTrackList() {
         return trackList;
     }
 
-    public void setTrackList(List<Track> trackList) {
+    public void setTrackList(List<FileObject> trackList) {
         this.trackList = trackList;
     }
 }

@@ -18,7 +18,7 @@ import javax.persistence.*;
                 query = "SELECT f FROM FolderEntity f WHERE f.archiveId = ?1 AND f.name= ?2"
         ),
         @NamedQuery(
-                name = "FolderEntity.getFolderByParent",
+                name = "FolderEntity.getFoldersByParent",
                 query = "SELECT f FROM FolderEntity f WHERE f.parentId = ?1 ORDER by f.name"
         ),
         @NamedQuery(
