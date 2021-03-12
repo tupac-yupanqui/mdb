@@ -6,6 +6,7 @@ import de.wko.mdb.data.entity.SubalbumEntity;
 import de.wko.mdb.data.entity.TitelEntity;
 import de.wko.mdb.data.filter.AlbumFilter;
 import de.wko.mdb.data.repository.AlbumRepository;
+import de.wko.mdb.data.repository.SubalbumRepository;
 import de.wko.mdb.data.repository.TitelRepository;
 import de.wko.mdb.types.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,21 @@ public class AlbumService {
     AlbumRepository albumRepository;
 
     @Autowired
+    SubalbumRepository subalbumRepository;
+
+    @Autowired
     TitelRepository titelRepository;
 
     public Album getById(Long id) {
         Optional<AlbumEntity> optional = albumRepository.findById(id);
+        if (!optional.isPresent()) {
+            return null;
+        }
+        return optional.get().getType();
+    }
+
+    public Subalbum getSubalbumById(Long id) {
+        Optional<SubalbumEntity> optional = subalbumRepository.findById(id);
         if (!optional.isPresent()) {
             return null;
         }

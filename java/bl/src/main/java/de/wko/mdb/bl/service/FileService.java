@@ -1,8 +1,10 @@
 package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.FileEntity;
+import de.wko.mdb.data.entity.FolderEntity;
 import de.wko.mdb.data.repository.FileRepository;
 import de.wko.mdb.types.FileObject;
+import de.wko.mdb.types.Folder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,4 +31,20 @@ public class FileService {
         }
         return result;
     }
+
+    public FileObject save(FileObject file) {
+        Optional<FileEntity> fo = fileRepository.findById(file.getId());
+        if (fo.isPresent()) {
+            FileEntity fe = fo.get();
+            fe.fromType(file);
+            return fileRepository.save(fe).getType();
+        } else if (file.getId()==0){
+            FileEntity fe = new FileEntity();
+            fe.fromType(file);
+            return fileRepository.save(fe).getType();
+        }
+
+        return null;
+    }
+
 }

@@ -8,6 +8,8 @@ public class Titel {
     private Artist artist;
     private int tracknr;
     private int length;
+    private String genre;
+    private String year;
 
     public Long getId() {
         return id;
@@ -63,5 +65,21 @@ public class Titel {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }

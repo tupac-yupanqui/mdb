@@ -5,6 +5,9 @@ import de.wko.mdb.cli.CliContext;
 import de.wko.mdb.cli.Commands;
 import de.wko.mdb.cli.tables.FolderTable;
 import de.wko.mdb.cli.tools.*;
+import de.wko.mdb.format.AudioFormatException;
+import de.wko.mdb.format.AudioTags;
+import de.wko.mdb.format.Mp3Tagger;
 import de.wko.mdb.fs.ArchiveFileSystem;
 import de.wko.mdb.fs.FileSystemException;
 import de.wko.mdb.fs.LocalFileSystem;
@@ -13,6 +16,8 @@ import de.wko.mdb.rcl.*;
 import de.wko.mdb.types.*;
 import de.wko.mdb.types.enums.EFileType;
 import de.wko.mdb.types.enums.EFolderType;
+import de.wko.mdb.types.query.SearchArtistBlurQuery;
+import de.wko.mdb.types.query.SearchTitelBlurQuery;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellCommandGroup;
@@ -20,6 +25,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,6 +49,9 @@ public class FolderCommands {
 
     @Autowired
     AlbumClient albumClient;
+
+    @Autowired
+    SearchClient searchClient;
 
     @Autowired
     CliContext context;
@@ -129,7 +138,6 @@ public class FolderCommands {
                     editFolder(folder);
                 } else {
                     FileObject fileObject = fileClient.getFileByFolderIdAndName(parentFolder.getId(), file.getName());
-                    System.out.println("############ FILE "+file.getName());
                     if (fileObject != null) {
                         if (newOnly) continue;
                         if (!reader.readBoolean(String.format("Edit File '%s'?", file.getName()), false)) {
@@ -145,7 +153,7 @@ public class FolderCommands {
                         fileObject.setObjectId(0L);
                         fileObject.setType(EFileType.UNKNOWN);
                     }
-                    editFile(fileObject);
+                    editFile(fileObject, parentFolder);
                 }
             }
         } catch (ReaderExitException e) {
@@ -184,8 +192,7 @@ public class FolderCommands {
         }
     }
 
-    private void editFile(FileObject file) {
-        System.out.println("EDIT "+file.getFilename());
+    private void editFile(FileObject file, Folder parentFolder) {
         try {
             ConsoleReader reader = new ConsoleReader();
             if (file.getType().equals(EFileType.UNKNOWN)) {
@@ -196,7 +203,7 @@ public class FolderCommands {
 
             switch (file.getType()) {
                 case MP3:
-                    editMp3File(file);
+                    editMp3File(file, parentFolder);
                     break;
             }
 
@@ -205,8 +212,148 @@ public class FolderCommands {
         }
     }
 
-    private void editMp3File(FileObject file) {
-        
+    private void editMp3File(FileObject file, Folder parentFolder) {
+        ConsoleReader reader = new ConsoleReader();
+        String fullPathName = getFsPath()+file.getFilename();
+            try {
+                if (file.getId()==0L) {
+                        // File nicht in DB
+                    AudioTags tags = Mp3Tagger.getInstance().getMp3Tags(fullPathName);
+                    SearchTitelBlurQuery query = new SearchTitelBlurQuery();
+                    query.setTitel(tags.getTitle());
+                    query.setArtist(tags.getArtist());
+
+                    query.setScoreCount(5);
+                    Long albumId = 0L;
+                    if (parentFolder.getType().equals(EFolderType.ALBUM)) {
+                        albumId = parentFolder.getObjectId();
+                        query.setScoreCount(1);
+                    } else if (parentFolder.getType().equals(EFolderType.SUBALBUM)) {
+                        Subalbum subalbum = albumClient.getSubalbumById(parentFolder.getObjectId());
+                        albumId = subalbum.getParentId();
+                        query.setScoreCount(1);
+                    }
+                    query.setAlbumId(albumId);
+                    query.setScoreMax(10);
+
+                    List<String> titelSelectList = new ArrayList<>();
+                    List<ScoredTitel> titels = searchClient.searchTitelBlur(query);
+                    titelSelectList.add("Anlegen");
+                    int titelSelection = 0;
+                    for (ScoredTitel st : titels) {
+                        if (titelSelection==0 && st.getScore()==0) {
+                            titelSelection = titelSelectList.size();
+                        }
+                        titelSelectList.add(st.getTitel().getArtist().getName()+" - "+st.getTitel().getName());
+                    }
+
+                    titelSelection = reader.readFromList("Titelauswahl", titelSelectList, titelSelection);
+
+                    Titel titel;
+                    if (titelSelection==0) {
+                        System.out.println("Neuen Titel anlegen");
+                        titel = new Titel();
+                        titel.setName(reader.readString("Titel", tags.getTitle(), true));
+                        SearchArtistBlurQuery artistQuery = new SearchArtistBlurQuery();
+                        artistQuery.setArtist(tags.getArtist());
+                        artistQuery.setScoreMax(5);
+                        artistQuery.setScoreCount(10);
+                        List<ScoredArtist> artistList = searchClient.searchArtistBlur(artistQuery);
+                        int countExact = 0;
+                        Artist artist = null;
+                        for (ScoredArtist sa : artistList) {
+                            if (sa.getScore()==0) countExact++;
+                        }
+                        if (countExact==1) {
+                            artist = artistList.get(0).getArtist();
+                            System.out.println("Artist gefunden: "+artist.getName());
+                        } else if (countExact>1) {
+                            System.out.println("Artist nicht eindeutig");
+                            List<String> artistSelectList = new ArrayList<>();
+                            artistSelectList.add("Anlegen");
+                            int artistSelection = 0;
+                            for (ScoredArtist sa : artistList) {
+                                if (artistSelection==0 && sa.getScore()==0) {
+                                    artistSelection = artistSelectList.size();
+                                }
+                                artistSelectList.add(String.format("%s (%d)", sa.getArtist().getName(), sa.getArtist().getId()));
+                            }
+                            artistSelection = reader.readFromList("Artists", artistSelectList, artistSelection);
+                            if (artistSelection>0) {
+                                artist = artistList.get(artistSelection-1).getArtist();
+                            }
+                        } else {
+                            System.out.println("Artist nicht gefunden");
+                            List<String> artistSelectList = new ArrayList<>();
+                            artistSelectList.add("Anlegen");
+                            int artistSelection = 0;
+                            for (ScoredArtist sa : artistList) {
+                                if (artistSelection==0 && sa.getScore()==0) {
+                                    artistSelection = artistSelectList.size();
+                                }
+                                artistSelectList.add(String.format("%s (%d)", sa.getArtist().getName(), sa.getArtist().getId()));
+                            }
+                            artistSelection = reader.readFromList("Artists", artistSelectList, artistSelection);
+                            if (artistSelection>0) {
+                                artist = artistList.get(artistSelection-1).getArtist();
+                            }
+                        }
+                        if (artist==null) {
+                            artist = new Artist();
+                            artist.setName(reader.readString("Artist", tags.getArtist()));
+                            artist = artistClient.saveArtist(artist);
+                        }
+                        titel.setArtist(artist);
+                        titel.setTracknr(reader.readInteger("Nr", tags.getNumber(), true));
+                        titel.setComment(reader.readString("Kommentar", tags.getComment(), false));
+                        titel.setLength(reader.readInteger("Länge", tags.getLength(), true));
+                        titel.setYear(reader.readString("Jahr", tags.getYear(), false));
+                        //titel.setGenre(reader.readString("Genre", tags.getGenre(), false));
+                    } else {
+                        titel = titels.get(titelSelection-1).getTitel();
+                    }
+                    boolean editTags = reader.readBoolean("MP3 Tags aktualisieren?", false);
+                    if (editTags) {
+                        tags.setNumber(titel.getTracknr());
+                        tags.setTitle(titel.getName());
+                        tags.setArtist(titel.getArtist().getName());
+                        tags.setComment(titel.getComment());
+                        tags.setYear(titel.getYear());
+                        //tags.setGenre(titel.getGenre());
+                        Mp3Tagger.getInstance().setMp3Tags(fullPathName, tags);
+                    }
+                    System.out.println("Datei: "+file.getFilename());
+                    boolean keepFilename = reader.readBoolean("Namen behalten?", true);
+                    if (!keepFilename) {
+                        List<String> nameTypeList = new ArrayList<>();
+                        nameTypeList.add("Namen behalten");
+                        nameTypeList.add("## - <artist> - <titel>");
+                        int renameOption = reader.readFromList("Auswahl", nameTypeList, 0);
+                        switch (renameOption) {
+                            case 0:
+                                break;
+                            case 1:
+                                String newFilename = String.format("%02d - %s - %s.mp3", titel.getTracknr(), titel.getArtist().getName(), titel.getName());
+                                int ix = fullPathName.lastIndexOf("/");
+                                String newPathName = fullPathName.substring(0, ix+1)+newFilename;
+                                File f = new File(fullPathName);
+                                f.renameTo(new File(newPathName));
+                                file.setFilename(newFilename);
+                                break;
+                        }
+                    }
+                    file.setObjectId(titel.getId());
+                } else {
+                    // File in DB
+                }
+                fileClient.saveFile(file);
+            } catch (MdbRestException e) {
+                e.printStackTrace();
+            } catch (ReaderExitException e) {
+                System.out.println("Edit abgebrochen");
+            } catch (AudioFormatException e) {
+                e.printStackTrace();
+            }
     }
 
     private EFileType getFileTypeFromFileName(String fileName) {
@@ -370,4 +517,12 @@ public class FolderCommands {
 
     }
 
+    private String getFsPath() {
+        ArchiveFileSystem fs = (ArchiveFileSystem) context.getCurrentFileSystem();
+
+        String basepath = fs.getCurrentDir();
+        if (!basepath.equals("/")) basepath += "/";
+
+        return fs.getArchive().getPath()+ basepath;
+    }
 }

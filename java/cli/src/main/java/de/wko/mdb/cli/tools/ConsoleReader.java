@@ -44,7 +44,7 @@ public class ConsoleReader {
                 if (inp.equalsIgnoreCase(EXIT_MARKER)) {
                     throw new ReaderExitException();
                 }
-                if (inp.equals("##")) {
+                if (inp.equals("##") || inp.trim().length()==0) {
                     if (required) {
                         System.out.println("Eingabe erforderlich");
                         def="";
@@ -62,6 +62,11 @@ public class ConsoleReader {
                 return def;
             }
         } while (true);
+    }
+
+    public int readFromList(String label, List<String> values, int def) throws ReaderExitException {
+        String result = readFromList(label, values, values.get(def));
+        return values.indexOf(result);
     }
 
     public String readFromList(String label, List<String> values, String def) throws ReaderExitException {
@@ -117,5 +122,30 @@ public class ConsoleReader {
             return def;
         }
 
+    }
+
+    public Integer readInteger(String label, Integer def, boolean required) throws ReaderExitException {
+        do {
+            System.out.print(String.format("%s%s [%d]: ", label, required ? "*" : "", def));
+            String inp = scanner.nextLine();
+            if (Strings.isNotEmpty(inp)) {
+                if (inp.equalsIgnoreCase(EXIT_MARKER)) {
+                    throw new ReaderExitException();
+                }
+                try {
+                    return Integer.parseInt(inp);
+                } catch (NumberFormatException e) {
+                    System.out.println("Integer erforderlich");
+                    continue;
+                }
+            } else {
+                if (required && Strings.isEmpty(inp) && def==null) {
+                    System.out.println("Eingabe erforderlich");
+                    def=null;
+                    continue;
+                }
+                return def;
+            }
+        } while (true);
     }
 }

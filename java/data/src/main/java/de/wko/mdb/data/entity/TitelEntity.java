@@ -17,6 +17,13 @@ import javax.persistence.*;
                 query = "SELECT t FROM TitelEntity t WHERE t.subalbumId = ?1 order by t.trackno"
         ),
 })
+
+@SqlResultSetMapping(
+        name="BlurTitelResult",
+        entities = { @EntityResult(entityClass = TitelEntity.class) },
+        classes = { @ConstructorResult(targetClass = Integer.class, columns = { @ColumnResult(name = "score", type = Integer.class) })}
+)
+
 public class TitelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,7 +132,24 @@ public class TitelEntity {
         t.setTracknr(this.trackno);
         t.setVersion(this.version);
         t.setArtist(this.artist.getType());
+        t.setGenre(this.genre);
+        t.setYear(this.year);
         return t;
     }
+
+    public void fromType(Titel titel) {
+        this.id = titel.getId();
+        this.name = titel.getName();
+        this.length = titel.getLength();
+        this.comment = titel.getComment();
+        this.trackno = titel.getTracknr();
+        this.version = titel.getVersion();
+        this.genre = titel.getGenre();
+        this.year = titel.getYear();
+        ArtistEntity artist = new ArtistEntity();
+        artist.fromType(titel.getArtist());
+        this.artist = artist;
+    }
+
 
 }

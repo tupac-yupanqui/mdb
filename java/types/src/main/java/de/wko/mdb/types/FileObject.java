@@ -3,7 +3,7 @@ package de.wko.mdb.types;
 import de.wko.mdb.types.enums.EFileType;
 
 public class FileObject {
-    private Long id;
+    private Long id = 0L;
     private Long objectId;
     private String filename;
     private Long folderId;

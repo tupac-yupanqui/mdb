@@ -32,10 +32,15 @@ public class RestConfig {
     public static final String PATH_DELETE_ARTIST = "PATH_DELETE_ARTIST";
     public static final String PATH_GET_ALBUM_BY_NAME = "PATH_GET_ALBUM_BY_NAME";
     public static final String PATH_GET_ALBUM_BY_ID = "PATH_GET_ALBUM_BY_ID";
+    public static final String PATH_GET_SUBALBUM_BY_ID = "PATH_GET_SUBALBUM_BY_ID";
     public static final String PATH_GET_ALBUM_BY_PATTERN = "PATH_GET_ALBUM_BY_PATTERN";
     public static final String PATH_ALBUMS = "PATH_ALBUMS";
     public static final String PATH_SAVE_ALBUM = "PATH_SAVE_ALBUM";
     public static final String PATH_DELETE_ALBUM = "PATH_DELETE_ALBUM";
+    public static final String PATH_SEARCH_TITLE_BLUR = "PATH_SEARCH_TITLE_BLUR";
+    public static final String PATH_SEARCH_ARTIST_BLUR = "PATH_SEARCH_ARTIST_BLUR";
+    public static final String PATH_SAVE_FILE = "PATH_SAVE_FILE";
+    public static final String PATH_SAVE_TITEL = "PATH_SAVE_TITEL";
 
     public static final Map<String, String> urlMap;
 
@@ -65,9 +70,14 @@ public class RestConfig {
         urlMap.put(PATH_GET_ALBUM_BY_NAME, "/album?name={name}");
         urlMap.put(PATH_GET_ALBUM_BY_PATTERN, "/album/search?pattern={pattern}");
         urlMap.put(PATH_GET_ALBUM_BY_ID, "/album/{id}");
+        urlMap.put(PATH_GET_SUBALBUM_BY_ID, "/subalbum/{id}");
         urlMap.put(PATH_ALBUMS, "/albums");
         urlMap.put(PATH_SAVE_ALBUM, "/album/save");
         urlMap.put(PATH_DELETE_ALBUM, "/album/delete/{id}");
+        urlMap.put(PATH_SEARCH_TITLE_BLUR, "/search/title/blur");
+        urlMap.put(PATH_SEARCH_ARTIST_BLUR, "/search/artist/blur");
+        urlMap.put(PATH_SAVE_FILE, "/file/save");
+        urlMap.put(PATH_SAVE_TITEL, "/titel/save");
     }
 
     @Value("${base.url}")

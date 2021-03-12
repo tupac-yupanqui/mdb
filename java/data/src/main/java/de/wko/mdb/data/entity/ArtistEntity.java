@@ -13,6 +13,13 @@ import javax.persistence.*;
                 query = "SELECT a FROM ArtistEntity a WHERE a.name LIKE CONCAT('%',?1,'%')"
         )
 })
+
+@SqlResultSetMapping(
+        name="BlurArtistResult",
+        entities = { @EntityResult(entityClass = ArtistEntity.class) },
+        classes = { @ConstructorResult(targetClass = Integer.class, columns = { @ColumnResult(name = "score", type = Integer.class) })}
+)
+
 public class ArtistEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

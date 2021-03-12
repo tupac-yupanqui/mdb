@@ -4,6 +4,7 @@ import de.wko.mdb.bl.service.AlbumService;
 import de.wko.mdb.bl.service.ArtistService;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.Artist;
+import de.wko.mdb.types.Subalbum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -20,6 +21,12 @@ public class AlbumController {
     @ResponseBody
     public Album getById(@PathVariable Long id) {
         return albumService.getById(id);
+    }
+
+    @GetMapping("/subalbum/{id}")
+    @ResponseBody
+    public Subalbum getSubalbumById(@PathVariable Long id) {
+        return albumService.getSubalbumById(id);
     }
 
 

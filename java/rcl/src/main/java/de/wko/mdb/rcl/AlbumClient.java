@@ -1,6 +1,7 @@
 package de.wko.mdb.rcl;
 
 import de.wko.mdb.types.Album;
+import de.wko.mdb.types.Subalbum;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -21,6 +22,12 @@ public class AlbumClient extends RestClient {
         Map params = new HashMap();
         params.put("id", id);
         return get(RestConfig.PATH_GET_ALBUM_BY_ID, Album.class, params);
+    }
+
+    public Subalbum getSubalbumById(Long id) throws MdbRestException {
+        Map params = new HashMap();
+        params.put("id", id);
+        return get(RestConfig.PATH_GET_SUBALBUM_BY_ID, Subalbum.class, params);
     }
 
     public List<Album> getAllAlbums() throws MdbRestException {

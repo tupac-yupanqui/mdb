@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ArtistRepository extends CrudRepository<ArtistEntity,Long> {
+public interface ArtistRepository extends CrudRepository<ArtistEntity,Long>, ArtistRepositoryCustom {
 
         ArtistEntity findById(long id);
 

@@ -1,6 +1,7 @@
 package de.wko.mdb.rcl;
 
 import de.wko.mdb.types.FileObject;
+import de.wko.mdb.types.Folder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -17,5 +18,9 @@ public class FileClient extends RestClient {
         return file;
     }
 
+    public FileObject saveFile(FileObject file) throws MdbRestException {
+        FileObject f = post(RestConfig.PATH_SAVE_FILE, file, FileObject.class);
+        return f;
+    }
 
 }

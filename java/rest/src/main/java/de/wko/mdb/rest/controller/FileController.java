@@ -2,11 +2,11 @@ package de.wko.mdb.rest.controller;
 
 import de.wko.mdb.bl.service.FileService;
 import de.wko.mdb.types.FileObject;
+import de.wko.mdb.types.Folder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FileController {
@@ -20,4 +20,11 @@ public class FileController {
         FileObject file = fileService.getFileByFolderIdAndName(fid, name);
         return file;
     }
+
+    @PostMapping("/file/save")
+    public ResponseEntity<?> save(@RequestBody FileObject file) throws AuthenticationException {
+        FileObject result = fileService.save(file);
+        return ResponseEntity.ok(result);
+    }
+
 }

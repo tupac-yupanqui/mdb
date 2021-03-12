@@ -3,6 +3,7 @@ package de.wko.mdb.types;
 public class Subalbum {
     private Long id;
     private String name;
+    private Long parentId;
 
     public Long getId() {
         return id;
@@ -20,4 +21,11 @@ public class Subalbum {
         this.name = name;
     }
 
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
 }
