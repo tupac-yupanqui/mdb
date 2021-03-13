@@ -40,6 +40,7 @@ public class RestConfig {
     public static final String PATH_SEARCH_TITLE_BLUR = "PATH_SEARCH_TITLE_BLUR";
     public static final String PATH_SEARCH_ARTIST_BLUR = "PATH_SEARCH_ARTIST_BLUR";
     public static final String PATH_SAVE_FILE = "PATH_SAVE_FILE";
+    public static final String PATH_GET_TITEL_BY_ID = "PATH_GET_TITEL_BY_ID";
     public static final String PATH_SAVE_TITEL = "PATH_SAVE_TITEL";
 
     public static final Map<String, String> urlMap;
@@ -78,6 +79,7 @@ public class RestConfig {
         urlMap.put(PATH_SEARCH_ARTIST_BLUR, "/search/artist/blur");
         urlMap.put(PATH_SAVE_FILE, "/file/save");
         urlMap.put(PATH_SAVE_TITEL, "/titel/save");
+        urlMap.put(PATH_GET_TITEL_BY_ID, "/titel/{id}");
     }
 
     @Value("${base.url}")

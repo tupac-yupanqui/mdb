@@ -134,6 +134,8 @@ public class TitelEntity {
         t.setArtist(this.artist.getType());
         t.setGenre(this.genre);
         t.setYear(this.year);
+        t.setAlbumId(this.albumId);
+        t.setSubalbumId(this.subalbumId);
         return t;
     }
 
@@ -146,6 +148,8 @@ public class TitelEntity {
         this.version = titel.getVersion();
         this.genre = titel.getGenre();
         this.year = titel.getYear();
+        this.albumId = titel.getAlbumId();
+        this.subalbumId = titel.getSubalbumId();
         ArtistEntity artist = new ArtistEntity();
         artist.fromType(titel.getArtist());
         this.artist = artist;

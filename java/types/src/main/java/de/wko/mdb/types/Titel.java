@@ -1,7 +1,7 @@
 package de.wko.mdb.types;
 
 public class Titel {
-    Long id;
+    Long id = 0L;
     private String name;
     private String version;
     private String comment;
@@ -10,6 +10,8 @@ public class Titel {
     private int length;
     private String genre;
     private String year;
+    private Long albumId = 0L;
+    private Long subalbumId = 0L;
 
     public Long getId() {
         return id;
@@ -81,5 +83,21 @@ public class Titel {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public Long getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(Long albumId) {
+        this.albumId = albumId;
+    }
+
+    public Long getSubalbumId() {
+        return subalbumId;
+    }
+
+    public void setSubalbumId(Long subalbumId) {
+        this.subalbumId = subalbumId;
     }
 }

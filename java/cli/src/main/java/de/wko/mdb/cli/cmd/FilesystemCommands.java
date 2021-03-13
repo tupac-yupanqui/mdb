@@ -62,6 +62,7 @@ public class FilesystemCommands {
                     ls();
                 } else {
                     fs.changeCurrentDir(d);
+                    System.out.println(fs.getCurrentDir());
                 }
             } else {
                 System.out.println("Kein Zugriff auf Verzeichnis");

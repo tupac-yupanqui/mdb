@@ -1,5 +1,6 @@
 package de.wko.mdb.data.repository;
 
+import de.wko.mdb.data.Util;
 import de.wko.mdb.data.entity.AlbumEntity;
 import de.wko.mdb.data.entity.TitelEntity;
 import de.wko.mdb.types.ScoredTitel;
@@ -28,9 +29,9 @@ public class TitelRepositoryImpl implements TitelRepositoryCustom {
 
         String levenshtein;
         if (StringUtils.isEmpty(searchQuery.getArtist())) {
-            levenshtein = "levenshtein(t.name, '"+searchQuery.getTitel()+"')";
+            levenshtein = "levenshtein(t.name, '"+ Util.mask(searchQuery.getTitel())+"')";
         } else {
-            levenshtein = "levenshtein(concat(t.name,a.name), '"+searchQuery.getTitel()+searchQuery.getArtist()+"')";
+            levenshtein = "levenshtein(concat(t.name,a.name), '"+Util.mask(searchQuery.getTitel()+searchQuery.getArtist())+"')";
         }
         sql = String.format(sql,
                 levenshtein,

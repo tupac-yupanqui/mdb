@@ -23,6 +23,7 @@ public class ArtistService {
         Artist a = repo.findById(id).get().getType();
         return a;
     }
+
     public List<Artist> getAll() {
         Iterable<ArtistEntity> all = repo.findAll(Sort.by(Sort.Direction.ASC, "name"));
         List<Artist> result = new ArrayList<>();
