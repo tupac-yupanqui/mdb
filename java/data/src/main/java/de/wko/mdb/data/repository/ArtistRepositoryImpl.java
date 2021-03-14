@@ -1,6 +1,6 @@
 package de.wko.mdb.data.repository;
 
-import de.wko.mdb.data.Util;
+import de.wko.mdb.types.util.Util;
 import de.wko.mdb.data.entity.ArtistEntity;
 import de.wko.mdb.types.ScoredArtist;
 import de.wko.mdb.types.query.SearchArtistBlurQuery;

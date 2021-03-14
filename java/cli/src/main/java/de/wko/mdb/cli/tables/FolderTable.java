@@ -33,7 +33,7 @@ public class FolderTable extends DataTable {
         printHeader();
         if (folders!=null) {
             for (Folder f : folders) {
-                printRow(f.getId().toString(), f.getName(), f.getType()==null?"NULL":f.getType().getDescr());
+                printRow(f.getId().toString(), f.getName(), f.getType()==null?"???":f.getType().getDescr());
             }
         }
         if (tracks!=null) {

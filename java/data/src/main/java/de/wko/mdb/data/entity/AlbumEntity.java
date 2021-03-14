@@ -1,13 +1,11 @@
 package de.wko.mdb.data.entity;
 
-import de.wko.mdb.data.Util;
+import de.wko.mdb.types.util.Util;
 import de.wko.mdb.types.Album;
-import de.wko.mdb.types.Artist;
 import de.wko.mdb.types.Subalbum;
 
 import javax.persistence.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,13 +37,20 @@ import java.util.List;
                 query = "SELECT COUNT(*) FROM albums"
         )
 })
+
+@SqlResultSetMapping(
+        name="BlurAlbumResult",
+        entities = { @EntityResult(entityClass = AlbumEntity.class) },
+        classes = { @ConstructorResult(targetClass = Integer.class, columns = { @ColumnResult(name = "score", type = Integer.class) })}
+)
+
 public class AlbumEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Date release;
+    private Date released;
     private String cover;
     private String coversmall;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
@@ -70,12 +75,12 @@ public class AlbumEntity {
         this.name = name;
     }
 
-    public Date getRelease() {
-        return release;
+    public Date getReleased() {
+        return released;
     }
 
-    public void setRelease(Date release) {
-        this.release = release;
+    public void setReleased(Date release) {
+        this.released = release;
     }
 
     public List<SubalbumEntity> getSubalbums() {
@@ -117,7 +122,7 @@ public class AlbumEntity {
         a.setName(this.name);
         a.setCover(this.cover);
         a.setCoversmall(this.coversmall);
-        a.setRelease(Util.sdf.format(release));
+        a.setRelease(Util.sdf.format(released));
         for (SubalbumEntity sae : this.getSubalbums()) {
             a.addSubalbum(sae.getType());
         }
@@ -131,9 +136,9 @@ public class AlbumEntity {
         this.cover = album.getCover();
         this.coversmall = album.getCoversmall();
         try {
-            this.release = Util.sdf.parse(album.getRelease());
+            this.released = Util.normalizeDate(Util.sdf.parse(album.getRelease()));
         } catch (ParseException e) {
-            this.release = null;
+            this.released = null;
         }
         this.subalbums = new ArrayList<>();
         for (Subalbum sa : album.getSubalbums()) {
@@ -141,6 +146,9 @@ public class AlbumEntity {
             sae.fromType(sa);
             this.subalbums.add(sae);
         }
+        ArtistEntity are = new ArtistEntity();
+        are.fromType(album.getArtist());
+        this.artist = are;
     }
 
 }

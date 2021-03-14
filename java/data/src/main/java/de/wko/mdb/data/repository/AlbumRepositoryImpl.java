@@ -1,15 +1,17 @@
 package de.wko.mdb.data.repository;
 
+import de.wko.mdb.types.util.Util;
 import de.wko.mdb.data.entity.AlbumEntity;
 import de.wko.mdb.data.filter.AlbumFilter;
-import de.wko.mdb.types.Album;
-import de.wko.mdb.types.AlbumDetails;
+import de.wko.mdb.types.ScoredAlbum;
+import de.wko.mdb.types.query.SearchAlbumBlurQuery;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
@@ -17,7 +19,7 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
     private EntityManager em;
 
     @Override
-    public AlbumEntity getAlbum(int id) {
+    public AlbumEntity getAlbum(Long id) {
         String sql = "select * from albums where id="+id;
         System.out.println(sql);
         Query query = em.createNativeQuery(sql, AlbumEntity.class);
@@ -73,4 +75,30 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
         }
         return sql;
     }
+
+    @Override
+    public List<ScoredAlbum> searchAlbumBlur(SearchAlbumBlurQuery searchQuery) {
+        String sql = "select a.*, %s as score from albums a %s order by score %s;";
+
+        String levenshtein = String.format("levenshtein(a.name, '%s')", Util.mask(searchQuery.getAlbum()));
+        sql = String.format(sql,
+                levenshtein,
+                searchQuery.getScoreMax()>0 ? "where "+levenshtein+"<"+searchQuery.getScoreMax():"",
+                searchQuery.getScoreCount()>0 ? "limit "+searchQuery.getScoreCount():""
+        );
+        Query q = em.createNativeQuery(sql, "BlurAlbumResult");
+        List<Object[]> rl = q.getResultList();
+
+        List<ScoredAlbum> result = new ArrayList<>();
+        for (Object[] record : rl) {
+            ScoredAlbum scoredAlbum = new ScoredAlbum();
+            scoredAlbum.setAlbum(((AlbumEntity)record[0]).getType());
+            scoredAlbum.setScore((Integer)record[1]);
+            result.add(scoredAlbum);
+        }
+
+        return result;
+    }
+
+
 }

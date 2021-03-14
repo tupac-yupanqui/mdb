@@ -81,7 +81,7 @@ public class ConsoleReader {
                 }
             }
 
-            System.out.print(String.format("Auswahl [%d]: ", values.indexOf(def)+1));
+            System.out.print(String.format("Select [%d]: ", values.indexOf(def)+1));
             String inp = scanner.nextLine().trim();
             if (Strings.isNotEmpty(inp)) {
                 if (inp.equalsIgnoreCase(EXIT_MARKER)) {

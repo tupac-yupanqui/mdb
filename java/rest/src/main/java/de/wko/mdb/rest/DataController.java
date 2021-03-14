@@ -64,7 +64,7 @@ public class DataController {
 
     @GetMapping("/dalbum/view")
     @ResponseBody
-    public AlbumDetails getAlbumDetails(@RequestParam int id) {
+    public AlbumDetails getAlbumDetails(@RequestParam Long id) {
         return albumservice.getAlbumDetails(id);
     }
 }

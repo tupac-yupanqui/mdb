@@ -1,7 +1,6 @@
 package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.AlbumEntity;
-import de.wko.mdb.data.entity.ArtistEntity;
 import de.wko.mdb.data.entity.SubalbumEntity;
 import de.wko.mdb.data.entity.TitelEntity;
 import de.wko.mdb.data.filter.AlbumFilter;
@@ -65,6 +64,7 @@ public class AlbumService {
 
     public Album save(Album album) {
         Optional<AlbumEntity> ao = albumRepository.findById(album.getId());
+
         if (ao.isPresent()) {
             AlbumEntity ae = ao.get();
             ae.fromType(album);
@@ -128,7 +128,7 @@ public class AlbumService {
         return albumRepository.countFilteredAlbums(filter);
     }
 
-    public AlbumDetails getAlbumDetails(int id) {
+    public AlbumDetails getAlbumDetails(Long id) {
         AlbumDetails details = new AlbumDetails();
         AlbumEntity albumEntity = albumRepository.getAlbum(id);
         details.setAlbum(albumEntity.getType());

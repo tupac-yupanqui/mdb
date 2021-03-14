@@ -1,6 +1,6 @@
 package de.wko.mdb.data.repository;
 
-import de.wko.mdb.data.Util;
+import de.wko.mdb.types.util.Util;
 import de.wko.mdb.data.entity.AlbumEntity;
 import de.wko.mdb.data.entity.TitelEntity;
 import de.wko.mdb.types.ScoredTitel;

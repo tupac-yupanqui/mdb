@@ -1,8 +1,10 @@
 package de.wko.mdb.rest.controller;
 
 import de.wko.mdb.bl.service.ContentService;
+import de.wko.mdb.types.ScoredAlbum;
 import de.wko.mdb.types.ScoredArtist;
 import de.wko.mdb.types.ScoredTitel;
+import de.wko.mdb.types.query.SearchAlbumBlurQuery;
 import de.wko.mdb.types.query.SearchArtistBlurQuery;
 import de.wko.mdb.types.query.SearchTitelBlurQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,11 @@ public class SearchController {
     @PostMapping("/search/artist/blur")
     public List<ScoredArtist> searchArtistBlur(@RequestBody SearchArtistBlurQuery query) {
         return contentService.searchArtistBlur(query);
+    }
+
+    @PostMapping("/search/album/blur")
+    public List<ScoredAlbum> searchAlbumBlur(@RequestBody SearchAlbumBlurQuery query) {
+        return contentService.searchAlbumBlur(query);
     }
 
 }

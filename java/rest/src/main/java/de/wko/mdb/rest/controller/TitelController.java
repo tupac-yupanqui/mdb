@@ -1,7 +1,6 @@
 package de.wko.mdb.rest.controller;
 
 import de.wko.mdb.bl.service.TitelService;
-import de.wko.mdb.types.Artist;
 import de.wko.mdb.types.Titel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

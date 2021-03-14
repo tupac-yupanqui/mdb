@@ -33,7 +33,11 @@ public class Mp3Tagger {
             if (mp3File.hasId3v2Tag()) {
                 ID3v2 id3v2Tag = mp3File.getId3v2Tag();
                 tags.setTitle(id3v2Tag.getTitle());
-                tags.setArtist(id3v2Tag.getArtist());
+                if (StringUtils.isBlank(id3v2Tag.getArtist())) {
+                    tags.setArtist(id3v2Tag.getAlbumArtist());
+                } else {
+                    tags.setArtist(id3v2Tag.getArtist());
+                }
                 tags.setAlbum(id3v2Tag.getAlbum());
                 tags.setComment(id3v2Tag.getComment());
                 tags.setYear(id3v2Tag.getYear());

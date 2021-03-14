@@ -9,6 +9,7 @@ public class Settings {
 
     public static final String KEY_LOGIN_USERNAME = "user.name";
     public static final String KEY_LOGIN_PASSWORD = "user.password";
+    public static final String KEY_SHADOW_ARCHIVE = "shadow.archive";
 
     private static Settings ourInstance = new Settings();
 

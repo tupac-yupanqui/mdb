@@ -1,7 +1,9 @@
 package de.wko.mdb.rcl;
 
+import de.wko.mdb.types.ScoredAlbum;
 import de.wko.mdb.types.ScoredArtist;
 import de.wko.mdb.types.ScoredTitel;
+import de.wko.mdb.types.query.SearchAlbumBlurQuery;
 import de.wko.mdb.types.query.SearchArtistBlurQuery;
 import de.wko.mdb.types.query.SearchTitelBlurQuery;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,11 @@ public class SearchClient extends RestClient {
 
     public List<ScoredArtist> searchArtistBlur(SearchArtistBlurQuery request) throws MdbRestException {
         ScoredArtist[] list = post(RestConfig.PATH_SEARCH_ARTIST_BLUR, request, ScoredArtist[].class);
+        return Arrays.asList(list.clone());
+    }
+
+    public List<ScoredAlbum> searchAlbumBlur(SearchAlbumBlurQuery request) throws MdbRestException {
+        ScoredAlbum[] list = post(RestConfig.PATH_SEARCH_ALBUM_BLUR, request, ScoredAlbum[].class);
         return Arrays.asList(list.clone());
     }
 }

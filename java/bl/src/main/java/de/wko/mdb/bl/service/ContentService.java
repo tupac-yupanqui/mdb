@@ -1,11 +1,14 @@
 package de.wko.mdb.bl.service;
 
 import de.wko.mdb.data.entity.FolderEntity;
+import de.wko.mdb.data.repository.AlbumRepository;
 import de.wko.mdb.data.repository.ArtistRepository;
 import de.wko.mdb.data.repository.TitelRepository;
 import de.wko.mdb.types.FolderContent;
+import de.wko.mdb.types.ScoredAlbum;
 import de.wko.mdb.types.ScoredArtist;
 import de.wko.mdb.types.ScoredTitel;
+import de.wko.mdb.types.query.SearchAlbumBlurQuery;
 import de.wko.mdb.types.query.SearchArtistBlurQuery;
 import de.wko.mdb.types.query.SearchTitelBlurQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,9 @@ public class ContentService {
     @Autowired
     ArtistRepository artistRepository;
 
+    @Autowired
+    AlbumRepository albumRepository;
+
     public FolderContent getContentByFolderId(Long folderId) {
         FolderContent content = new FolderContent();
         content.setFolderList(folderService.getFoldersByParentId(folderId));
@@ -50,5 +56,9 @@ public class ContentService {
 
     public List<ScoredArtist> searchArtistBlur(SearchArtistBlurQuery searchQuery) {
         return artistRepository.searchArtistBlur(searchQuery);
+    }
+
+    public List<ScoredAlbum> searchAlbumBlur(SearchAlbumBlurQuery searchQuery) {
+        return albumRepository.searchAlbumBlur(searchQuery);
     }
 }

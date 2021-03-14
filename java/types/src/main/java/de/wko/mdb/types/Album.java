@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Album {
-    private Long id;
+    private Long id = 0L;
     private String name;
     private Artist artist;
     private String release;

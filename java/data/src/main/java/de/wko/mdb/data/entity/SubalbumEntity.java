@@ -32,6 +32,14 @@ public class SubalbumEntity {
         this.name = name;
     }
 
+    public AlbumEntity getParent() {
+        return parent;
+    }
+
+    public void setParent(AlbumEntity parent) {
+        this.parent = parent;
+    }
+
     public Subalbum getType() {
         Subalbum a = new Subalbum();
         a.setId(this.id);
