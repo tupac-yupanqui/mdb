@@ -1,7 +1,7 @@
 package de.wko.mdb.types;
 
 public class Subalbum {
-    private Long id;
+    private Long id = 0L;
     private String name;
     private Long parentId;
 

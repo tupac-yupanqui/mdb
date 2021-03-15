@@ -47,6 +47,12 @@ public class AlbumClient extends RestClient {
         return a;
     }
 
+    public Subalbum saveSubalbum(Subalbum subalbum) throws MdbRestException {
+        Subalbum a = post(RestConfig.PATH_SAVE_SUBALBUM, subalbum, Subalbum.class);
+        return a;
+    }
+
+
     public void deleteAlbum(Long id) throws MdbRestException {
         Map params = new HashMap();
         params.put("id", id);

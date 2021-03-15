@@ -2,6 +2,9 @@ package de.wko.mdb.test;
 
 import de.wko.mdb.bl.service.ContentService;
 import de.wko.mdb.bl.service.AlbumService;
+import de.wko.mdb.bl.service.SubalbumService;
+import de.wko.mdb.data.entity.SubalbumEntity;
+import de.wko.mdb.data.repository.SubalbumRepository;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.ScoredArtist;
 import de.wko.mdb.types.Subalbum;
@@ -21,6 +24,9 @@ public class TestApplication {
 	AlbumService albumService;
 
 	@Autowired
+	SubalbumRepository subalbumRepository;
+
+	@Autowired
 	ContentService contentService;
 
 	public static void main(String[] args) {
@@ -32,6 +38,12 @@ public class TestApplication {
 		return (args) -> {
 			System.out.println("Running demo");
 
+			List<SubalbumEntity> list = subalbumRepository.findTitellistByAlbumId(132L);
+			System.out.println("####### Size = "+list.size());
+			if (list.size()>0) {
+				System.out.println("####### ID = "+list.get(0).getId());
+			}
+
 			/*
 			Album al = albumService.getById(1L);
 			System.out.println("Album Name: "+al.getName());
@@ -41,7 +53,7 @@ public class TestApplication {
 			System.out.println("SubalbumName: "+sa.getName());
 			System.out.println("ParentId: "+sa.getParentId());
 			 */
-
+/*
 			SearchArtistBlurQuery r = new SearchArtistBlurQuery();
 			r.setArtist("Beast black");
 			r.setScoreMax(10);
@@ -56,7 +68,7 @@ public class TestApplication {
 					System.out.println(String.format("%s (%d)",  st.getArtist().getName(), st.getScore()));
 				}
 			}
-
+*/
 			/*
 			SearchTitelBlurQuery r = new SearchTitelBlurQuery();
 			r.setTitel("Elvenpath");

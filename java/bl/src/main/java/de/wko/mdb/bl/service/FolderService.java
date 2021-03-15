@@ -71,12 +71,10 @@ public class FolderService {
     public Optional<FolderEntity> getFolderEntityByPath(Long archiveId, String path) {
         String pathElements[] = path.split("/");
 
-        System.out.println("Get Parent");
         Optional<FolderEntity> folder = folderRepository.getFolderByArchiveAndPath(archiveId, "");
 
         if (!folder.isPresent() || pathElements.length<2) return folder;
 
-        System.out.println("Found");
         for (int i=1; i<pathElements.length; i++) {
             folder = folderRepository.getFolderByParentAndPath(folder.get().getId(), pathElements[i]);
             if (!folder.isPresent()) return folder;

@@ -71,6 +71,8 @@ public class ConsoleReader {
 
     public String readFromList(String label, List<String> values, String def) throws ReaderExitException {
 
+        if (values.size()==1) return values.get(0);
+
         do {
             System.out.print(label +" ");
             for (int i=0; i<values.size(); i++) {

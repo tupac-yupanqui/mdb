@@ -50,6 +50,12 @@ public class AlbumController {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping("/subalbum/save")
+    public ResponseEntity<?> save(@RequestBody Subalbum subalbum) throws AuthenticationException {
+        Subalbum result = albumService.save(subalbum);
+        return ResponseEntity.ok(result);
+    }
+
     @DeleteMapping("/album/delete/{id}")
     public void delete(@PathVariable Long id) {
         albumService.delete(id);

@@ -6,6 +6,7 @@ import de.wko.mdb.fs.AbstractFileSystem;
 import de.wko.mdb.fs.FileSystemException;
 import de.wko.mdb.fs.sort.FileComparator;
 import de.wko.mdb.types.MdbFile;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellCommandGroup;
@@ -14,6 +15,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.springframework.util.FileSystemUtils;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +38,7 @@ public class FilesystemCommands {
         return;
     }
 
-    @ShellMethod(value = "Verzeichnis auflisten", key = {"ls","dir"})
+    @ShellMethod(value = "Verzeichnis auflisten", key = {"ls", "dir"})
     public void ls() {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
@@ -58,7 +60,7 @@ public class FilesystemCommands {
         AbstractFileSystem fs = context.getCurrentFileSystem();
         try {
             if (fs.isFilesystemAvailable()) {
-                if (d.length()==0) {
+                if (d.length() == 0) {
                     ls();
                 } else {
                     fs.changeCurrentDir(d);
@@ -102,5 +104,4 @@ public class FilesystemCommands {
         }
         return;
     }
-
 }

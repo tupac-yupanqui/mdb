@@ -77,6 +77,30 @@ public class AlbumService {
         return null;
     }
 
+    public Subalbum save(Subalbum subalbum) {
+        Optional<SubalbumEntity> sao = subalbumRepository.findById(subalbum.getId());
+
+        if (sao.isPresent()) {
+            SubalbumEntity sae = sao.get();
+            sae.fromType(subalbum);
+            return subalbumRepository.save(sae).getType();
+        } else if (subalbum.getId()==0) {
+            List<SubalbumEntity> list = subalbumRepository.findTitellistByAlbumId(subalbum.getParentId());
+            SubalbumEntity sae;
+
+            if (list.size()==1) {
+                sae = list.get(0);
+                sae.setName(subalbum.getName());
+            } else {
+                sae = new SubalbumEntity();
+                sae.fromType(subalbum);
+                sae.setParent(albumRepository.findById(subalbum.getParentId()).get());
+            }
+            return subalbumRepository.save(sae).getType();
+        }
+        return null;
+    }
+
     public void delete(Long id) {
         albumRepository.deleteById(id);
     }

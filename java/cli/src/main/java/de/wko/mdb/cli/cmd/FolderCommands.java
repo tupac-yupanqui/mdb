@@ -73,6 +73,36 @@ public class FolderCommands {
     private Long subalbumId;
     private boolean autoCreate;
 
+    @ShellMethod(value = "Remove content object", key = Commands.CMD_REMOVE_CONTENT)
+    public void removeContent(@ShellOption(defaultValue = "") String objectToRemove) {
+        if (StringUtils.isEmpty(objectToRemove)) {
+            System.out.println("Missing parameter");
+            return;
+        }
+        if (!context.getCurrentFileSystem().isFilesystemAvailable()
+                || context.getCurrentFileSystem() instanceof LocalFileSystem) {
+            System.out.println("kein Archiv geöffnet");
+            return;
+        }
+        try {
+            prepare();
+
+            File file = new File(fullPath + objectToRemove);
+            System.out.println(file.getAbsolutePath());
+            System.out.println(file.isFile());
+            System.out.println(file.isDirectory());
+            System.out.println(file.exists());
+
+            Folder folder = folderClient.getFolderByPath(archiveId, archivePath + file.getName());
+            System.out.println(folder);
+
+
+
+        } catch (MdbRestException e) {
+            e.printStackTrace();
+        }
+    }
+
     @ShellMethod(value = "Liste der Inhalte", key = {
             Commands.CMD_LIST_CONTENT,
             Commands.CMD_LIST_CONTENT_SHORT})
@@ -195,7 +225,8 @@ public class FolderCommands {
                 System.out.println("Der übergeordnete Folder existiert nicht und muss vorher angelegt werden.");
             }
 
-            String type = reader.readFromList("Foldertyp", EFolderType.getValueList(parent.getType()), folder.getType().getDescr());
+            List<String> typeList = EFolderType.getValueList(parent.getType());
+            String type = reader.readFromList("Foldertyp", typeList, folder.getType().getDescr());
             folder.setType(EFolderType.fromString(type));
             switch (folder.getType()) {
                 case ARTIST:
@@ -287,13 +318,7 @@ public class FolderCommands {
                         titel.setArtist(identifyArtist(tags.getArtist()));
                     } else {
                         System.out.println("create title for "+file.getFilename());
-                        titel.setName(reader.readString("Title", titel.getName(), true));
-                        titel.setArtist(identifyArtist(tags.getArtist()));
-                        titel.setTracknr(reader.readInteger("TrackNo", titel.getTracknr(), true));
-                        titel.setComment(reader.readString("Comment", titel.getComment(), false));
-                        titel.setLength(reader.readInteger("Length", titel.getLength(), true));
-                        titel.setYear(reader.readString("Year", titel.getYear(), false));
-                        //titel.setGenre(reader.readString("Genre", tags.getGenre(), false));
+                        editTitel(titel, tags);
                     }
                     titel = titelClient.saveTitel(titel);
                     if (autoCreate) {
@@ -304,6 +329,7 @@ public class FolderCommands {
             } else {
                 // File in DB
                 titel = titelClient.getTitelById(file.getObjectId());
+                editTitel(titel, tags);
             }
             if (!autoCreate) {
                 boolean editTags = reader.readBoolean("write MP3 tags?", false);
@@ -327,6 +353,16 @@ public class FolderCommands {
         } catch (AudioFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    private void editTitel(Titel titel, AudioTags tags) throws ReaderExitException, MdbRestException {
+        titel.setName(reader.readString("Title", titel.getName(), true));
+        titel.setArtist(identifyArtist(tags.getArtist()));
+        titel.setTracknr(reader.readInteger("TrackNo", titel.getTracknr(), true));
+        titel.setComment(reader.readString("Comment", titel.getComment(), false));
+        titel.setLength(reader.readInteger("Length", titel.getLength(), true));
+        titel.setYear(reader.readString("Year", titel.getYear(), false));
+        //titel.setGenre(reader.readString("Genre", tags.getGenre(), false));
     }
 
     private EFileType getFileTypeFromFileName(String fileName) {
@@ -417,34 +453,47 @@ public class FolderCommands {
     }
 
     private void editSubalbumFolder(Folder folder)   throws ReaderExitException, MdbRestException {
-        Subalbum subalbum;
-        Subalbum targetAlbum = null;
+        Subalbum subalbum = null;
         String searchString = "";
-/*
+
+        Album parentAlbum = albumClient.getAlbumById(parentFolder.getObjectId());
+
         List<String> albumSelectList = new ArrayList<>();
-        List<ScoredAlbum> scoredAlbumList;
-        int albumSelection = 0;
+        int subalbumSelection = 0;
+        int existingSubalbum = -1;
+        int preselectedSubalbum = 0;
 
-        if (folder.getObjectId()!=0L) {
-            album = albumClient.getAlbumById(folder.getObjectId());
-            searchString = album.getName();
-            albumSelectList.add(String.format("retain (%s)", searchString));
-            albumSelectList.add("-- search album");
-            albumSelection = reader.readFromList("select an album", albumSelectList, 0);
-            if (albumSelection==0) {
-                targetAlbum = album;
+        int ix = -1;
+        for (Subalbum sa : parentAlbum.getSubalbums()) {
+            ix++;
+            if (!sa.getName().equals("Titelliste")) {
+                albumSelectList.add(sa.getName());
             }
+            if (sa.getId()==folder.getObjectId()) {
+                existingSubalbum = ix;
+            }
+            if (sa.getName().equalsIgnoreCase(folder.getName())) {
+                preselectedSubalbum = ix;
+            }
+        }
+
+        albumSelectList.add("-- create subalbum");
+
+        subalbumSelection = (folder.getObjectId()==0) ? preselectedSubalbum : existingSubalbum;
+        subalbumSelection = reader.readFromList("select a subalbum", albumSelectList, subalbumSelection);
+
+        if (subalbumSelection == albumSelectList.size()-1) {
+            searchString = reader.readString("subalbum name", folder.getName(), true);
+            subalbum = new Subalbum();
+            subalbum.setParentId(parentAlbum.getId());
+            subalbum.setName(searchString);
+            subalbum = albumClient.saveSubalbum(subalbum);
         } else {
-            targetAlbum = searchAlbum(folder.getName());
+            subalbum = parentAlbum.getSubalbums().get(subalbumSelection);
         }
 
-        while (targetAlbum==null) {
-            searchString = reader.readString("search phrase", searchString, true);
-            targetAlbum = searchAlbum(searchString);
-        }
-
-        folder.setObjectId(targetAlbum.getId());
-        folderClient.saveFolder(folder);*/
+        folder.setObjectId(subalbum.getId());
+        folderClient.saveFolder(folder);
     }
 
     private void editAlbumFolder(Folder folder)   throws ReaderExitException, MdbRestException {
@@ -798,6 +847,9 @@ public class FolderCommands {
         return fn
                 .replace(":","")
                 .replace("*","+")
-                .replace("?","_");
+                .replace("?","_")
+                .replace("\r"," ")
+                .replace("\"","")
+                .replace("/","_");
     }
 }

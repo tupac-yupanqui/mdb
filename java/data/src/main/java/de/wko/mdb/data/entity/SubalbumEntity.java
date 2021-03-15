@@ -4,6 +4,13 @@ import de.wko.mdb.types.Subalbum;
 
 import javax.persistence.*;
 
+@NamedQueries({
+
+        @NamedQuery(name = "SubalbumEntity.findTitellistByAlbumId",
+                query = "SELECT s FROM SubalbumEntity s WHERE s.name='Titelliste' AND s.parent.id = ?1"
+        )
+})
+
 @Entity
 @Table(name="subalbums")
 public class SubalbumEntity {
