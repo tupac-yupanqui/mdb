@@ -1,5 +1,8 @@
 package de.wko.mdb.data.repository;
 
+import de.wko.mdb.types.Artist;
+import de.wko.mdb.types.Titel;
+import de.wko.mdb.types.query.SearchTitelQuery;
 import de.wko.mdb.types.util.Util;
 import de.wko.mdb.data.entity.AlbumEntity;
 import de.wko.mdb.data.entity.TitelEntity;
@@ -17,10 +20,10 @@ public class TitelRepositoryImpl implements TitelRepositoryCustom {
     private EntityManager em;
 
     public AlbumEntity getAlbum(int id) {
-        String sql = "select * from albums where id="+id;
+        String sql = "select * from albums where id=" + id;
         System.out.println(sql);
         Query query = em.createNativeQuery(sql, AlbumEntity.class);
-        return (AlbumEntity)query.getSingleResult();
+        return (AlbumEntity) query.getSingleResult();
     }
 
     @Override
@@ -29,15 +32,15 @@ public class TitelRepositoryImpl implements TitelRepositoryCustom {
 
         String levenshtein;
         if (StringUtils.isEmpty(searchQuery.getArtist())) {
-            levenshtein = "levenshtein(t.name, '"+ Util.mask(searchQuery.getTitel())+"')";
+            levenshtein = "levenshtein(t.name, '" + Util.mask(searchQuery.getTitel()) + "')";
         } else {
-            levenshtein = "levenshtein(concat(t.name,a.name), '"+Util.mask(searchQuery.getTitel()+searchQuery.getArtist())+"')";
+            levenshtein = "levenshtein(concat(t.name,a.name), '" + Util.mask(searchQuery.getTitel() + searchQuery.getArtist()) + "')";
         }
         sql = String.format(sql,
                 levenshtein,
-                searchQuery.getAlbumId()>0 ? "and t.album_id="+searchQuery.getAlbumId():"",
-                searchQuery.getScoreMax()>0 ? "and "+levenshtein+"<"+searchQuery.getScoreMax():"",
-                searchQuery.getScoreCount()>0 ? "limit "+searchQuery.getScoreCount():""
+                searchQuery.getAlbumId() > 0 ? "and t.album_id=" + searchQuery.getAlbumId() : "",
+                searchQuery.getScoreMax() > 0 ? "and " + levenshtein + "<" + searchQuery.getScoreMax() : "",
+                searchQuery.getScoreCount() > 0 ? "limit " + searchQuery.getScoreCount() : ""
         );
 
         Query q = em.createNativeQuery(sql, "BlurTitelResult");
@@ -46,11 +49,21 @@ public class TitelRepositoryImpl implements TitelRepositoryCustom {
         List<ScoredTitel> result = new ArrayList<>();
         for (Object[] record : rl) {
             ScoredTitel scoredTitel = new ScoredTitel();
-            scoredTitel.setTitel(((TitelEntity)record[0]).getType());
-            scoredTitel.setScore((Integer)record[1]);
+            scoredTitel.setTitel(((TitelEntity) record[0]).getType());
+            scoredTitel.setScore((Integer) record[1]);
             result.add(scoredTitel);
         }
 
         return result;
+    }
+
+    @Override
+    public List<TitelEntity> findTitelByNameAndArtist(String name, Long artistId) {
+
+        TypedQuery<TitelEntity> q = em.createQuery("select t from TitelEntity t where t.artist.id= :artistId and t.name= :name", TitelEntity.class);
+        q.setParameter("artistId", artistId);
+        q.setParameter("name", name);
+
+        return q.getResultList();
     }
 }

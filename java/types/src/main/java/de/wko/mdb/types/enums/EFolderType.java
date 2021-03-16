@@ -10,6 +10,7 @@ public enum EFolderType {
     ALBUM("Album"),
     SUBALBUM("Subalbum"),
     LIST("Liste"),
+    COLLECTION("Verschiedenes"),
     UNKNOWN("Unbekannt");
 
     private final String stringRepresentation;
@@ -52,6 +53,9 @@ public enum EFolderType {
                 result.remove(ALBUM.getDescr());
                 result.remove(ARTIST.getDescr());
                 result.remove(LIST.getDescr());
+                result.remove(COLLECTION.getDescr());
+                break;
+            case COLLECTION:
                 break;
         }
         return result;

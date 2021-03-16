@@ -37,7 +37,7 @@ public class TitelService {
         } else if (titel.getId()==0){
             TitelEntity te = new TitelEntity();
             te.fromType(titel);
-            if (te.getSubalbumId()<1) {
+            if (te.getSubalbumId()!=null && te.getSubalbumId()<1) {
                 SubalbumEntity se = new SubalbumEntity();
                 se.setName("Titelliste");
                 se.setParent(albumRepository.getAlbum(te.getAlbumId()));

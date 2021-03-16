@@ -37,6 +37,7 @@ public class RestConfig {
     public static final String PATH_ALBUMS = "PATH_ALBUMS";
     public static final String PATH_SAVE_ALBUM = "PATH_SAVE_ALBUM";
     public static final String PATH_DELETE_ALBUM = "PATH_DELETE_ALBUM";
+    public static final String PATH_SEARCH_TITEL = "PATH_SEARCH_TITEL";
     public static final String PATH_SEARCH_TITLE_BLUR = "PATH_SEARCH_TITLE_BLUR";
     public static final String PATH_SEARCH_ARTIST_BLUR = "PATH_SEARCH_ARTIST_BLUR";
     public static final String PATH_SEARCH_ALBUM_BLUR = "PATH_SEARCH_ALBUM_BLUR";
@@ -77,6 +78,7 @@ public class RestConfig {
         urlMap.put(PATH_ALBUMS, "/albums");
         urlMap.put(PATH_SAVE_ALBUM, "/album/save");
         urlMap.put(PATH_DELETE_ALBUM, "/album/delete/{id}");
+        urlMap.put(PATH_SEARCH_TITEL, "/search/titel");
         urlMap.put(PATH_SEARCH_TITLE_BLUR, "/search/title/blur");
         urlMap.put(PATH_SEARCH_ARTIST_BLUR, "/search/artist/blur");
         urlMap.put(PATH_SEARCH_ALBUM_BLUR, "/search/album/blur");

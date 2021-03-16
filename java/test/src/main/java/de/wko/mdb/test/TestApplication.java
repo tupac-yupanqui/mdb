@@ -3,12 +3,15 @@ package de.wko.mdb.test;
 import de.wko.mdb.bl.service.ContentService;
 import de.wko.mdb.bl.service.AlbumService;
 import de.wko.mdb.bl.service.SubalbumService;
+import de.wko.mdb.bl.service.TitelService;
 import de.wko.mdb.data.entity.SubalbumEntity;
 import de.wko.mdb.data.repository.SubalbumRepository;
 import de.wko.mdb.types.Album;
 import de.wko.mdb.types.ScoredArtist;
 import de.wko.mdb.types.Subalbum;
+import de.wko.mdb.types.Titel;
 import de.wko.mdb.types.query.SearchArtistBlurQuery;
+import de.wko.mdb.types.query.SearchTitelQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +32,9 @@ public class TestApplication {
 	@Autowired
 	ContentService contentService;
 
+	@Autowired
+	TitelService titelService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(TestApplication.class, args);
 	}
@@ -38,12 +44,21 @@ public class TestApplication {
 		return (args) -> {
 			System.out.println("Running demo");
 
+			SearchTitelQuery query = new SearchTitelQuery();
+			query.setTitel("Storytime");
+			query.setArtist("Nightwish");
+
+			List<Titel> tl = contentService.searchTitel(query);
+			for (Titel t : tl) {
+				System.out.println("Titel: "+t.getName());
+			}
+/*
 			List<SubalbumEntity> list = subalbumRepository.findTitellistByAlbumId(132L);
 			System.out.println("####### Size = "+list.size());
 			if (list.size()>0) {
 				System.out.println("####### ID = "+list.get(0).getId());
 			}
-
+*/
 			/*
 			Album al = albumService.getById(1L);
 			System.out.println("Album Name: "+al.getName());

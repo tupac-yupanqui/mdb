@@ -22,6 +22,7 @@ import de.wko.mdb.types.enums.EFolderType;
 import de.wko.mdb.types.query.SearchAlbumBlurQuery;
 import de.wko.mdb.types.query.SearchArtistBlurQuery;
 import de.wko.mdb.types.query.SearchTitelBlurQuery;
+import de.wko.mdb.types.query.SearchTitelQuery;
 import de.wko.mdb.types.util.Util;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
@@ -238,6 +239,12 @@ public class FolderCommands {
                 case SUBALBUM:
                     editSubalbumFolder(folder);
                     break;
+                case COLLECTION:
+                    editCollectionFolder(folder);
+                    break;
+                case LIST:
+                    editListFolder(folder);
+                    break;
             }
         } catch (ReaderExitException e) {
             // nothing to do
@@ -310,7 +317,22 @@ public class FolderCommands {
             Titel titel;
             if (file.getId()==0L) {
                 // File nicht in DB
-                titel = selectTitelFromList(getScoredTitelList(tags));
+                if (parentFolder.getType().equals(EFolderType.ALBUM) || parentFolder.getType().equals(EFolderType.SUBALBUM)) {
+                    titel = selectTitelFromList(getScoredTitelList(tags));
+                } else {
+                    List<Titel> titelList = searchTitel(tags.getTitle(), tags.getArtist());
+                    if (titelList.size() == 0) {
+                        titel = new Titel();
+                    } else if (titelList.size() == 1) {
+                        titel = titelList.get(0);
+                    } else {
+                        System.out.println("Search result not unique");
+                        for (Titel t :titelList) {
+                            System.out.println("##### "+t.getAlbumId());
+                        }
+                        titel = titelList.get(0);
+                    }
+                }
 
                 if (titel.getId()==0L) {
                     initTitel(titel, tags);
@@ -450,6 +472,14 @@ public class FolderCommands {
             album = albumClient.saveAlbum(album);
         }
         return album;
+    }
+
+    private void editListFolder(Folder folder)   throws ReaderExitException, MdbRestException {
+        folderClient.saveFolder(folder);
+    }
+
+    private void editCollectionFolder(Folder folder)   throws ReaderExitException, MdbRestException {
+        folderClient.saveFolder(folder);
     }
 
     private void editSubalbumFolder(Folder folder)   throws ReaderExitException, MdbRestException {
@@ -643,10 +673,14 @@ public class FolderCommands {
         if (parentFolder.getType().equals(EFolderType.ALBUM) || parentFolder.getType().equals(EFolderType.SUBALBUM)) {
             query.setScoreCount(1);
         }
+        if (parentFolder.getType().equals(EFolderType.COLLECTION)) {
+            query.setScoreCount(1);
+        }
         query.setAlbumId(albumId==null?0L:albumId);
         query.setScoreMax(10);
 
-        return searchClient.searchTitelBlur(query);
+        List<ScoredTitel> result = searchClient.searchTitelBlur(query);
+        return result;
     }
 
     private Artist getArtist(String searchString) throws ReaderExitException, MdbRestException {
@@ -702,6 +736,16 @@ public class FolderCommands {
         albumQuery.setScoreMax(5);
         albumQuery.setScoreCount(10);
         return searchClient.searchAlbumBlur(albumQuery);
+    }
+
+    private List<Titel> searchTitel(String name, String artist) throws MdbRestException {
+
+        SearchTitelQuery query = new SearchTitelQuery();
+        query.setTitel(name);
+        query.setArtist(artist);
+        List<Titel> result = searchClient.searchTitel(query);
+
+        return result;
     }
 
     private Titel selectTitelFromList(List<ScoredTitel> scoredTitelList) throws MdbRestException, ReaderExitException {
