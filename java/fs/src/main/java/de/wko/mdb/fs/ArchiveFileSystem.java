@@ -39,6 +39,8 @@ public class ArchiveFileSystem extends AbstractFileSystem {
             path = host.getDrive()+archive.getPath();
         } else if (d.equals(".")) {
             return;
+        } else if (d.startsWith("/")) {
+            path = host.getDrive()+archive.getPath()+d;
         } else {
             path +=d;
         }
@@ -63,6 +65,7 @@ public class ArchiveFileSystem extends AbstractFileSystem {
             File[] files = f.listFiles();
 
             for (File osFile : files) {
+                if (osFile.isHidden()) continue;
                 MdbFile file = new MdbFile();
                 file.setName(osFile.getName());
                 file.setSize(osFile.length());

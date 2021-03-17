@@ -108,7 +108,11 @@ public class FolderCommands {
             Commands.CMD_LIST_CONTENT,
             Commands.CMD_LIST_CONTENT_SHORT})
     public void listFolders(@ShellOption(value = "-n", help = "nur neue Inhalte") boolean newOnly,
+                            @ShellOption(value = "-r", help = "list recursive unknown contents") boolean recursive,
                             @ShellOption(value = "-x", help = "nur existierende Inhalte") boolean existOnly) {
+
+        String resetToDir = null;
+
         if (!context.getCurrentFileSystem().isFilesystemAvailable()
                 || context.getCurrentFileSystem() instanceof LocalFileSystem) {
             System.out.println("kein Archiv geöffnet");
@@ -117,6 +121,12 @@ public class FolderCommands {
 
         try {
             prepare();
+
+            if (recursive) {
+                resetToDir = archiveFileSystem.getCurrentDir();
+                listRecursive(archiveFileSystem.getCurrentDir());
+                return;
+            }
 
             FolderContent content = contentClient.getContentByPath(archiveId, archiveFileSystem.getCurrentDir());
             if (content == null) {
@@ -131,6 +141,14 @@ public class FolderCommands {
                 new FolderTable(newContent).print();
             } else {
                 new FolderTable(ListHelper.mergeContent(content, newContent)).print();
+            }
+        } catch (ReaderExitException e) {
+            if (resetToDir!=null) {
+                try {
+                    archiveFileSystem.changeCurrentDir(resetToDir);
+                } catch (FileSystemException fse) {
+                    fse.printStackTrace();
+                }
             }
         } catch (MdbRestException e) {
             System.out.println("MdbRestException " + e.getResponse().getMessage());
@@ -855,26 +873,26 @@ public class FolderCommands {
         } else {
             List<String> nameTypeList = new ArrayList<>();
             nameTypeList.add("Namen behalten");
-            nameTypeList.add("## - <artist> - <titel>");
-            nameTypeList.add("<artist> - <titel>");
-            nameTypeList.add("## - <titel>");
+            nameTypeList.add(normalizeFilename(String.format("%02d - %s - %s", titel.getTracknr(), titel.getArtist().getName(), titel.getName())));
+            nameTypeList.add(normalizeFilename(String.format("%s - %s", titel.getArtist().getName(), titel.getName())));
+            nameTypeList.add(normalizeFilename(String.format("%02d - %s", titel.getTracknr(), titel.getName())));
             renameOption = reader.readFromList("Auswahl", nameTypeList, 0);
         }
         switch (renameOption) {
             case 0:
                 return;
             case 1:
-                newFilename = String.format("%02d - %s - %s.mp3", titel.getTracknr(), titel.getArtist().getName(), titel.getName());
+                newFilename = normalizeFilename(String.format("%02d - %s - %s.mp3", titel.getTracknr(), titel.getArtist().getName(), titel.getName()));
                 break;
             case 2:
-                newFilename = String.format("%s - %s.mp3", titel.getArtist().getName(), titel.getName());
+                newFilename = normalizeFilename(String.format("%s - %s.mp3", titel.getArtist().getName(), titel.getName()));
                 break;
             case 3:
-                newFilename = String.format("%02d - %s.mp3", titel.getTracknr(), titel.getName());
+                newFilename = normalizeFilename(String.format("%02d - %s.mp3", titel.getTracknr(), titel.getName()));
                 break;
         }
         int ix = fullPathName.lastIndexOf("/");
-        String newPathName = fullPathName.substring(0, ix+1) + normalizeFilename(newFilename);
+        String newPathName = fullPathName.substring(0, ix+1) + newFilename;
         File f = new File(fullPathName);
         try {
             if (f.renameTo(new File(newPathName))) {
@@ -885,6 +903,31 @@ public class FolderCommands {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void listRecursive(String dir) throws ReaderExitException{
+        System.out.println(String.format("check dir '%s'", dir));
+        try {
+            FolderContent content = contentClient.getContentByPath(archiveId, dir);
+            FolderContent newContent = getNewContent(archiveFileSystem, content);
+            //System.out.println(String.format("---> new: %d, reg: %d", newContent.getTrackList().size(), content.getTrackList().size()));
+            for (Folder fo : newContent.getFolderList()) {
+                System.out.println("+++++++++> "+fo.getName());
+            }
+            for (FileObject fo : newContent.getTrackList()) {
+                boolean createIt = reader.readBoolean(String.format("unknown content '%s': create?", fo.getFilename()), true);
+            }
+            for (Folder folder  : content.getFolderList() ) {
+                archiveFileSystem.changeCurrentDir(folder.getName());
+                listRecursive(dir + (dir.endsWith("/")?"":"/") + folder.getName());
+                archiveFileSystem.changeCurrentDir("..");
+            }
+        } catch (FileSystemException e) {
+            e.printStackTrace();
+        } catch (MdbRestException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private String normalizeFilename(String fn) {
