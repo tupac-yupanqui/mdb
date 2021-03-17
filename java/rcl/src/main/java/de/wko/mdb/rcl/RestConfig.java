@@ -45,6 +45,7 @@ public class RestConfig {
     public static final String PATH_GET_TITEL_BY_ID = "PATH_GET_TITEL_BY_ID";
     public static final String PATH_SAVE_TITEL = "PATH_SAVE_TITEL";
     public static final String PATH_SAVE_SUBALBUM = "PATH_SAVESUBALBUM";
+    public static final String PATH_SAVE_EXTRA = "PATH_SAVE_EXTRA";
 
     public static final Map<String, String> urlMap;
 
@@ -86,6 +87,7 @@ public class RestConfig {
         urlMap.put(PATH_SAVE_TITEL, "/titel/save");
         urlMap.put(PATH_GET_TITEL_BY_ID, "/titel/{id}");
         urlMap.put(PATH_SAVE_SUBALBUM, "/subalbum/save");
+        urlMap.put(PATH_SAVE_EXTRA, "/extra/save");
     }
 
     @Value("${base.url}")

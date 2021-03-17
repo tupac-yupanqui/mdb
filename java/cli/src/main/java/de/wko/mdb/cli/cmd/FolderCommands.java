@@ -17,6 +17,7 @@ import de.wko.mdb.fs.LocalFileSystem;
 import de.wko.mdb.fs.sort.FileComparator;
 import de.wko.mdb.rcl.*;
 import de.wko.mdb.types.*;
+import de.wko.mdb.types.enums.EExtraType;
 import de.wko.mdb.types.enums.EFileType;
 import de.wko.mdb.types.enums.EFolderType;
 import de.wko.mdb.types.query.SearchAlbumBlurQuery;
@@ -57,6 +58,9 @@ public class FolderCommands {
 
     @Autowired
     TitelClient titelClient;
+
+    @Autowired
+    ExtraClient extraClient;
 
     @Autowired
     SearchClient searchClient;
@@ -124,7 +128,7 @@ public class FolderCommands {
 
             if (recursive) {
                 resetToDir = archiveFileSystem.getCurrentDir();
-                listRecursive(archiveFileSystem.getCurrentDir());
+                listRecursive(archiveFileSystem.getCurrentDir(), false);
                 return;
             }
 
@@ -163,8 +167,12 @@ public class FolderCommands {
     public void editContent(
             @ShellOption(defaultValue = "") String objectToEdit,
             @ShellOption(value = "-n", help = "nur neue Inhalte") boolean newOnly,
+            @ShellOption(value = "-r", help = "list recursive unknown contents") boolean recursive,
             @ShellOption(defaultValue = "-1") int id,
             @ShellOption(value = "-a") boolean auto) {
+
+        String resetToDir = null;
+
         if (!context.getCurrentFileSystem().isFilesystemAvailable()
                 || context.getCurrentFileSystem() instanceof LocalFileSystem) {
             System.out.println("kein Archiv geöffnet");
@@ -175,6 +183,12 @@ public class FolderCommands {
 
         try {
             prepare();
+
+            if (recursive) {
+                resetToDir = archiveFileSystem.getCurrentDir();
+                listRecursive(archiveFileSystem.getCurrentDir(), true);
+                return;
+            }
 
             if (parentFolder == null) {
                 System.out.println("Der übergeordnete Folder existiert nicht und muss vorher angelegt werden.");
@@ -206,28 +220,19 @@ public class FolderCommands {
                     }
                     editFolder(folder);
                 } else {
-                    FileObject fileObject = fileClient.getFileByFolderIdAndName(parentFolder.getId(), file.getName());
-                    if (fileObject != null) {
-                        if (newOnly) continue;
-                        if (!reader.readBoolean(String.format("Edit File '%s'?", file.getName()), false)) {
-                            continue;
-                        }
-                    } else {
-                        if (!autoCreate) {
-                            if (!reader.readBoolean(String.format("No file object exists for '%s'. Create it?", file.getName()), true)) {
-                                continue;
-                            }
-                        }
-                        fileObject = new FileObject();
-                        fileObject.setFilename(file.getName());
-                        fileObject.setFolderId(parentFolder.getId());
-                        fileObject.setObjectId(0L);
-                        fileObject.setType(EFileType.UNKNOWN);
-                    }
+                    FileObject fileObject = getFileObject(file.getName(), newOnly);
+                    if (fileObject==null) continue;
                     editFile(fileObject, parentFolder);
                 }
             }
         } catch (ReaderExitException e) {
+            if (resetToDir!=null) {
+                try {
+                    archiveFileSystem.changeCurrentDir(resetToDir);
+                } catch (FileSystemException fse) {
+                    fse.printStackTrace();
+                }
+            }
         } catch (MdbRestException e) {
             System.out.println("MdbRestException " + e.getResponse().getMessage());
             e.printStackTrace();
@@ -235,6 +240,28 @@ public class FolderCommands {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    private FileObject getFileObject(String filename, boolean newOnly) throws MdbRestException, ReaderExitException {
+        FileObject fileObject = fileClient.getFileByFolderIdAndName(parentFolder.getId(), filename);
+        if (fileObject != null) {
+            if (newOnly) return null;
+            if (!reader.readBoolean(String.format("Edit File '%s'?", filename), false)) {
+                return null;
+            }
+        } else {
+            if (!autoCreate) {
+                if (!reader.readBoolean(String.format("No file object exists for '%s'. Create it?", filename), true)) {
+                    return null;
+                }
+            }
+            fileObject = new FileObject();
+            fileObject.setFilename(filename);
+            fileObject.setFolderId(parentFolder.getId());
+            fileObject.setObjectId(0L);
+            fileObject.setType(EFileType.UNKNOWN);
+        }
+        return fileObject;
     }
 
     private void editFolder(Folder folder) {
@@ -272,6 +299,7 @@ public class FolderCommands {
     }
 
     private void editFile(FileObject file, Folder parentFolder) throws ReaderExitException {
+
         if (file.getType().equals(EFileType.UNKNOWN)) {
             file.setType(getFileTypeFromFileName(file.getFilename()));
         }
@@ -292,8 +320,38 @@ public class FolderCommands {
             case WMA:
                 editWmaFile(file, parentFolder);
                 break;
+            case EXTRA:
+                editExtraFile(file, parentFolder);
+                break;
         }
 
+    }
+
+    private void editExtraFile(FileObject file, Folder parentFolder) throws ReaderExitException {
+        try {
+            Extra extra = new Extra();
+
+            EExtraType type = EExtraType.OTHER;
+            if (file.getFilename().toUpperCase().startsWith("COVER")) {
+                type = EExtraType.COVER;
+            }
+            if (file.getFilename().toUpperCase().startsWith("SMALL")) {
+                type = EExtraType.THUMB;
+            }
+            if (file.getFilename().toUpperCase().startsWith("BOOKLET")) {
+                type = EExtraType.BOOKLET;
+            }
+            String selectedType = reader.readFromList("Type", EExtraType.getValueList(), type.getDescr());
+            extra.setType(EExtraType.fromString(selectedType));
+            extra.setDescription(reader.readString("Description", selectedType));
+            extra.setAlbumId(parentFolder.getObjectId());
+
+            extra = extraClient.saveExtra(extra);
+            file.setObjectId(extra.getId());
+            fileClient.saveFile(file);
+        } catch (MdbRestException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editWmaFile(FileObject file, Folder parentFolder) throws ReaderExitException {
@@ -905,21 +963,35 @@ public class FolderCommands {
         }
     }
 
-    private void listRecursive(String dir) throws ReaderExitException{
+    private void listRecursive(String dir, boolean edit) throws ReaderExitException{
         System.out.println(String.format("check dir '%s'", dir));
         try {
             FolderContent content = contentClient.getContentByPath(archiveId, dir);
             FolderContent newContent = getNewContent(archiveFileSystem, content);
             //System.out.println(String.format("---> new: %d, reg: %d", newContent.getTrackList().size(), content.getTrackList().size()));
             for (Folder fo : newContent.getFolderList()) {
-                System.out.println("+++++++++> "+fo.getName());
+                System.out.println(String.format("  -- unknown folder '%s'", fo.getName()));
             }
             for (FileObject fo : newContent.getTrackList()) {
-                boolean createIt = reader.readBoolean(String.format("unknown content '%s': create?", fo.getFilename()), true);
+                if (edit) {
+                    boolean createIt = reader.readBoolean(String.format("unknown content '%s': create?", fo.getFilename()), true);
+                    if (createIt) {
+                        FileObject fileObject = getFileObject(fo.getFilename(), true);
+                        Folder parentFolderRec = folderClient.getFolderByPath(archiveFileSystem.getArchive().getId(), archiveFileSystem.getCurrentDir());
+                        if (!parentFolderRec.getType().equals(EFolderType.ALBUM)) {
+                            System.out.println("Extras are allowed in album folders only");
+                        } else {
+                            editFile(fileObject, parentFolderRec);
+                        }
+                    }
+
+                } else {
+                    System.out.println(String.format("  -- unknown content '%s'", fo.getFilename()));
+                }
             }
             for (Folder folder  : content.getFolderList() ) {
                 archiveFileSystem.changeCurrentDir(folder.getName());
-                listRecursive(dir + (dir.endsWith("/")?"":"/") + folder.getName());
+                listRecursive(dir + (dir.endsWith("/")?"":"/") + folder.getName(), edit);
                 archiveFileSystem.changeCurrentDir("..");
             }
         } catch (FileSystemException e) {
