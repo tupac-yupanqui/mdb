@@ -28,6 +28,9 @@ public class ContentService {
     FileService fileService;
 
     @Autowired
+    ExtraService extraService;
+
+    @Autowired
     TitelRepository titelRepository;
 
     @Autowired

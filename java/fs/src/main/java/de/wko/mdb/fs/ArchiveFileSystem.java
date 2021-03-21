@@ -24,6 +24,11 @@ public class ArchiveFileSystem extends AbstractFileSystem {
         this.archive = archive;
         this.currentDir = "/";
         filesystemAvailable = AvailabiltyCheck.isArchiveOnline(archive, host);
+
+        File f = new File(host.getDrive()+archive.getPath());
+        if(!f.exists()) {
+            f.mkdirs();
+        }
     }
 
     @Override

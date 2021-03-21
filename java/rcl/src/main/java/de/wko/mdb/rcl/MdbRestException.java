@@ -13,6 +13,12 @@ public class MdbRestException extends Exception {
         response = r;
     }
 
+    public MdbRestException(String msg) {
+        ErrorResponse response = new ErrorResponse();
+        response.setMessage(msg);
+    }
+
+
     public ErrorResponse getResponse() {
         return response;
     }

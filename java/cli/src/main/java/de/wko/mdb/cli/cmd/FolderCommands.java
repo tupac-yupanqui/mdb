@@ -348,6 +348,7 @@ public class FolderCommands {
 
             extra = extraClient.saveExtra(extra);
             file.setObjectId(extra.getId());
+            file.setFolderId(parentFolder.getId());
             fileClient.saveFile(file);
         } catch (MdbRestException e) {
             e.printStackTrace();
@@ -471,6 +472,15 @@ public class FolderCommands {
         }
         if (extension.equalsIgnoreCase("wma")) {
             return EFileType.WMA;
+        }
+        if (extension.equalsIgnoreCase("jpg")) {
+            return EFileType.EXTRA;
+        }
+        if (extension.equalsIgnoreCase("png")) {
+            return EFileType.EXTRA;
+        }
+        if (extension.equalsIgnoreCase("pdf")) {
+            return EFileType.EXTRA;
         }
         return EFileType.UNKNOWN;
     }

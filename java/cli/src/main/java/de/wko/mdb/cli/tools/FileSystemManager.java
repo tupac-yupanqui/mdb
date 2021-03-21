@@ -28,7 +28,7 @@ public class FileSystemManager {
         try {
             archive = archiveClient.getArchiveById(archiveId);
             if (archive == null) {
-                System.out.println("Kein Archive mit id " + archiveId + " gefunden");
+                System.out.println("No Archive with id=" + archiveId + " found");
                 return null;
             }
             host = hostClient.getHostById(archive.getHostId());

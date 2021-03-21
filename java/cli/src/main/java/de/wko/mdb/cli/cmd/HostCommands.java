@@ -1,5 +1,6 @@
 package de.wko.mdb.cli.cmd;
 
+import de.wko.mdb.cli.Commands;
 import de.wko.mdb.cli.tables.ArchiveTable;
 import de.wko.mdb.cli.tables.HostTable;
 import de.wko.mdb.cli.tools.ConsoleReader;
@@ -146,6 +147,11 @@ public class HostCommands {
         }
 
         return null;
+    }
+
+    @ShellMethod(value = "List hosts", key = Commands.CMD_LIST_HOSTS)
+    public void listHosts() {
+
     }
 
     private Host editHost(Host host) throws ReaderExitException  {

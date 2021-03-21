@@ -39,7 +39,7 @@ public class FolderService {
 
     public Folder createRootFolder(Long archiveId) {
         Folder root = new Folder();
-        root.setName("/");
+        root.setName("");
         root.setParentId(0L);
         root.setArchiveId(archiveId);
         root.setObjectId(archiveId);
