@@ -1,6 +1,8 @@
 package de.wko.mdb.ui;
 
-
+import de.wko.mdb.ui.admin.MainView;
+import de.wko.mdb.ui.admin.SettingsView;
+import de.wko.mdb.ui.admin.StatusView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,15 +18,36 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class UI extends Application {
-    @Override
-    public void init() throws Exception {
-        super.init();
+
+@SpringBootApplication(scanBasePackages = {"de.wko.mdb"})
+public class FxbootApplication extends Application {
+
+    @Autowired
+    MainView mainView;
+    @Autowired
+    StatusView statusView;
+    @Autowired
+    SettingsView settingsView;
+
+    public static void main(String[] args) {
+        Application.launch();
     }
 
     @Override
-    public void start(final Stage primaryStage) throws Exception {
+    public void init() {
+        SpringApplication application = new SpringApplication(getClass());
+        application.setWebApplicationType(WebApplicationType.NONE);
+        application.run().getAutowireCapableBeanFactory().autowireBean(this);
+        //SpringApplication.run(getClass()).getAutowireCapableBeanFactory().autowireBean(this);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("null");
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
@@ -32,7 +55,8 @@ public class UI extends Application {
         rootPane.getStylesheets().add("css/main.css");
         rootPane.getStyleClass().add("splashPane");
 
-        Image image = new Image("img/tuomas.jpg");
+        Image image = new Image("img/tuomas3.jpg");
+        System.out.println(image.getUrl());
         ImageView imageView = new ImageView(image);
 
         /*
@@ -65,7 +89,8 @@ public class UI extends Application {
         archiveButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 primaryStage.close();
-                //ArchiveUI archiveUI = new ArchiveUI();
+               // ArchiveUI archiveUI = new ArchiveUI();
+                System.out.println("DURCH");
             }
         });
         Button playerButton = new Button("Player");
@@ -94,16 +119,12 @@ public class UI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        primaryStage.close();
 
-        //primaryStage.close();
-        //ArchiveUI archiveUI = new ArchiveUI();
+        mainView.show();
+
+        mainView.setContent(settingsView.getRoot());
 
 
     }
-
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-    }
-
 }

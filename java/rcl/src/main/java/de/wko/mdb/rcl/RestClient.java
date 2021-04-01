@@ -23,6 +23,7 @@ public class RestClient {
 
     protected <T,U> T post(String path, U request, Class<T> response) throws MdbRestException{
         try {
+            System.out.println("---> "+config.getUrl(path));
             return restTemplate.postForObject(
                     config.getUrl(path),
                     request,

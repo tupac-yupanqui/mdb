@@ -93,6 +93,10 @@ public class RestConfig {
     @Value("${base.url}")
     String baseUrl;
 
+    public void setBaseUrl(String url) {
+        baseUrl = url;
+    }
+
     public String getBaseUrl() {
         return baseUrl;
     }

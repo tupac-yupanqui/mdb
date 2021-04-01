@@ -20,13 +20,13 @@
         <module>data</module>
         <module>rest</module>
         <module>test</module>
-        <module>ui</module>
         <module>bl</module>
         <module>cli</module>
         <module>fs</module>
         <module>rcl</module>
         <module>format</module>
-        <!--module>cli-jlink</module-->
+        <module>wrapper</module>
+        <module>MdbUI</module>
     </modules>
 
 </project>

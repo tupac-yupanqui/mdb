@@ -19,6 +19,7 @@ public class RestTokenInterceptor implements ClientHttpRequestInterceptor {
 
     @Override
     public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
+        System.out.println("## token: "+token);
         httpRequest.getHeaders().set("Authorization","Bearer "+token);
         return clientHttpRequestExecution.execute(httpRequest, bytes);
     }

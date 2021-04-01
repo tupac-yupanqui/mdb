@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="settingsView" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.wko.mdb.ui.admin.SettingsViewController">
+   <children>
+
+      <Label text="Settings">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+
+       <ScrollPane fx:id="propertyScrollPane" fitToWidth="true" prefHeight="200.0" VBox.vgrow="ALWAYS">
+           <content>
+               <VBox fx:id="ptree" fillWidth="false">
+                   <children>
+                       <TitledPane fx:id="modePropertyPane" animated="false" text="%settings.mode">
+                           <content>
+                               <GridPane>
+                                   <columnConstraints>
+                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                   </columnConstraints>
+                                   <rowConstraints>
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                   </rowConstraints>
+                                   <children>
+                                       <RadioButton fx:id="modeLocalButton" mnemonicParsing="false" text="%settings.mode.db">
+                                           <toggleGroup>
+                                               <ToggleGroup fx:id="modeToggleGroup" />
+                                           </toggleGroup>
+                                       </RadioButton>
+                                       <RadioButton fx:id="modeRemoteButton" mnemonicParsing="false" text="%settings.mode.rest" toggleGroup="$modeToggleGroup" GridPane.rowIndex="1" />
+                                   </children>
+                               </GridPane>
+                           </content></TitledPane>
+                       <TitledPane fx:id="dbPropertyPane" animated="false" text="%settings.local">
+                           <content>
+                               <GridPane>
+                                   <columnConstraints>
+                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+                                   </columnConstraints>
+                                   <rowConstraints>
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                   </rowConstraints>
+                                   <children>
+                                       <Button mnemonicParsing="false" onAction="#actionConnectDb" text="%settings.local.button.connect" GridPane.rowIndex="5" />
+                                       <Label text="%settings.local.host" />
+                                       <Label text="%settings.local.port" GridPane.rowIndex="1" />
+                                       <Label text="%settings.local.schema" GridPane.rowIndex="2" />
+                                       <Label text="%settings.local.user" GridPane.rowIndex="3" />
+                                       <Label text="%settings.local.password" GridPane.rowIndex="4" />
+                                       <TextField fx:id="tfDbHost" GridPane.columnIndex="1" />
+                                       <TextField fx:id="tfDbPort" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                       <TextField fx:id="tfDbSchema" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                       <TextField fx:id="tfDbUser" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                       <TextField fx:id="tfDbPassword" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                   </children>
+                               </GridPane>
+                           </content>
+                       </TitledPane>
+                       <TitledPane fx:id="restPropertyPane" animated="false" text="%settings.remote">
+                           <content>
+                               <GridPane>
+                                   <columnConstraints>
+                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+                                   </columnConstraints>
+                                   <rowConstraints>
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                   </rowConstraints>
+                                   <children>
+                                       <Label text="%settings.remote.host" />
+                                       <Label text="%settings.remote.port" GridPane.rowIndex="1" />
+                                       <Label text="%settings.remote.user" GridPane.rowIndex="2" />
+                                       <Label text="%settings.remote.password" GridPane.rowIndex="3" />
+                                       <TextField fx:id="tfRestHost" promptText="asdasd" GridPane.columnIndex="1" />
+                                       <TextField fx:id="tfRestPort" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                       <TextField fx:id="tfRestUser" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                       <TextField fx:id="tfRestPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                       <Button mnemonicParsing="false" onAction="#actionConnectRest" text="%settings.remote.button.connect" GridPane.rowIndex="4" />
+                                   </children>
+                               </GridPane>
+                           </content>
+                       </TitledPane>
+                       <TitledPane fx:id="nextPropertyPane" animated="false" text="2">
+                           <content>
+                               <AnchorPane fx:id="nextPropertyContentPane" />
+                           </content>
+                       </TitledPane>
+                   </children>
+               </VBox>
+           </content>
+       </ScrollPane>
+
+   </children>
+</VBox>
