@@ -1,6 +1,8 @@
 package de.wko.mdb.ui.common;
 
 public class PropertyNames {
+    public static final String PROP_MODE = "mode";
+
     public static final String PROP_DB_NAME = "db.name";
     public static final String PROP_DB_PORT = "db.port";
     public static final String PROP_DB_SCHEMA = "db.schema";

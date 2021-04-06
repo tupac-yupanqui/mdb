@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox fx:id="hostsView" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: magenta;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.wko.mdb.ui.admin.HostsViewController">
+   <children>
+      <Label text="Label" />
+      <ScrollPane fx:id="hostsScrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <content>
+            <TableView fx:id="hostsTable" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="colAddress" prefWidth="75.0" text="Address" />
+                  <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

@@ -1,6 +1,8 @@
 package de.wko.mdb.ui.admin;
 
 import de.wko.mdb.ui.UIContext;
+import de.wko.mdb.ui.dialog.MessageBox;
+import de.wko.mdb.wrapper.HostWrapper;
 import de.wko.mdb.wrapper.SecurityWrapper;
 import de.wko.mdb.wrapper.WrapperConnector;
 import javafx.beans.value.ChangeListener;
@@ -90,10 +92,10 @@ public class SettingsViewController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
                 if (t1.equals(modeLocalButton)) {
-                    context.setMode(UIContext.MODE_LOCAL);
+                    connectDb();
                 }
                 if (t1.equals(modeRemoteButton)) {
-                    context.setMode(UIContext.MODE_REMOTE);
+                    connectRest();
                 }
             }
         });
@@ -114,14 +116,29 @@ public class SettingsViewController implements Initializable {
 
     @FXML
     public void actionConnectDb() {
-        System.out.println("Connect DB");
+        connectDb();
     }
 
     @FXML
     public void actionConnectRest() {
-        System.out.println("Connect REST");
-        boolean result = wrapper.connect(context.getRestConnector().getType());
-        System.out.println("Result: "+result);
+        connectRest();
+    }
 
+    private void connectRest() {
+        boolean result = wrapper.connect(context.getRestConnector().getType());
+        if (result) {
+            context.setMode(UIContext.MODE_REMOTE);
+            context.setStatus(UIContext.STATUS_CONNECTED);
+            modeRemoteButton.setSelected(true);
+        } else {
+            MessageBox.alert();
+        }
+    }
+    private void connectDb() {
+        System.out.println("Connect DB");
+        wrapper.connect(context.getDbConnector().getType());
+        context.setMode(UIContext.MODE_LOCAL);
+        context.setStatus(UIContext.STATUS_CONNECTED);
+        modeLocalButton.setSelected(true);
     }
 }

@@ -1,6 +1,10 @@
 package de.wko.mdb.ui.admin;
 
+import de.wko.mdb.types.Host;
 import de.wko.mdb.ui.UIContext;
+import de.wko.mdb.ui.dialog.MessageBox;
+import de.wko.mdb.wrapper.HostWrapper;
+import de.wko.mdb.wrapper.WrapperException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -28,6 +33,11 @@ public class MainViewController implements Initializable  {
     SettingsView settingsView;
     @Autowired
     StatusView statusView;
+    @Autowired
+    HostsView hostsView;
+
+    @Autowired
+    HostWrapper hostWrapper;
 
     @FXML
     BorderPane mainView;
@@ -67,9 +77,20 @@ public class MainViewController implements Initializable  {
     }
 
     @FXML
+    protected void menuHostsAction(ActionEvent event) {
+        mainView.setCenter(hostsView.getRoot());
+    }
+
+    @FXML
     protected void menuTestAction(ActionEvent event) {
-        context.setMode(UIContext.MODE_REMOTE);
-        context.setStatus(UIContext.STATUS_CONNECTED);
+        try {
+            List<Host> hosts = hostWrapper.getAllHosts();
+            for (Host h : hosts) {
+                System.out.println(String.format("####### %s (%s)", h.getName(), h.getType()));
+            }
+        } catch (WrapperException e) {
+            MessageBox.alert2();
+        }
     }
 
     @FXML

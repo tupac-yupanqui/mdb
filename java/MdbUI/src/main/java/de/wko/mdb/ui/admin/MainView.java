@@ -1,6 +1,8 @@
 package de.wko.mdb.ui.admin;
 
 import de.wko.mdb.ui.UIContext;
+import de.wko.mdb.ui.dialog.MessageBox;
+import de.wko.mdb.wrapper.WrapperConnector;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,6 +25,9 @@ public class MainView {
     private UIContext context;
 
     @Autowired
+    private WrapperConnector wrapper;
+
+    @Autowired
     private MainViewController controller;
 
     @Autowired
@@ -33,6 +38,20 @@ public class MainView {
 
     @PostConstruct
     public void postConstruct() {
+        if (context.getMode().equals(UIContext.MODE_REMOTE)) {
+            boolean result = wrapper.connect(context.getRestConnector().getType());
+            if (result) {
+                context.setMode(UIContext.MODE_REMOTE);
+                context.setStatus(UIContext.STATUS_CONNECTED);
+            }
+        }
+        if (context.getMode().equals(UIContext.MODE_LOCAL)) {
+            boolean result = wrapper.connect(context.getDbConnector().getType());
+            if (result) {
+                context.setMode(UIContext.MODE_LOCAL);
+                context.setStatus(UIContext.STATUS_CONNECTED);
+            }
+        }
     }
 
     public void setContent(Node n) {

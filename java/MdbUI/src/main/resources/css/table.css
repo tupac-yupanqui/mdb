@@ -1,0 +1,14 @@
+/*
+.table-row-cell:filled {
+    -fx-background-color: blue;
+}
+*/
+.table-row-cell:available {
+    -fx-background-color: red;
+}
+.table-row-cell:available:selectedp {
+    -fx-background-color: green;
+}
+.table-row-cell:beides {
+    -fx-background-color: orange;
+}

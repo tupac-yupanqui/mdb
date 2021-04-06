@@ -1,5 +1,6 @@
 package de.wko.mdb.ui;
 
+import de.wko.mdb.ui.admin.HostsView;
 import de.wko.mdb.ui.admin.MainView;
 import de.wko.mdb.ui.admin.SettingsView;
 import de.wko.mdb.ui.admin.StatusView;
@@ -33,6 +34,10 @@ public class FxbootApplication extends Application {
     StatusView statusView;
     @Autowired
     SettingsView settingsView;
+    @Autowired
+    UIContext context;
+    @Autowired
+    HostsView view;
 
     public static void main(String[] args) {
         Application.launch();
@@ -56,7 +61,6 @@ public class FxbootApplication extends Application {
         rootPane.getStyleClass().add("splashPane");
 
         Image image = new Image("img/tuomas3.jpg");
-        System.out.println(image.getUrl());
         ImageView imageView = new ImageView(image);
 
         /*
@@ -123,7 +127,9 @@ public class FxbootApplication extends Application {
 
         mainView.show();
 
-        mainView.setContent(settingsView.getRoot());
+        System.out.println("+++++++++ "+context.getMode());
+
+        mainView.setContent(view.initView());
 
 
     }

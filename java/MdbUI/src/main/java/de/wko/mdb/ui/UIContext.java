@@ -1,6 +1,7 @@
  package de.wko.mdb.ui;
 
 import de.wko.mdb.ui.common.LocalDbConnector;
+import de.wko.mdb.ui.common.PropertyNames;
 import de.wko.mdb.ui.common.RemoteRestConnector;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -38,6 +39,7 @@ public class UIContext {
         Locale locale = new Locale("en", "UK");
         stringResources = ResourceBundle.getBundle("fxml/admin/strings", locale);
         load();
+        System.out.println("## load ocntext");
     }
 
     public String getMode() {
@@ -120,6 +122,7 @@ public class UIContext {
 
     public void save() {
         try {
+            properties.setProperty(PropertyNames.PROP_MODE, mode.get());
             dbConnector.save(properties);
             restConnector.save(properties);
             OutputStream output = new FileOutputStream("settings.properties");
@@ -129,4 +132,5 @@ public class UIContext {
             return;
         }
     }
-}
+
+ }

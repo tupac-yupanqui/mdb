@@ -1,5 +1,6 @@
 package de.wko.mdb.wrapper;
 
+import de.wko.mdb.bl.service.HostService;
 import de.wko.mdb.rcl.*;
 import de.wko.mdb.types.AuthData;
 import de.wko.mdb.types.DbConnector;
@@ -15,21 +16,29 @@ import java.util.List;
 @Component
 public class WrapperConnector {
 
+    public static final String CONNECTION_TYPE_NONE = "none";
+    public static final String CONNECTION_TYPE_DB = "db";
+    public static final String CONNECTION_TYPE_REST = "rest";
+
     @Autowired
     AuthClient authClient;
-    @Autowired
-    HostClient hostClient;
 
     @Autowired
     RestConfig restConfig;
 
     private boolean connected = false;
+    private String connectionType = CONNECTION_TYPE_NONE;
+
+    private AuthData restAuthData;
 
     public boolean connect(DbConnector connector) {
+        connected = true;
+        connectionType = CONNECTION_TYPE_DB;
         return connected;
     }
 
     public boolean connect(RestConnector connector) {
+        System.out.println("### CONNECT");
         if (connector==null) return false;
         if (Strings.isEmpty(connector.getHost())) return false;
         if (Strings.isEmpty(connector.getPort())) connector.setPort("8080");
@@ -42,16 +51,19 @@ public class WrapperConnector {
         request.setUsername(connector.getUser());
         request.setPassword(connector.getPassword());
         try {
-            AuthData authData = authClient.signin(request);
+            authClient.removeToken();
+            restAuthData = authClient.signin(request);
+            authClient.addToken(restAuthData.getToken());
             connected=true;
-
-            List<Host> hosts = hostClient.getAllHosts();
-            for (Host h: hosts) {
-                System.out.println("## "+h.getName());
-            }
+            connectionType = CONNECTION_TYPE_REST;
         } catch (MdbRestException e) {
             System.out.println("############# Exception: "+e.getMessage());
+            System.out.println("## return "+connected);
         }
         return connected;
+    }
+
+    public String getConnectionType() {
+        return connectionType;
     }
 }
