@@ -1,23 +1,36 @@
 package de.wko.mdb.ui.admin;
 
+import de.wko.mdb.fs.AvailabiltyCheck;
 import de.wko.mdb.types.Host;
-import de.wko.mdb.types.enums.EHostType;
 import de.wko.mdb.ui.UIContext;
+import de.wko.mdb.ui.admin.entry.HostEntry;
 import de.wko.mdb.wrapper.HostWrapper;
 import de.wko.mdb.wrapper.WrapperConnector;
 import de.wko.mdb.wrapper.WrapperException;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.css.PseudoClass;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -41,11 +54,15 @@ public class HostsViewController implements Initializable {
     @FXML
     TableView hostsTable;
     @FXML
-    TableColumn<Host, String> colName;
+    TableColumn<HostEntry, String> colName;
     @FXML
-    TableColumn<Host, String> colAddress;
+    TableColumn<HostEntry, String> colAddress;
     @FXML
-    TableColumn<Host, String> colType;
+    TableColumn<HostEntry, String> colType;
+    @FXML
+    CheckBox showAvailableOnly;
+
+    private List<HostEntry> entries = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,32 +79,88 @@ public class HostsViewController implements Initializable {
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
 
         PseudoClass available = PseudoClass.getPseudoClass("available");
-        PseudoClass selectedp = PseudoClass.getPseudoClass("selectedp");
-        PseudoClass beides = PseudoClass.getPseudoClass("beides");
 
-        hostsTable.setRowFactory(tv -> {
-            TableRow<Host> row = new TableRow<>() {
-                @Override
-                protected void updateItem(Host item, boolean empty) {
-                    if (item!=null) {
-                        pseudoClassStateChanged(beides, item.getType().equals(EHostType.FTP)|| item.getType().equals(EHostType.HARDDRIVE));
-                        pseudoClassStateChanged(available, item.getType().equals(EHostType.HARDDRIVE));
-                        pseudoClassStateChanged(selectedp, item.getType().equals(EHostType.FTP));
-                    }
+        hostsTable.setRowFactory(table -> new TableRow<HostEntry>() {
+            @Override
+            protected void updateItem(HostEntry item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item!=null) {
+                    pseudoClassStateChanged(available, item.isAvailable());
                 }
-            };
-            return row;
+            }
         });
     }
 
-    public void loadView() {
+    @FXML
+    public void refreshHostView() {
+        loadView();
+    }
+
+    @FXML
+    public void changeShowAvailable() {
+        loadView();
+    }
+
+    public Stage progressWindow() {
+        Stage windowStage = new Stage();
+       // windowStage.initModality(Modality.APPLICATION_MODAL);
+        windowStage.initStyle(StageStyle.UNIFIED);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/progressWindow.fxml"));
         try {
-            List<Host> hosts =  hostWrapper.getAllHosts();
-            for (Host h : hosts) {
-                hostsTable.getItems().add(h);
-            }
-        } catch (WrapperException e) {
+            Parent parent = loader.load();
+            windowStage.setScene(new Scene(parent));
+            windowStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
+        }
+        return windowStage;
+    }
+
+    public Alert progressWindow2() {
+        Alert myalert = new Alert(Alert.AlertType.CONFIRMATION, "WAIT");
+        myalert.show();
+        return myalert;
+    }
+
+    public void loadView() {
+
+        Alert progress = progressWindow2();
+
+        MyTask task = new MyTask();
+        task.addEventFilter(WorkerStateEvent.WORKER_STATE_SUCCEEDED, new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                System.out.println("CLOSE");
+                progress.close();
+            }
+        });
+
+        new Thread(task).start();
+    }
+
+    private boolean checkHostAvailability(Host host) {
+        if (host==null) return false;
+        return AvailabiltyCheck.isHostAvailable(host);
+    }
+
+    private class MyTask extends Task {
+
+        @Override
+        protected Object call() throws Exception {
+            try {
+                List<Host> hosts = hostWrapper.getAllHosts();
+                hostsTable.getItems().clear();
+                for (Host h : hosts) {
+                    HostEntry entry = new HostEntry(h, checkHostAvailability(h));
+                    if (entry.isAvailable() || showAvailableOnly.isSelected() == false) {
+                        hostsTable.getItems().add(entry);
+                    }
+                }
+            } catch (WrapperException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 }

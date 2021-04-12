@@ -30,7 +30,6 @@ public class HostsView {
     @PostConstruct
     private void postConstruct() {
         fxWeaver.loadView(HostsViewController.class, context.getStringResources());
-        System.out.println("POSTCONSTRUCT");
     }
 
     public Node getRoot() {

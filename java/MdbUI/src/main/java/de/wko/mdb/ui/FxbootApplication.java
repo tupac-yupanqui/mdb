@@ -127,8 +127,6 @@ public class FxbootApplication extends Application {
 
         mainView.show();
 
-        System.out.println("+++++++++ "+context.getMode());
-
         mainView.setContent(view.initView());
 
 

@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox fx:id="hostsView" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: magenta;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.wko.mdb.ui.admin.HostsViewController">
+<VBox fx:id="hostsView" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.wko.mdb.ui.admin.HostsViewController">
    <children>
-      <Label text="Label" />
+      <Label text="Hosts">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="5.0" left="10.0" top="5.0" />
+         </VBox.margin></Label>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button mnemonicParsing="false" onAction="#refreshHostView" text="Refresh" />
+            <Button mnemonicParsing="false" text="New" />
+            <CheckBox fx:id="showAvailableOnly" mnemonicParsing="false" onAction="#changeShowAvailable" text="show  available only">
+               <padding>
+                  <Insets left="44.0" />
+               </padding>
+            </CheckBox>
+        </items>
+      </ToolBar>
       <ScrollPane fx:id="hostsScrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <content>
             <TableView fx:id="hostsTable" prefHeight="200.0" prefWidth="200.0">

@@ -55,25 +55,30 @@ public class AvailabiltyCheck {
     }
 
     public static boolean isArchiveOnline(Archive a, Host h) {
-        List<Volume> volumes = getVolumes();
         if (a.getHostId()==h.getId()) {
-            switch (h.getType()) {
-                case HARDDRIVE:
-                    if (AvailabiltyCheck.getLocalHostName().equalsIgnoreCase(h.getName())) {
+            return isHostAvailable(h);
+        }
+        return false;
+    }
+
+    public static boolean isHostAvailable(Host h) {
+        List<Volume> volumes = getVolumes();
+        switch (h.getType()) {
+            case HARDDRIVE:
+                if (AvailabiltyCheck.getLocalHostName().equalsIgnoreCase(h.getName())) {
+                    return true;
+                }
+                return false;
+            case FTP:
+                return FtpFileSystem.isAvailable(h);
+            case MOBILE:
+                for (Volume v : volumes) {
+                    if (h.getAddress().equalsIgnoreCase(v.getName())) {
+                        h.setDrive(v.getDrive());
                         return true;
                     }
-                    return false;
-                case FTP:
-                    return FtpFileSystem.isAvailable(h);
-                case MOBILE:
-                    for (Volume v : volumes) {
-                        if (h.getAddress().equalsIgnoreCase(v.getName())) {
-                            h.setDrive(v.getDrive());
-                            return true;
-                        }
-                    }
-                    break;
-            }
+                }
+                break;
         }
         return false;
     }

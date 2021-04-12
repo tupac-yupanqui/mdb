@@ -21,14 +21,11 @@ public class HostWrapper {
     HostService hostService;
 
     public List<Host> getAllHosts() throws WrapperException {
-        System.out.println("############ "+connector.getConnectionType());
         if (connector.getConnectionType().equals(WrapperConnector.CONNECTION_TYPE_DB)) {
-            System.out.println("********** get hosts from db");
             return hostService.getAllHosts();
         }
         if (connector.getConnectionType().equals(WrapperConnector.CONNECTION_TYPE_REST)) {
             try {
-                System.out.println("********** get hosts from rest");
                 return hostClient.getAllHosts();
             } catch (MdbRestException e) {
                 throw new WrapperException(e.getError());

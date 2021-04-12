@@ -39,7 +39,6 @@ public class UIContext {
         Locale locale = new Locale("en", "UK");
         stringResources = ResourceBundle.getBundle("fxml/admin/strings", locale);
         load();
-        System.out.println("## load ocntext");
     }
 
     public String getMode() {

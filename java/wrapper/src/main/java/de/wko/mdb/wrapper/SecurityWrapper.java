@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 public class SecurityWrapper {
 
     public SecurityWrapper() {
-        System.out.println("INITIALIZE");
     }
 
     public void printtest() {

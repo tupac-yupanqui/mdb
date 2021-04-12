@@ -38,7 +38,6 @@ public class WrapperConnector {
     }
 
     public boolean connect(RestConnector connector) {
-        System.out.println("### CONNECT");
         if (connector==null) return false;
         if (Strings.isEmpty(connector.getHost())) return false;
         if (Strings.isEmpty(connector.getPort())) connector.setPort("8080");

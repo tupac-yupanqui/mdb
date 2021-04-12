@@ -1,14 +1,36 @@
+* {
+    -main-color: rgb(119, 192, 75);
+    -main-color1: derive(-main-color, 10%);
+    -main-color2: derive(-main-color, 90%);
+    -main-color3: derive(-main-color, 95%);
+}
+
+.table-row-cell:selected{
+    -fx-background-color: -main-color;
+}
+
+.table-row-cell:available {
+    -fx-font-weight: bold;
+}
+
 /*
+.table-row-cell:odd:available {
+    -fx-background-color: -main-color2;
+}
+.table-row-cell:even:available {
+    -fx-background-color: -main-color3;
+}
+.table-row-cell:selected:available{
+    -fx-background-color: -main-color1;
+}
+.table-row-cell:selected{
+    -fx-background-color: orange;
+}
 .table-row-cell:filled {
+    -fx-background-color: red;
+}
+
+.table-row-cell:filled:available {
     -fx-background-color: blue;
 }
 */
-.table-row-cell:available {
-    -fx-background-color: red;
-}
-.table-row-cell:available:selectedp {
-    -fx-background-color: green;
-}
-.table-row-cell:beides {
-    -fx-background-color: orange;
-}
